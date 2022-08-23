@@ -67,9 +67,7 @@ During refactoring though it's not always obvious how to make changes smaller an
 
 ---
 
-| For example 👀                                                                                                                       |
-| :----------------------------------------------------------------------------------------------------------------------------------- |
-| When we renamed a function—we should commit, extracted out a variable—commit, added code for a future replacement—commit, and so on. |
+This rule makes us commit code more often: renamed a function—commit, extracted a variable—commit, added code for a future replacement—commit, and so on.
 
 As long as we don't mix different techniques in one commit, it's easier for us to track code changes by diffs and find errors like name conflicts.
 
