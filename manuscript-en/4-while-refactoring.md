@@ -30,7 +30,7 @@ And lastly, small changes are easier to describe in commit messages. The scope o
 
 This section follows on from the previous one, but I want to focus on it separately. The problem with big pull requests is that...
 
-<mark>No one really reviews big pull requests</mark>
+**No one really reviews big pull requests**
 
 If we want to _improve_ the code, we need the pull request to _be reviewed_. So our job is to make the reviewer's job easier. To do this, we can:
 
@@ -57,7 +57,7 @@ Frequent commits are anchor points in code evolution. The more frequent such poi
 
 During refactoring though it's not always obvious how to make changes smaller and more often. I prefer to follow this rule:
 
-<mark>Don't mix different refactoring techniques in the same commit</mark>
+**Don't mix different refactoring techniques in the same commit**
 
 | For example 👀                                                                                                                       |
 | :----------------------------------------------------------------------------------------------------------------------------------- |
