@@ -404,7 +404,7 @@ The main problem with this code is that there's no guarantee that the `sendOrder
 
 ---
 
-❗️ Making sure the data is valid is an internal task of a particular module
+**❗️ Making sure the data is valid is an internal task of a particular module**
 
 ---
 
