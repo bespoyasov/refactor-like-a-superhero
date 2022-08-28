@@ -508,3 +508,15 @@ It's usually best to apply selection right after the data is validated. At that 
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | The data in this example goes through the chain of states: “Raw Server Data” → “Valid Data” → “Prepared for a Task” → “Displayed in the UI.”                                                        |
 | Functional pipeline helps to describe _any task_ as a similar chain. This makes the decomposition easier because chains help to build a clear mental model of the workflow that we express in code. |
+
+[^dmmf]: “Domain Modeling Made Functional” by Scott Wlaschin, https://www.goodreads.com/book/show/34921689-domain-modeling-made-functional
+[^typebranding]: “Branding and Type-Tagging” by Kevin B. Greene, https://medium.com/@KevinBGreene/surviving-the-typescript-ecosystem-branding-and-type-tagging-6cf6e516523d
+[^boundedcontext]: “Bounded Context in DDD” by Martin Fowler, https://www.martinfowler.com/bliki/BoundedContext.html
+[^dto]: Data Transfer Object, DTO, Wikipedia, https://en.wikipedia.org/wiki/Data_transfer_object
+[^ddd]: “Domain-Driven Design” by Eric Evans, https://www.goodreads.com/book/show/179133.Domain_Driven_Design
+[^projections]: Projection operations (C#), https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/projection-operations
+[^mappers]: Data Mapper, https://martinfowler.com/eaaCatalog/dataMapper.html
+[^slices]: API Slice Overview, Redux Toolkit Docs, https://redux-toolkit.js.org/rtk-query/api/created-api/overview#api-slice-overview
+[^lenses]: “Lenses in Functional Programming” by Albert Steckermeier, https://sinusoid.es/misc/lager/lenses.pdf
+[^adapter]: Adapter Pattern, Refactoring Guru, https://refactoring.guru/design-patterns/adapter
+[^serialization]: Serialization, Wikipedia, https://en.wikipedia.org/wiki/Serialization
