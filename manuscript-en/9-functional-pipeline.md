@@ -64,7 +64,7 @@ function makeOrder(user, products, coupon) {
     discount: selectDiscount(data, coupon),
   };
 
-  if (data.discount === 0) delete data.discount;
+  if (!selectDiscount(data, coupon)) data.discount = 0;
   if (data.total >= 2000 && isPromoParticipant(user)) {
     data.products.push(FREE_PRODUCT_OF_THE_DAY);
   }
@@ -124,7 +124,7 @@ function makeOrder(user, products, coupon) {
 
   // Apply Discount:
   const discount = selectDiscount(data, coupon);
-  if (discount) data.discount = discount;
+  data.discount = discount ?? 0;
 
   // Apply Promos:
   if (data.total >= 2000 && isPromoParticipant(user)) {
@@ -152,7 +152,7 @@ function createOrder(user, products) {
 
 // Apply Discount:
 function applyCoupon(order, coupon) {
-  const discount = selectDiscount(order, coupon);
+  const discount = selectDiscount(order, coupon) ?? 0;
   return { ...order, discount };
 }
 
