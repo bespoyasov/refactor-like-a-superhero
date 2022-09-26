@@ -2,7 +2,9 @@
 
 > How to refactor apps efficiently and without pain
 
-## License
+## License & Copyright
+
+All materials are © 2022 Alex Bespoyasov
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
 
