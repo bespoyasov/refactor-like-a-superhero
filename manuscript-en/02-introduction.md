@@ -64,7 +64,7 @@ Cognitive alarms are the feelings we get when reading bad code. I believe that a
 - If it's hard to follow the code execution, if we need to constantly jump between screens, files, or lines.
 - If the code is inconsistent, doesn't follow the project rules.
 
-### Hard to Change
+#### Hard to Change
 
 - Code is hard to change if we need to update a lot of files or double-check the entire application when adding a feature.
 - If we aren't sure we can painlessly remove a particular piece of code.
@@ -77,13 +77,13 @@ Cognitive alarms are the feelings we get when reading bad code. I believe that a
 - If we have to emulate the whole app running to check a single function.
 - If tests for a task require data irrelevant to the task.
 
-### Hard to “Fit in the Head”
+#### Hard to “Fit in the Head”
 
 - Code doesn't fit in our heads if it's hard to keep track of what's going on in it.
 - If by the middle of the module, it's hard to remember what happened at the beginning.
 - If the code is “too complicated” and drawing diagrams doesn't help to understand it.
 
-### Code Smells
+#### Code Smells
 
 Some of those problems have already been shaped in the form of code smells. _Code smells_ are antipatterns that lead to problems.[^smells]
 
