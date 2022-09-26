@@ -1,15 +1,15 @@
 # Refactor Like a Superhero
 
 <figure>
-  <img src="../images/cover.png" style="max-width: 300px">
-  <figcaption>“Refactor Like a Superhero” book cover</figcaption>
+  <img src="../images/cover.png" width="300">
+  <figcaption><em>“Refactor Like a Superhero” book cover</em></figcaption>
 </figure>
 
 This is a book about how to efficiently refactor code. In it, we'll discuss benefits of refactoring for developers and business, how to search for problems in your code, and how to solve them.
 
 ---
 
-## Index
+## Table of Contents
 
 - [Preface](./01-preface.md)
 - [Introduction](./02-introduction.md)
