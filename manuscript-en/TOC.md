@@ -1,0 +1,201 @@
+# Table of Contents
+
+- Preface
+  - Who Might Want to Read This Book
+  - What This Book Isn't
+  - Limits and Constraints
+  - Good to Know Before Reading
+  - Why Another Book
+- Introduction
+  - Benefits for Developers
+  - Benefits for Business
+  - “Good” Code, “Bad” Code
+    - Hard to Read
+    - Hard to Change
+    - Hard to Test
+    - Hard to “Fit in the Head”
+    - Code Smells
+- Before Refactoring
+  - Define Scope and Boundaries
+  - Cover with Tests
+    - Find More Edge Cases
+    - Define Explicit and Implicit Input
+    - Specify Desired Result
+    - Set Up Automatic Tests
+  - Make Linter and Compiler Settings Stricter
+    - Use “Errors” Instead of “Warnings”
+    - Configure More Automated Checks
+- During Refactoring
+  - Small Steps
+  - Small but Detailed Pull Requests
+  - Tests for Every Change
+  - One Technique at a Time
+  - No Features, No Bug Fixes
+  - Transformation Priority Premise
+  - Refactoring Tests Separately
+- Low-Hanging Fruit
+  - Code Formatting
+  - Code Linting
+  - Language Features
+  - Environment Features
+- Names
+  - General Guidelines
+  - Too Short Names
+  - Too Long Names
+    - Option for Naming Functions
+  - Different Entities with Identical Names
+  - Ubiquitous Language
+  - Lying Names
+  - Domain Types
+- Code Duplication
+  - Not All Duplication is Evil
+  - Variables for Data
+  - Functions for Actions
+- Abstraction
+  - Intent and Implementation
+  - Fractal Architecture
+  - Separation of Concerns
+    - Task Decomposition
+    - Single Responsibility Principle
+  - Encapsulation
+- Functional Pipeline
+  - Data Transformations
+  - Data States
+  - Unrepresentable Invalid States
+  - Data Validation
+  - Data Mapping and Selectors
+- Conditions and Complexity
+  - Cyclomatic and Cognitive Complexity
+  - Flat Over Nested
+  - Early Return
+    - Component Rendering
+  - Variables, Predicates, and Boolean Algebra
+    - De Morgan's Laws
+    - Predicates
+  - Primitive Pattern Matching
+  - Strategy
+  - Null-Object
+- Side Effects
+  - Pure Functions
+    - Referential Transparency
+  - Immutable by Default
+  - Functional Core in Imperative Shell
+    - Adapters for Effects
+  - Commands and Queries
+    - CQS and Generated IDs
+    - CQRS
+- Error Handling
+  - Types of Errors
+  - Handling Techniques
+  - Throwing Panics
+    - Unexpected Errors and Missing Context
+    - Different Error Types
+    - Fail Fast
+    - Rethrow
+    - Advantages
+    - Problems
+  - Result Containers
+    - More Accurate Signature
+    - Explicit Handling
+    - Centralized Handling
+    - Panics are Separated
+    - Multiple Errors
+    - Unpacking
+  - Binding Results
+    - Problems
+    - When to Prefer Panics
+  - Cross-Cutting Concerns
+  - So Many Different Handlers
+  - Error Handling Hierarchy
+    - Wrappers for “Low-Level” Code
+    - Use Case Handlers
+    - Last Resort Handlers
+  - Data Prevalidation
+- Module Integration
+  - Coupling and Cohesion
+    - Separation of Concerns
+    - Integration Rule
+    - Task Decomposition
+    - Search for Cohesion
+  - Contracts
+    - Events and Messages
+  - Dependencies
+    - Object Composition
+      - Separate Data and Behavior
+      - Interface Segregation Principle
+    - Functional Composition
+      - Dependency Rejection Might not Fit
+  - Integrity and Consistency
+    - Aggregates
+    - Input Prevalidation
+- Generics, Inheritance, and Composition
+  - Generic Algorithms
+  - Generic Types
+  - Inheritance and Composition
+    - Inheritance
+    - The Liskov Substitution Principle
+- App Architecture
+  - Not About File Structure
+  - Business Workflow Modeling
+    - Ubiquitous Language
+    - Domain Model
+    - Dependency Direction
+  - Interaction with the World
+    - Ports and Adapters
+    - All Kinds of Architecture
+  - UI Logic
+    - Reactivity
+  - Testing
+- Declarative Style
+  - Readability
+  - Reliability
+  - Extensibility
+  - Configurability
+  - State Machines
+  - Drawbacks
+    - Code Complexity
+    - Performance
+- Static Typing
+  - Ubiquitous Language
+  - Domain Modeling
+    - Types in TypeScript
+  - Model and Reality
+    - Violation of Agreements
+  - API Design
+- Refactoring Test Code
+  - “Tests” for Tests
+  - “Brittle” Tests
+    - Test Duplicates
+    - Never-Failing Tests
+    - Tests for Simple Functions
+    - Regressions
+- Comments and Documentation
+  - Sources of Truth
+  - Comments
+    - Correct or Delete False Comments
+    - Clarify Vague Comments
+    - Inline Small Details in the Code
+    - Describe Context Instead of “Rephrasing Names”
+    - Turn TODOs and FIXMEs into Tasks
+  - Documentation
+  - Knowledge Accessibility
+- Refactoring as a Process
+  - Refactor or Rewrite
+  - Resources
+    - Available Time
+    - Accumulated Knowledge
+    - Experience
+  - Benefits and Risks
+  - Project Meta Information
+  - Estimates
+  - Refactoring Large Chunks of Code
+  - Frequency and Hygiene
+  - Metrics
+- Afterword
+  - Errata and Feedback
+  - For Publishers
+  - For Translators
+  - Acknowledgements
+  - Extras
+- Cheat Sheet on Refactoring Techniques
+- Sources and References

@@ -9,7 +9,7 @@
 
 It is a book about how to efficiently refactor code. In it, we'll discuss the benefits of refactoring for developers and business, how to search for problems in your code, and how to solve them.
 
-## Table of Contents
+## [Table of Contents](./TOC.md)
 
 - [Preface](./01-preface.md)
 - [Introduction](./02-introduction.md)

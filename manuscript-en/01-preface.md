@@ -6,7 +6,7 @@ At some point, it became obvious that I couldn't fit everything I wanted to disc
 
 The cut-out material wasn't useless though. It had details and clarifications about usage and constraints of the technics, it told about when they were applicable and when they weren't. I decided it would make more sense not to throw out everything that didn't fit, but to change the format and release it as a small online book. That's how this project came to be.
 
-## Who Should Read This Book
+## Who Might Want to Read This Book
 
 This book might be useful for developers of web services and user applications who write in high-level languages and have a couple of years of experience.
 
