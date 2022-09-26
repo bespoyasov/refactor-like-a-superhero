@@ -51,7 +51,7 @@ During refactoring, we can't change the code functionality, so the desired resul
 
 Ideally, the result should exist _on the boundary_ of code under refactoring. Checking results on the boundary is easier while the amount of affected code is kept minimal.
 
-![Result on the border is usually easier to check](../images/3-result-on-edge.png)
+![Result on the border is usually easier to check](../images/03-result-on-edge.png)
 
 ### Set Up Automatic Tests
 

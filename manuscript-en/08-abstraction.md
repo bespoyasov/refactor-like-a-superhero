@@ -91,7 +91,7 @@ In good code, there's exactly as much information on the screen as the reader ne
 
 To visualize “levels” he suggests using a grid of hexagons. Each hexagon is a part of the system, which can be detailed deeper. At each level of detail, we'll see no more than N parts important to that level. If we need to know how a particular part works, we can “zoom in” a hexagon and see what it consists of.
 
-![So the program breaks down into chunks, which break down into chunks, which break down into chunks...](../images/8-fractal-arcitecture.png)
+![So the program breaks down into chunks, which break down into chunks, which break down into chunks...](../images/08-fractal-arcitecture.png)
 
 | Copyright note ©                                                                                |
 | :---------------------------------------------------------------------------------------------- |
@@ -137,7 +137,7 @@ It's quite possible to understand such code, but because of the number of detail
 
 If we express this code on the hexagon diagram we'll see that some parts just don't fit:
 
-![Objects and functions reflected on hex tiles; one of them doesn't fit](../images/8-app-detalization.png)
+![Objects and functions reflected on hex tiles; one of them doesn't fit](../images/08-app-detalization.png)
 
 The code would be much easier to explore and understand if, at the top level, we “prepared” the reader and told them _what_ the `App` component does. In that case, variable and subcomponent names would express the intent and add up to a “story”:
 
@@ -174,21 +174,21 @@ function useHasAccess() {
 
 So at the top level of detail, we would see only 3 parts: `hasAccess`, `Dashboard`, and `Login`. This code would be much easier for us to “load” in our heads and focus on the relationships between the parts.
 
-![Top layer of application detail in the form of hex tiles](../images/8-app-detalization-simpler.png)
+![Top layer of application detail in the form of hex tiles](../images/008-app-detalization-simpler.png)
 
 If we needed to detail a part of the “story”, we could “zoom in” one of the cells and examine its structure.
 
 For example, in `useHasAccess` we can see how its 4 parts work with each other. At this level, it doesn't really matter what happens “level above”, because we focus on the structure of the `useHasAccess`.
 
-![Detailed tiling of the `useHasAccess` hook](../images/8-has-access-detalization.png)
+![Detailed tiling of the `useHasAccess` hook](../images/08-has-access-detalization.png)
 
 It's called fractal architecture because we can nest one level of detail into another:
 
-![Levels of detail are nested in on another like a Russian doll](../images/8-app-fractal.png)
+![Levels of detail are nested in on another like a Russian doll](../images/08-app-fractal.png)
 
 ...And switch our attention between levels at any moment:
 
-![Switching attention between levels](../images/8-fractal-levels.png)
+![Switching attention between levels](../images/08-fractal-levels.png)
 
 Each of the cells can be “zoomed in” to its parts. And each of its parts can also be “zoomed in” further. This way we can go deeper and deeper into the system but control how much information we consume.
 
