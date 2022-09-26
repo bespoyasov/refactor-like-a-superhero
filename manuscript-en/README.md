@@ -5,9 +5,9 @@
   <figcaption><em>“Refactor Like a Superhero” book cover</em></figcaption>
 </figure>
 
-This is a book about how to efficiently refactor code. In it, we'll discuss benefits of refactoring for developers and business, how to search for problems in your code, and how to solve them.
-
 ---
+
+This is a book about how to efficiently refactor code. In it, we'll discuss benefits of refactoring for developers and business, how to search for problems in your code, and how to solve them.
 
 ## Table of Contents
 
@@ -35,8 +35,6 @@ This is a book about how to efficiently refactor code. In it, we'll discuss bene
 - [Cheat Sheet on Refactoring Techniques](./22-cheatsheet.md)
 - [Sources and References](./23-sources.md)
 
----
-
 ## About Author
 
 Alex Bespoyasov, software engineer at 0+X with more that 10 years of experience in web development. Interested in blogging, mentoring, and
@@ -44,8 +42,6 @@ Alex Bespoyasov, software engineer at 0+X with more that 10 years of experience 
 - [bespoyasov.me](https://bespoyasov.me)
 - [twitter](https://twitter.com/bespoyasov_)
 - [0x.se](https://0x.se/experts/alexander-bespoyasov)
-
----
 
 ## License & Copyright
 
