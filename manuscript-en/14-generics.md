@@ -317,7 +317,7 @@ type MessageEntry = {
 };
 ```
 
-## Generic Types and Inheritance
+## Inheritance and Composition
 
 In the example above, it's easy to start using generic types for describing `Entry`.[^generics] The motivation might be that the generic type would allow determining the record kind “on the fly”:
 

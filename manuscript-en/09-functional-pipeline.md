@@ -363,7 +363,7 @@ During “translation” between complex domain types and intentionally simple D
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | More about the functional pipeline, business workflows, bonded contexts, data validation, and DDD you can read in “Domain Modeling Made Functional” by Scott Wlaschin.[^dmmf] Great book, highly recommended. |
 
-## Data Mapping and Projections
+## Data Mapping and Selectors
 
 The same data may be needed for different purposes. For example, the UI may render a shopping cart differently depending on the user's settings.
 

@@ -65,7 +65,7 @@ What type of tests to use depends on the situation and isn't as important as the
 
 This section is rather optional, but I, personally, like using it. In my opinion, more aggressive linter and compiler settings help spot occasional bugs and bad practices. “More aggressive” settings can include:
 
-### “Errors” Instead of “Warnings”
+### Use “Errors” Instead of “Warnings”
 
 Linter warnings are a collective experience of the industry. They can be valuable, but they're easy to miss because they don't make the code compilation “crash with an error”.
 

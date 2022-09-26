@@ -179,7 +179,7 @@ A test should be responsible for a specific problem, and _must fail_ when it occ
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Most often I've encountered never-failing tests in over-mocked systems, where the infrastructure and test arrangement consisted almost entirely of calling mocks. Such tests often pass the result of one mock to another and end up testing nothing. |
 
-### Tests of Simple Functions
+### Tests for Simple Functions
 
 When choosing what and how to test, we should compare the benefits of the test and its costs. For example, we can pay attention to the cyclomatic complexity of the function this test covers.
 

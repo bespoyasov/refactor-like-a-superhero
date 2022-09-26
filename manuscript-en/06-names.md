@@ -144,7 +144,7 @@ The details from the first group are better kept in the name. The details from t
 | :----------------------------------------------------------------------------------------------------------------------------------------------- |
 | The logic of the function itself may still be complex. But there are usually fewer problems with naming if related details are grouped together. |
 
-### Naming Functions Option
+### Option for Naming Functions
 
 When it comes to functions, the A/HC/LC pattern helps to maneuver between “too short” and “too long” names.[^ahclc] This pattern suggests combining the action, its subject, and its object:
 

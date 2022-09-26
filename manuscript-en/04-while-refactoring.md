@@ -1,4 +1,4 @@
-# While Refactoring
+# During Refactoring
 
 After we've defined clear boundaries, examined the code, and covered it with tests, we can start refactoring.
 

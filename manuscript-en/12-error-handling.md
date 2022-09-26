@@ -648,7 +648,7 @@ In general, it's convenient to compose cross-cutting concerns with decorators. D
 | Decorators have limitations, they won't fit in all cases. For example, if we need to send a message to the log in the middle of a function, it would probably be hard to do that with a decorator. |
 | Though in such cases it's usually worth considering why we need to log something _in the middle_ of a function. Maybe it's better to split the function into several ones.                         |
 
-## Many Different Handlers
+## So Many Different Handlers
 
 Potentially dangerous functions may be different and may be associated with different APIs. The requirements to error handling in such functions may differ. For example, some APIs require specifying the `.onerror` property or listening for an error event instead of using `try-catch`.
 
