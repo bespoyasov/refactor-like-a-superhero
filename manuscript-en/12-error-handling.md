@@ -566,10 +566,10 @@ async function getUser(id) {
 
 In such a function, an error in any of the steps immediately breaks the execution. After that, the `handleGetUserErrors` function starts to handle it. In combination with Exhaustiveness Check[^exhaustivecheck] we can safely handle all the errors for `getUser` without having to unpack containers manually.
 
-| By the way ⛓                                                                                                                                                                                                                           |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Binding can look differently depending on the style and paradigm of the project. It can be done with methods, or it can be a function like `pipe`,[^pipe] which “pushes” the results from one function to another.                     |
-| If your project has containers, take a closer look at their implementation, maybe they have the binding too. If not, take a look at existing solutions like fp/ts or sweet-monads and pick the one you like best.[^fpts][^sweetmonads] |
+| By the way ⛓                                                                                                                                                                                                                                        |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Binding can look differently depending on the style and paradigm of the project. It can be done with methods, or it can be a function like `pipe`,[^pipe] which “pushes” the results from one function to another.                                  |
+| If your project has containers, take a closer look at their implementation, maybe they have the binding too. If not, take a look at existing solutions like fp/ts or sweet-monads and pick the one you like best.[^fpts][^sweetmonads][^neverthrow] |
 
 So the point of binding is to _automate_ the chaining and unpacking of results. It's like we link all results into a sequence of “forks.” An error from any function travels down the fork to the “error track” and goes along it all the way to the end. It's similar to connecting railroad tracks—that's why the programming is “railway oriented” 😃
 
@@ -717,6 +717,7 @@ When refactoring error handling, we can take advantage of this idea and move the
 [^exhaustivecheck]: `switch-exhaustiveness-check`, ES Lint TypeScript, https://typescript-eslint.io/rules/switch-exhaustiveness-check/
 [^pipe]: `pipe`, fp/ts, https://gcanti.github.io/fp-ts/modules/function.ts.html#pipe
 [^sweetmonads]: Easy-to-use monads implementation with static types definition, https://github.com/JSMonk/sweet-monads
+[^neverthrow]: Type-Safe Errors for JS & TypeScript, neverthrow, https://github.com/supermacro/neverthrow
 [^againstrailway]: “Against Railway-Oriented Programming” by by Scott Wlaschin, https://fsharpforfunandprofit.com/posts/against-railway-oriented-programming/
 [^crosscutting]: Cross-Cutting Concern, Wikipedia, https://en.wikipedia.org/wiki/Cross-cutting_concern
 [^decorator]: Decorator Pattern, Refactoring Guru https://refactoring.guru/design-patterns/decorator
