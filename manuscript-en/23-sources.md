@@ -493,6 +493,7 @@ Kinds of errors exist and how they differ. Problems entangled error handling lea
 - `neverthrow`, Type-Safe Errors for JS & TypeScript, https://github.com/supermacro/neverthrow
 - `sweet-monads`, Easy-to-use monads implementation with static types definition, https://github.com/JSMonk/sweet-monads
 - `switch-exhaustiveness-check`, ES Lint TypeScript, https://typescript-eslint.io/rules/switch-exhaustiveness-check/
+- `true-myth`, A library for safer and smarter error- and “nothing”-handling in TypeScript, https://github.com/true-myth/true-myth
 
 ## Module Integration
 
