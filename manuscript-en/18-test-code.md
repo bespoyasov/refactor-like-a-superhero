@@ -1,4 +1,4 @@
-# Test Code
+# Refactoring Test Code
 
 Tests help us refactor application code by indicating errors we may have made. But the tests themselves are code too, so they also need to be refactored from time to time.
 
