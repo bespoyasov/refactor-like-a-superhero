@@ -128,6 +128,8 @@ We check the edge cases one by one and _terminate_ the function if we come acros
 
 Filtering out edge cases one by one allows us to forget about the checked ones. They no longer take up our attention and working memory.
 
+![The condition becomes easier to understand because we don't need to remember about so many details](../images/10-early-return.png)
+
 | However 🛡                                                                                                                                                                                       |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Early return may not be suitable for “defensive” programming: when we explicitly handle each branch of a condition.                                                                             |
