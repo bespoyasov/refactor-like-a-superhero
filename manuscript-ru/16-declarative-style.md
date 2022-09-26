@@ -59,7 +59,7 @@ function validate(user, cart) {
 ```js
 // cart.js
 function isEmpty(cart) {
-  return cart.products.length;
+  return !cart.products.length;
 }
 
 function totalPriceOf(cart) {

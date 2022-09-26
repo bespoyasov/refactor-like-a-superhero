@@ -103,14 +103,14 @@ function composeAuction(user, from, to, products, startPrice, invited) {
     timeRange: { from, to },
     lots: products.map(lotFromProduct),
     price: startPrice,
-    participants: invited.filter(accepted)
+    participants: invited.filter(accepted),
     winners: [],
     bids: [],
     bestBid: null,
     open: false,
     expired: false,
     cancelled: false,
-    closedLots: null
+    closedLots: null,
   };
 }
 ```

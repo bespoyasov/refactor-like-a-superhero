@@ -59,7 +59,7 @@ To solve this problem, we can decompose it and split function steps by levels of
 ```js
 // cart.js
 function isEmpty(cart) {
-  return cart.products.length;
+  return !cart.products.length;
 }
 
 function totalPriceOf(cart) {
