@@ -92,7 +92,7 @@ In good code, there's exactly as much information on the screen as the reader ne
 To visualize “levels” he suggests using a grid of hexagons. Each hexagon is a part of the system, which can be detailed deeper. At each level of detail, we'll see no more than N parts important to that level. If we need to know how a particular part works, we can “zoom in” a hexagon and see what it consists of.
 
 <figure>
-  <img src="../images/08-fractal-arcitecture.png" width="600">
+  <img src="../images/08-fractal-architecture.png" width="600">
   <figcaption><em>So the program breaks down into chunks, which break down into chunks, which break down into chunks...</em><br><br></figcaption>
 </figure>
 
