@@ -346,7 +346,7 @@ An _adapter_ is an entity that converts the incompatible interface of one module
 With the “Ports and Adapters” architectural style, the module communication comes down to connecting the ports of some modules with the adapters of others. In this way, we make the modules unaware of each other's structure, which reduces the coupling between them.
 
 <figure>
-  <img src="../images/15-ports-adapters.png" width="900">
+  <img src="../images/15-ports-adapters.png">
   <figcaption><em>When using “Ports and Adapters”, module interaction becomes connecting adapters to ports of other modules</em><br><br></figcaption>
 </figure>
 
