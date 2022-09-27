@@ -37,7 +37,7 @@ It is a book about how to efficiently refactor code. In it, we'll discuss the be
 
 ## About Author
 
-Alex Bespoyasov, software engineer at 0+X with more that 10 years of experience in web development.
+Alex Bespoyasov, software engineer at 0+X with more than 10 years of experience in web development.
 
 - [bespoyasov.me](https://bespoyasov.me)
 - [twitter](https://twitter.com/bespoyasov_)
