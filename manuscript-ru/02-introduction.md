@@ -102,5 +102,5 @@
 [^cleancode]: “Clean Code” by Robert C. Martin, https://www.goodreads.com/book/show/3735293-clean-code
 [^evaluatingstudies]: Evaluating Code Readability and Legibility: An Examination of Human-centric Studies, https://github.com/reydne/code-comprehension-review/blob/master/list-papers/AllPhasesMergedPapers-Part1.md
 [^readability]: Code Readability Testing, an Empirical Study, https://www.researchgate.net/publication/299412540_Code_Readability_Testing_an_Empirical_Study
-[^howreadable]: How Readable Code Is, https://howreadable.com
+[^howreadable]: How Readable Code Is, a Readability Experiment https://howreadable.com
 [^smells]: Code Smells, Refactoring Guru, https://refactoring.guru/refactoring/smells

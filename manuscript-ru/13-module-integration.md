@@ -836,21 +836,21 @@ function Cart({ items }) {
 [^soc]: Разделение ответственности, Википедия, https://ru.wikipedia.org/wiki/Разделение_ответственности
 [^cohesion]: Связность в программировании, Википедия, https://ru.wikipedia.org/wiki/Связность_(программирование)
 [^faetureenvy]: Feature Envy, Refactoring Guru, https://refactoring.guru/smells/feature-envy
-[^designbycontract]: Design By Contract, https://wiki.c2.com/?DesignByContract
+[^designbycontract]: “Design By Contract”, c2.com, https://wiki.c2.com/?DesignByContract
 [^contractprogramming]: «Контрактное программирование» Тимур Шемсединов, https://youtu.be/K5_kSUvbGEQ
 [^strategy]: Strategy Pattern, Refactoring Guru, https://refactoring.guru/design-patterns/strategy
 [^rest]: REpresentational State Transfer, REST, https://restfulapi.net
-[^messagebroker]: Message Broker, https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ff648849(v=pandp.10)
-[^messagebus]: Message Bus, https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ff647328(v=pandp.10)
+[^messagebroker]: Message Broker, Microsoft Docs, https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ff648849(v=pandp.10)
+[^messagebus]: Message Bus, Microsoft Docs, https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ff647328(v=pandp.10)
 [^messagequeue]: Message Queue, Wikipedia, https://en.wikipedia.org/wiki/Message_queue
 [^observer]: Observer Pattern, Refactoring Guru, https://refactoring.guru/design-patterns/observer
-[^rxjs]: Reactive Extensions Library for JavaScript, RxJS, https://rxjs.dev
-[^solid]: The Principles of OOD, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
+[^rxjs]: RxJS, Reactive Extensions Library for JavaScript, https://rxjs.dev
+[^solid]: The Principles of OOD, Robert C. Martin, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
 [^di]: “Inversion of Control Containers and the Dependency Injection pattern” by Martin Fowler, https://martinfowler.com/articles/injection.html
 [^diindotnet]: “Dependency Injection in .NET” by Mark Seemann, https://www.goodreads.com/book/show/9407722-dependency-injection-in-net
 [^ditsinpractice]: Внедрение зависимостей с TypeScript на практике, https://bespoyasov.ru/blog/di-ts-in-practice/
 [^ddd]: “Domain-Driven Design” by Eric Evans, https://www.goodreads.com/book/show/179133.Domain_Driven_Design
-[^dddclassification]: Evans Classification, https://martinfowler.com/bliki/EvansClassification.html
+[^dddclassification]: “Evans Classification” by Martin Fowler, https://martinfowler.com/bliki/EvansClassification.html
 [^dependencyrejection]: “Dependency Rejection” by Mark Seemann, https://blog.ploeh.dk/2017/02/02/dependency-rejection/
 [^readermonadfordi]: “Dependency Injection Using the Reader Monad” by Scott Wlaschin, https://fsharpforfunandprofit.com/posts/dependencies-3/
 [^freemonadsfordi]: “Dependency Interpretation” by Scott Wlaschin, https://fsharpforfunandprofit.com/posts/dependencies-4/

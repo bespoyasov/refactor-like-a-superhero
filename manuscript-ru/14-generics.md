@@ -547,13 +547,13 @@ const spentBeforeToday = (record) => isSpend(record) && beforeToday(record);
 | Мы не будем вдаваться в подробности того, как принцип подстановки связан с пред- и постусловиями и как они должны себя вести. Но я оставлю несколько ссылок, которые рекомендую прочесть.[^designbycontract][^contractprogramming] |
 
 [^typesarenotclasses]: “Functional Design Patterns” by Scott Wlaschin, https://youtu.be/srQt1NAHYC0
-[^typesandtypeclasses]: Types and Typeclasses, http://learnyouahaskell.com/types-and-typeclasses
-[^generics]: Generics in TypeScript, https://www.typescriptlang.org/docs/handbook/2/generics.html
+[^typesandtypeclasses]: Types and Typeclasses, Learn You Haskell, http://learnyouahaskell.com/types-and-typeclasses
+[^generics]: Generics in TypeScript, TypeScript Docs https://www.typescriptlang.org/docs/handbook/2/generics.html
 [^lsp]: “A behavioral notion of subtyping” by Barbara H. Liskov, Jeannette M. Wing, https://dl.acm.org/doi/10.1145/197320.197383
-[^solid]: The Principles of OOD, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
+[^solid]: The Principles of OOD, Robert C. Martin, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
 [^martinlsp]: The Liskov Substitution Principle, https://web.archive.org/web/20151128004108/http://www.objectmentor.com/resources/articles/lsp.pdf
 [^variance]: Covariance and Contravariance, Wikipedia, https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)
 [^variancematters]: “Why variance matters” by Ted Kaminski https://www.tedinski.com/2018/06/26/variance.html
 [^variancekotlin]: “The Ins and Outs of Generic Variance in Kotlin” by Dave Leeds, https://typealias.com/guides/ins-and-outs-of-generic-variance/
-[^designbycontract]: Design By Contract, https://wiki.c2.com/?DesignByContract
+[^designbycontract]: “Design By Contract”, c2.com, https://wiki.c2.com/?DesignByContract
 [^contractprogramming]: «Контрактное программирование» Тимур Шемсединов, https://youtu.be/K5_kSUvbGEQ

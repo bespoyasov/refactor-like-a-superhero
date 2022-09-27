@@ -488,4 +488,4 @@ function mergeCompanyDepartments(departmentIdA, departmentIdB) {
 [^fsmfrontend]: Управление состоянием приложения с помощью конечного автомата, https://bespoyasov.ru/blog/fsm-to-the-rescue/
 [^xstate]: JavaScript and TypeScript finite state machines and statecharts, XState, https://github.com/statelyai/xstate
 [^antifragile]: “Antifragile: Things That Gain from Disorder” by Nassim Nicholas Taleb, https://www.goodreads.com/book/show/13530973-antifragile
-[^solid]: The Principles of OOD, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
+[^solid]: The Principles of OOD, Robert C. Martin, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod

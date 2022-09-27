@@ -363,7 +363,7 @@ class PostReader {
 
 [^dmmf]: “Domain Modeling Made Functional” by Scott Wlaschin, https://www.goodreads.com/book/show/34921689-domain-modeling-made-functional
 [^ddd]: “Domain-Driven Design” by Eric Evans, https://www.goodreads.com/book/show/179133.Domain_Driven_Design
-[^ubiquitouslanguage]: Ubiquitous Language, https://martinfowler.com/bliki/UbiquitousLanguage.html
+[^ubiquitouslanguage]: “Ubiquitous Language” by Martin Fowler, https://martinfowler.com/bliki/UbiquitousLanguage.html
 [^typealias]: Type Aliases, TypeScript Handbook, https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases
 [^typebranding]: “Branding and Type-Tagging” by Kevin B. Greene, https://medium.com/@KevinBGreene/surviving-the-typescript-ecosystem-branding-and-type-tagging-6cf6e516523d
 [^factorymethod]: Factory Method, Refactoring Guru, https://refactoring.guru/design-patterns/factory-method/typescript/example

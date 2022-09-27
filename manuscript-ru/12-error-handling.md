@@ -725,13 +725,13 @@ const errorHandler = withLogger(handleNetworkError);
 [^pragmaticprogrammer]: “The Pragmatic Programmer” by Andy Hunt, https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer
 [^notificationpattern]: “Notification” by Martin Fowler, https://martinfowler.com/eaaDev/Notification.html
 [^aggregateerror]: `AggregateError`, MDN, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError
-[^fpts]: Typed functional programming in TypeScript, https://github.com/gcanti/fp-ts
+[^fpts]: fp/ts, Typed functional programming in TypeScript, https://github.com/gcanti/fp-ts
 [^failfast]: Fail-fast, Wikipedia, https://en.wikipedia.org/wiki/Fail-fast
 [^railwayprogramming]: “Railway Oriented Programming” by Scott Wlaschin, https://fsharpforfunandprofit.com/rop/
 [^exhaustivecheck]: `switch-exhaustiveness-check`, ES Lint TypeScript, https://typescript-eslint.io/rules/switch-exhaustiveness-check/
 [^pipe]: `pipe`, fp/ts, https://gcanti.github.io/fp-ts/modules/function.ts.html#pipe
-[^sweetmonads]: Easy-to-use monads implementation with static types definition, https://github.com/JSMonk/sweet-monads
-[^neverthrow]: Type-Safe Errors for JS & TypeScript, neverthrow, https://github.com/supermacro/neverthrow
+[^sweetmonads]: sweet-monads, Easy-to-use monads implementation with static types definition, https://github.com/JSMonk/sweet-monads
+[^neverthrow]: neverthrow, Type-Safe Errors for JS & TypeScript, https://github.com/supermacro/neverthrow
 [^againstrailway]: “Against Railway-Oriented Programming” by by Scott Wlaschin, https://fsharpforfunandprofit.com/posts/against-railway-oriented-programming/
 [^crosscutting]: Cross-Cutting Concern, Wikipedia, https://en.wikipedia.org/wiki/Cross-cutting_concern
 [^decorator]: Decorator Pattern, Refactoring Guru https://refactoring.guru/design-patterns/decorator

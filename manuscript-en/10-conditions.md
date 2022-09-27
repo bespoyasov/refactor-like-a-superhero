@@ -555,7 +555,7 @@ Null-object is sometimes considered **antipattern**.[^nullobjectcriticism] It's 
 [^patternmatchingts]: “Bringing Pattern Matching to TypeScript” by Gabriel Vergnaud, https://dev.to/gvergnaud/bringing-pattern-matching-to-typescript-introducing-ts-pattern-v3-0-o1k
 [^nullobject]: Introduce Null Object, Refactoring Guru, https://refactoring.guru/introduce-null-object
 [^nullobjectcriticism]: Null object pattern, Criticism, Wikipedia, https://en.wikipedia.org/wiki/Null_object_pattern#Criticism
-[^fsmfrontend]: Application State Management with Finite State Machines, https://bespoyasov.me/blog/fsm-to-the-rescue/
+[^fsmfrontend]: “Application State Management with Finite State Machines” by Alex Bespoyasov, https://bespoyasov.me/blog/fsm-to-the-rescue/
 [^cognitivecomplexity]: “Cognitive Complexity. A new way of measuring understandability” by G. Ann Campbell, SonarSource SA, https://www.sonarsource.com/docs/CognitiveComplexity.pdf
 [^zenpython]: The Zen of Python, https://peps.python.org/pep-0020/#the-zen-of-python
 [^polymorphism]: Polymorphism, Wikipedia, https://en.wikipedia.org/wiki/Polymorphism_(computer_science)

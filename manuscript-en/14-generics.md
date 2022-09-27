@@ -549,13 +549,13 @@ In `HistoryFilter` we can now pass _any_ implementation of type `EntryPredicate`
 | We won't go into detail about how the substitution principle relates to pre- and postconditions and how those should behave. But I'll leave some links that I can recommend you to read about this topic.[^designbycontract] |
 
 [^typesarenotclasses]: “Functional Design Patterns” by Scott Wlaschin, https://youtu.be/srQt1NAHYC0
-[^typesandtypeclasses]: Types and Typeclasses, http://learnyouahaskell.com/types-and-typeclasses
-[^generics]: Generics in TypeScript, https://www.typescriptlang.org/docs/handbook/2/generics.html
+[^typesandtypeclasses]: Types and Typeclasses, Learn You Haskell, http://learnyouahaskell.com/types-and-typeclasses
+[^generics]: Generics in TypeScript, TypeScript Docs https://www.typescriptlang.org/docs/handbook/2/generics.html
 [^lsp]: “A behavioral notion of subtyping” by Barbara H. Liskov, Jeannette M. Wing, https://dl.acm.org/doi/10.1145/197320.197383
-[^solid]: The Principles of OOD, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
+[^solid]: The Principles of OOD, Robert C. Martin, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
 [^martinlsp]: The Liskov Substitution Principle, https://web.archive.org/web/20151128004108/http://www.objectmentor.com/resources/articles/lsp.pdf
 [^variance]: Covariance and Contravariance, Wikipedia, https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)
 [^variancematters]: “Why variance matters” by Ted Kaminski https://www.tedinski.com/2018/06/26/variance.html
 [^variancekotlin]: “The Ins and Outs of Generic Variance in Kotlin” by Dave Leeds, https://typealias.com/guides/ins-and-outs-of-generic-variance/
-[^designbycontract]: Design By Contract, https://wiki.c2.com/?DesignByContract
+[^designbycontract]: “Design By Contract”, c2.com, https://wiki.c2.com/?DesignByContract
 [^abstractclass]: Abstract Classes and Members, TypeScript Handbook, https://www.typescriptlang.org/docs/handbook/2/classes.html#abstract-classes-and-members

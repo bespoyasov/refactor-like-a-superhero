@@ -503,9 +503,9 @@ const $representation = combine<UiRepresentation>(
 [^fromfailure]: “What I've Learned From Failure” by Reg Braithwaite, https://leanpub.com/shippingsoftware/read
 [^cleanarchitecture]: “Clean Architecture” by Robert C. Martin, https://www.goodreads.com/book/show/18043011-clean-architecture
 [^ddd]: “Domain-Driven Design” by Eric Evans, https://www.goodreads.com/book/show/179133.Domain_Driven_Design
-[^ubiquitouslanguage]: Ubiquitous Language, https://martinfowler.com/bliki/UbiquitousLanguage.html
+[^ubiquitouslanguage]: “Ubiquitous Language” by Martin Fowler, https://martinfowler.com/bliki/UbiquitousLanguage.html
 [^impureim]: “Impureim Sandwich” by Mark Seemann, https://blog.ploeh.dk/2020/03/02/impureim-sandwich/
-[^acl]: Anti-corruption Layer Pattern, https://docs.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
+[^acl]: Anti-corruption Layer Pattern, Microsoft Docs, https://docs.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
 [^accesslist]: Access Control List, Википедия, https://ru.wikipedia.org/wiki/ACL
 [^scene]: “Your Code As a Crime Scene” by Adam Tornhill, https://www.goodreads.com/book/show/23627482-your-code-as-a-crime-scene
 [^portsadapters]: “Functional Architecture is Ports and Adapters” by Mark Seemann, https://blog.ploeh.dk/2016/03/18/functional-architecture-is-ports-and-adapters/

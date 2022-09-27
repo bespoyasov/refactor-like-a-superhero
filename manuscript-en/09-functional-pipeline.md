@@ -520,8 +520,8 @@ It's usually best to apply selection right after the data is validated. At that 
 [^boundedcontext]: “Bounded Context in DDD” by Martin Fowler, https://www.martinfowler.com/bliki/BoundedContext.html
 [^dto]: Data Transfer Object, DTO, Wikipedia, https://en.wikipedia.org/wiki/Data_transfer_object
 [^ddd]: “Domain-Driven Design” by Eric Evans, https://www.goodreads.com/book/show/179133.Domain_Driven_Design
-[^projections]: Projection operations (C#), https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/projection-operations
-[^mappers]: Data Mapper, https://martinfowler.com/eaaCatalog/dataMapper.html
+[^projections]: Projection operations, C# Guide, https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/projection-operations
+[^mappers]: “Data Mapper” by Martin Fowler, https://martinfowler.com/eaaCatalog/dataMapper.html
 [^slices]: API Slice Overview, Redux Toolkit Docs, https://redux-toolkit.js.org/rtk-query/api/created-api/overview#api-slice-overview
 [^lenses]: “Lenses in Functional Programming” by Albert Steckermeier, https://sinusoid.es/misc/lager/lenses.pdf
 [^adapter]: Adapter Pattern, Refactoring Guru, https://refactoring.guru/design-patterns/adapter

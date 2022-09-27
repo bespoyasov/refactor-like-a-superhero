@@ -217,5 +217,5 @@ describe("when called with a user object", () => {
 
 [^codethatfits]: “Code That Fits in Your Head” by Mark Seemann, https://www.goodreads.com/book/show/57345272-code-that-fits-in-your-head
 [^testinduceddamage]: “Test-Induced Design Damage” by David Heinemeier Hansson, https://dhh.dk/2014/test-induced-design-damage.html
-[^unittestsdotnet]: Unit testing best practices with .NET Core and .NET Standard, https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
+[^unittestsdotnet]: Unit testing best practices with .NET Core and .NET Standard, Microsoft Docs, https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
 [^faker]: Faker, Generate fake (but realistic) data for testing and development, https://fakerjs.dev

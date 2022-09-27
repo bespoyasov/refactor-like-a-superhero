@@ -486,7 +486,7 @@ In this way we bring the imperative implementation “down a level”, isolate i
 [^twelvefactors]: 12 Factor Apps, https://12factor.net
 [^tpp]: Transformation Priority Premise, Wikipedia https://en.wikipedia.org/wiki/Transformation_Priority_Premise
 [^fsm]: Finite-State Machine, Wikipedia, https://en.wikipedia.org/wiki/Finite-state_machine
-[^fsmfrontend]: Application State Management with Finite State Machines, https://bespoyasov.me/blog/fsm-to-the-rescue/
+[^fsmfrontend]: “Application State Management with Finite State Machines” by Alex Bespoyasov, https://bespoyasov.me/blog/fsm-to-the-rescue/
 [^xstate]: JavaScript and TypeScript finite state machines and statecharts, XState, https://github.com/statelyai/xstate
 [^antifragile]: “Antifragile: Things That Gain from Disorder” by Nassim Nicholas Taleb, https://www.goodreads.com/book/show/13530973-antifragile
-[^solid]: The Principles of OOD, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
+[^solid]: The Principles of OOD, Robert C. Martin, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
