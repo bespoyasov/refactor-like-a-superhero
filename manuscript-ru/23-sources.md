@@ -648,6 +648,7 @@
 ### Инструменты
 
 - Anti-corruption Layer Pattern, https://docs.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
+- Evey Programmer Should Know, Architecture, https://github.com/mtdvio/every-programmer-should-know#architecture
 - Feature-Sliced Design, Architectural methodology for frontend projects, https://feature-sliced.design
 - Ubiquitous Language, https://martinfowler.com/bliki/UbiquitousLanguage.html
 
@@ -773,6 +774,7 @@
 ### Инструменты
 
 - Architectural Decision Records, ADR, https://adr.github.io
+- Evey Programmer Should Know, Practices, https://github.com/mtdvio/every-programmer-should-know#practices
 - JSDoc Reference, TypeScript Documentation https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
 
 ## Частота, процессы и метрики
@@ -802,3 +804,8 @@
 - “Strangler Fig Application” by Martin Fowler https://martinfowler.com/bliki/StranglerFigApplication.html
 - “Opportunistic Refactoring” by Martin Fowler https://martinfowler.com/bliki/OpportunisticRefactoring.html
 - “When to Refactor” by Mark Seemann, https://blog.ploeh.dk/2022/09/19/when-to-refactor/
+
+### Инструменты
+
+- Evey Programmer Should Know, Engineering Philosophy, https://github.com/mtdvio/every-programmer-should-know#engineering-philosophy
+- Evey Programmer Should Know, Practices, https://github.com/mtdvio/every-programmer-should-know#practices
