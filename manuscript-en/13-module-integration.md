@@ -34,7 +34,10 @@ The first and foremost thing we should check when analyzing the interaction of m
 
 A program composed according to this rule looks like “islands of cohesive functionality” connected by bridges of public APIs, events or messages:
 
-![“Islands” in the code are responsible for related domain tasks and communicate with each other via “bridges” of public APIs, events, or messages](../images/13-coupling-cohesion.png)
+<figure>
+  <img src="../images/13-coupling-cohesion.png" width="800">
+  <figcaption><em>“Islands” in the code are responsible for related domain tasks and communicate with each other via “bridges” of public APIs, events, or messages</em><br><br></figcaption>
+</figure>
 
 ### Task Decomposition
 
@@ -299,7 +302,10 @@ The lower the coupling, the more module interaction resembles sending messages. 
 
 Messages can be sent either directly from one module to another via a public API, or via a special entity—a _message bus_. In the second case, the modules know nothing about each other and are coupled only through the message bus:
 
-![Communication comes down to sending and receiving messages from the bus](../images/13-message-bus.png)
+<figure>
+  <img src="../images/13-message-bus.png" width="800">
+  <figcaption><em>Communication comes down to sending and receiving messages from the bus</em><br><br></figcaption>
+</figure>
 
 | Clarification 📧                                                                                                                                                                                                                                                                                                                                             |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

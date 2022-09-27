@@ -29,7 +29,10 @@ If during refactoring we realize that we need to refactor the test code, we shou
 
 This way we turn refactoring into “ping-ponging” between refactoring the tests and the application code. They support and cover each other making sure that the overall program behavior stays the same.
 
-![When we change the code, the behavior is captured by the tests. When we change the tests, the behavior is captured by the application code](../images/18-refactoring-ping-pong.png)
+<figure>
+  <img src="../images/18-refactoring-ping-pong.png" width="800">
+  <figcaption><em>When we change the code, the behavior is captured by the tests. When we change the tests, the behavior is captured by the application code</em><br><br></figcaption>
+</figure>
 
 This technique doesn't guarantee that we won't make any mistakes but reduces their probability. With it, there's always at least one part (either tests or code) that _hasn't changed since the last moment everything worked_. So we're more confident that everything works as before.
 

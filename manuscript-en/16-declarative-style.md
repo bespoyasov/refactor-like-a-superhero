@@ -373,7 +373,10 @@ The basic idea of an FSM is _limited sets_ of states and _unambiguous rules for 
 
 We can represent this table as a diagram of transitions between states:
 
-![Online store state transitions diagram](../images/16-fsm.png)
+<figure>
+  <img src="../images/16-fsm.png" width="800">
+  <figcaption><em>Online store state transitions diagram</em><br><br></figcaption>
+</figure>
 
 But we can also represent it _in code_ as a collection of states and transitions:
 

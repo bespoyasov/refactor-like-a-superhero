@@ -64,7 +64,10 @@ After turning linter “warnings” to “errors”, we might have a list of suc
 
 I prefer to save the work on each of the linter rules as a separate commit or PR. For example, we could remove all unused code, make it a commit, and move on to the next problem on the list.
 
-![Linter highlights unused code that can be removed](../images/05-linter.png)
+<figure>
+  <img src="../images/05-linter.png" width="800">
+  <figcaption><em>Linter highlights unused code that can be removed</em><br><br></figcaption>
+</figure>
 
 If there are a lot of errors after we turn on the linter, we can enable one rule at a time rather than all at once. The smaller the steps, the easier it is to break the problem into several and solve each one separately.
 
@@ -101,7 +104,10 @@ Along with the language features, we should also highlight the features of the t
 
 “Rename Symbol”, “Extract into Function” and other tools speed up the work and reduce the cognitive load. For example, in VS Code, we can change the name of a function or variable everywhere by using the hotkeys:[^vscode]
 
-![Rename Symbol updates the variable name everywhere](../images/05-rename-symbol.png)
+<figure>
+  <img src="../images/05-rename-symbol.png" width="800">
+  <figcaption><em>“Rename Symbol” updates the variable name everywhere</em><br><br></figcaption>
+</figure>
 
 However, we should double-check the result of applying these tools. For example, Rename Symbol may “miss” some name or add unnecessary renaming:
 
@@ -121,7 +127,10 @@ const Account = ({ firstName: name }: AccountProps) => <>{name}</>;
 
 To avoid this, we should study the diff from the latest commit and check what was renamed and how.
 
-![Git shows exactly what has changed since the latest commit](../images/05-git-diff.png)
+<figure>
+  <img src="../images/05-git-diff.png" width="800">
+  <figcaption><em>Git shows exactly what has changed since the latest commit</em><br><br></figcaption>
+</figure>
 
 Strategy of small steps helps with simplifying and maximizing the benefit of such checks. If we apply only one refactoring technique per commit, there's no noise in the diffs and we can better see how exactly the changes affect the code.
 

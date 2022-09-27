@@ -42,7 +42,10 @@ In poorly organized code, business workflows don't resemble such chains. They ar
 
 In well-organized code, the workflows look linear, and the data in them go through several steps one at a time. The final state of the data is the desired result of the entire workflow.
 
-![Data goes through a chain of different states, the output is the desired workflow result](../images/09-functional-pipeline.png)
+<figure>
+  <img src="../images/09-functional-pipeline.png" width="800">
+  <figcaption><em>Data goes through a chain of different states, the output is the desired workflow result</em><br><br></figcaption>
+</figure>
 
 This kind of code organization is called a _functional pipeline_. When refactoring business logic, we can focus on it to make the workflows in the code clearer and more obvious.
 
@@ -301,7 +304,10 @@ DDD has an analog for such islands—_bounded contexts_.[^boundedcontext][^ddd][
 
 According to DDD, it's convenient to validate data _on the boundaries_ of contexts, for example, at the context input. In this case, “inside” the context, we don't need additional checks, because the data is already validated and safe.
 
-![All validation takes place at the boundaries; the data inside the context is considered valid and safe](../images/09-bounded-context.png)
+<figure>
+  <img src="../images/09-bounded-context.png" width="800">
+  <figcaption><em>All validation takes place at the boundaries; the data inside the context is considered valid and safe</em><br><br></figcaption>
+</figure>
 
 We can use this rule in our code to get rid of unnecessary data checks at runtime. By validating the data once at the beginning of the workflow, we can assume later that it meets our requirements.
 

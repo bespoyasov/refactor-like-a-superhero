@@ -43,7 +43,10 @@ Each condition and loop adds to the mental model a new “path” from the begin
 
 We can visualize the number of “paths” in the function as a graph.[^controlflowgraph][^controlflowexample] Each new condition or loop adds a new “branch”, which makes the graph and the function more complex.
 
-![Graph of function with complexity 3. We can calculate the complexity as the difference between the nodes and edges of the graph, or as the number of regions on it](../images/10-cyclomatic-complexity.png)
+<figure>
+  <img src="../images/10-cyclomatic-complexity.png" width="800">
+  <figcaption><em>Graph of function with complexity 3. We can calculate the complexity as the difference between the nodes and edges of the graph, or as the number of regions on it</em><br><br></figcaption>
+</figure>
 
 The more “branches”, the harder a function to work with.
 
@@ -56,7 +59,10 @@ The more “branches”, the harder a function to work with.
 
 An important feature of such properties is that they're _measurable_. For measurable properties, we can choose _limits_ and automate their checks. For example, we can set up the linter to tell us when the code complexity exceeds the selected limit:
 
-![Linter errors when the complexity exceeds the limit](../images/10-complexity-linter.png)
+<figure>
+  <img src="../images/10-complexity-linter.png" width="800">
+  <figcaption><em>Linter errors when the complexity exceeds the limit</em><br><br></figcaption>
+</figure>
 
 The specific number depends on the property, the project, the language, and the team. For cyclomatic complexity, Mark Seemann in “Code That Fits in Your Head” suggests using the number 7.[^codethatfits] Wikipedia offers number 10.[^cyclomaticcomplexity] I usually use 10 in my projects because it's a “round” number, but all this is highly arbitrary.
 
@@ -128,7 +134,10 @@ We check the edge cases one by one and _terminate_ the function if we come acros
 
 Filtering out edge cases one by one allows us to forget about the checked ones. They no longer take up our attention and working memory.
 
-![The condition becomes easier to understand because we don't need to remember about so many details](../images/10-early-return.png)
+<figure>
+  <img src="../images/10-early-return.png" width="800">
+  <figcaption><em>The condition becomes easier to understand because we don't need to remember about so many details</em><br><br></figcaption>
+</figure>
 
 | However 🛡                                                                                                                                                                                       |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
