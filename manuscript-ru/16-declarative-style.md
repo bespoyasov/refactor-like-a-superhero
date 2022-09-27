@@ -373,7 +373,7 @@ async function fetchUser(id) {
 Мы можем представить такой автомат в виде диаграммы переходов между состояниями:
 
 <figure>
-  <img src="../images/16-fsm.png" width="800">
+  <img src="../images/16-fsm.png" width="600">
   <figcaption><em>Диаграмма переходов между состояниями в интернет-магазине</em><br><br></figcaption>
 </figure>
 

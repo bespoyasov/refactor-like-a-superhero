@@ -35,7 +35,7 @@ The first and foremost thing we should check when analyzing the interaction of m
 A program composed according to this rule looks like “islands of cohesive functionality” connected by bridges of public APIs, events or messages:
 
 <figure>
-  <img src="../images/13-coupling-cohesion.png" width="800">
+  <img src="../images/13-coupling-cohesion.png" width="600">
   <figcaption><em>“Islands” in the code are responsible for related domain tasks and communicate with each other via “bridges” of public APIs, events, or messages</em><br><br></figcaption>
 </figure>
 
