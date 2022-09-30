@@ -1,7 +1,7 @@
 # Refactor Like a Superhero
 
 <figure>
-  <img src="../images/cover.png" width="300">
+  <img src="../images/cover-en.png" width="300">
   <figcaption><em>“Refactor Like a Superhero” book cover</em></figcaption>
 </figure>
 
