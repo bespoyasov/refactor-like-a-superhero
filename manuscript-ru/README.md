@@ -14,7 +14,7 @@
 - [Предисловие](./01-preface.md)
 - [Введение](./02-introduction.md)
 - [Прежде, чем начать](./03-before-start.md)
-- [Во время рефакторинга](./04-while-refactoring.md)
+- [Во время рефакторинга](./04-during-refactoring.md)
 - [Низко-висящие фрукты](./05-low-hanging-fruit.md)
 - [Имена](./06-names.md)
 - [Дублирование кода](./07-duplication.md)

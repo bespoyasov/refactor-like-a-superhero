@@ -14,7 +14,7 @@ It is a book about how to efficiently refactor code. In it, we'll discuss the be
 - [Preface](./01-preface.md)
 - [Introduction](./02-introduction.md)
 - [Before Refactoring](./03-before-start.md)
-- [During Refactoring](./04-while-refactoring.md)
+- [During Refactoring](./04-during-refactoring.md)
 - [Low-Hanging Fruit](./05-low-hanging-fruit.md)
 - [Names](./06-names.md)
 - [Code Duplication](./07-duplication.md)
