@@ -1,20 +1,20 @@
 # Side Effects
 
-Any interaction between an app and the real world is a side effect. Saving data on the server, rendering components in the UI, or accessing the browser API—all these are side effects. They're necessary for a useful application, but they're hard to reason about and can cause errors.
+Any interaction between an app and the real world is a side effect. Saving data on the server, rendering components in the UI, or accessing the browser API—all these are side effects. They're necessary for a useful application but are hard to reason about and can cause errors.
 
-In this chapter, we'll discuss how to design programs and refactor code so that effects don't make the code more difficult and error-prone. We'll explore the benefits of functional programming and immutable data structures. We'll also discuss how to organize effects in an app and what's the difference between CQS and CQRS.
+In this chapter, we'll discuss how to design programs and refactor code so that effects don't make the code more complicated and error-prone. We'll explore the benefits of functional programming and immutable data structures. We'll also discuss how to organize an app's effects and the difference between CQS and CQRS.
 
 ## Pure Functions
 
 The main problem with effects is that they're _unpredictable_. They change the state, so we can't be sure that the result of the code will always be the same.
 
-On the other hand, _pure functions_ don't produce effects, don't depend on the state, and always return the same result when given the same arguments. This makes their results predictable and reproducible.
+On the other hand, _pure functions_ don't produce effects, don't depend on the state, and always return the same result when given the same arguments. It makes their results predictable and reproducible.
 
 When refactoring, we'll try to use pure functions more often and express more functionality with them. But to understand the benefits of this approach, let's first discuss the nature of pure functions.
 
 ### Referential Transparency
 
-It's easier to see the advantage of pure functions during debugging. To speed up the search for bugs in the problematic code snippet, we can use binary search. Using it, we divide the snippet into two halves, detect an error in one of them and then look for bugs only in that half:
+It's easier to see the advantage of pure functions during debugging. We can use binary search to speed up the search for bugs in the problematic code snippet. Using it, we divide the snippet into two halves, detect an error in one of them and then look for bugs only in that half:
 
 ```
 Let's say this is the problematic piece of code.
@@ -57,19 +57,19 @@ We do this until we find the exact spot with the error:
 [                   |X|          ]
 
 With each iteration, the problematic code area is halved.
-This saves a lot of time when debugging.
+This approach saves a lot of time when debugging.
 
-In general, after 3-6 iterations it becomes clear,
-what the problem is and where it's located.
+In general, after 3-6 iterations, it becomes clear,
+what the problem is and where it is.
 ```
 
-| By the way 🔪                                               |
-| :---------------------------------------------------------- |
-| Sometimes such a binary search process is called bisection. |
+| By the way 🔪                                                                                              |
+| :--------------------------------------------------------------------------------------------------------- |
+| Sometimes, such a binary search process is called bisection by analogy with the bisection in git.[^bisect] |
 
-In a sequence of pure functions, the data flows from one function to another being passed as arguments. The advantage of such a sequence is that we can “cut” it _anywhere_. The functions after the “cut” don't care what functions have been called before them. If they're given the same arguments, they'll work the same way.
+In a sequence of pure functions, the data flows from one function to another, being passed as arguments. The advantage of such a sequence is that we can “cut” it _anywhere_. The functions after the “cut” don't care what functions have been called before them. They'll work the same way if given the same arguments.
 
-We can literally replace the _calls_ of functions before the “cut” with _their results_, and the behavior of the program won't change. Such a property is called _referential transparency_,[^referentialtransparency] and it makes searching for errors and testing much easier.
+We can literally replace the _calls_ of functions before the “cut” with _their results_, and the program's behavior won't change. Such a property is called _referential transparency_,[^referentialtransparency] and makes searching for errors and testing much more straightforward.
 
 <figure>
   <img src="../images/11-referential-transparency.png" width="800">
@@ -82,7 +82,7 @@ With side effects, this is much harder to achieve. So when refactoring, we'll tr
 
 As we said earlier, code with effects is less predictable. When refactoring, we should first check if we can rewrite it without effects. In practice, this most often means replacing the “shared state” with a chain of data transformations.
 
-For example, let's look at the `prepareExport` function, which prepares store order data for export. It calculates the totals and the latest shipping date for each item.
+For example, look at the `prepareExport` function, which prepares store order data for export. It calculates the totals and the latest shipping date for each item.
 
 ```js
 function prepareExport(items) {
@@ -104,15 +104,15 @@ function prepareExport(items) {
 }
 ```
 
-The `subtotal` calculation within the function changes the `items` array. However, other calculations also depend on this array and changing it will affect them too.
+The `subtotal` calculation within the function changes the `items` array. However, other calculations also depend on this array, and changing it will affect them too.
 
-This means that when calculating `subtotal` we'll have to think about how it will affect the `shipmentDate` calculation. The more extensive the function, the more actions will be affected, and the more details we will have to keep in mind.
+It means that when calculating `subtotal` we'll have to consider how it will affect the `shipmentDate` calculation. The more extensive the function, the more actions will be affected, and the more details we must keep in mind.
 
-Moreover, since `items` is an array, its changes will be visible _outside_ the `prepareExport` function. They might affect code that we may know nothing about. In this case, it'll be impossible to predict potential problems at all.
+Moreover, since `items` is an array, its changes will be visible _outside_ the `prepareExport` function. They might affect code that we may know nothing about. In this case, it'll be impossible to predict potential problems.
 
-Instead of keeping track of the effects, we can try to avoid them. Let's rewrite the code so as not to change the shared state, but to express the problem as a sequence of steps.
+Instead of keeping track of the effects, we can try to avoid them. Let's rewrite the code not to change the shared state but to express the problem as a sequence of steps.
 
-The result of each step will be a _new_ set of data. The steps themselves won't depend on any shared variables so they won't affect each other's work:
+The result of each step will be a _new_ set of data. The steps themselves won't depend on any shared variables so that they won't affect each other's work:
 
 ```js
 function prepareExport(items) {
@@ -185,22 +185,22 @@ It's not always necessary to extract the steps into separate functions, but it's
 
 Note that in the new implementation, the `prepareExport` function _doesn't change_ the original data. Instead, it _creates a copy_ of the data and changes it. The `items` array stays untouched, which prevents errors in the code outside the function.
 
-The steps inside `prepareExport` are now connected only by their _input and output data_. They have no shared state that can affect their operation. This makes it easier for us to build a mental model of how the `prepareExport` function works on the whole. The function becomes a chain of data transformations, each of which is isolated from the others and can't be impacted from the outside.
+The steps inside `prepareExport` are now connected only by their _input and output data_. They have no shared state that can affect their operation. It makes it easier for us to build a mental model of how the `prepareExport` function works. The function becomes a chain of data transformations, each of which is isolated from the others and can't be impacted from the outside.
 
 | Abstraction and encapsulation 👀                                                                                                                                                                                                                                                                                                          |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | By abstracting each step into a separate function with a clear name, we make the meaning of the whole chain more explicit. It helps to focus on the individual steps without worrying about the others. Isolation helps to ensure the data validity at each step because it prevents the function from being affected “from the outside.” |
 
-Immutability can be demanding on memory and cost performance. This isn't usually a problem on the frontend, but it's still worth knowing the potential issues. If we're chasing performance, a mutable approach might be a better fit.
+Immutability can be demanding on memory and cost performance. It isn't usually a problem on the frontend, but it's still worth knowing the potential issues. A mutable approach might be a better fit if we're chasing performance.
 
-| By the way 🚜                                                                                                                                      |
-| :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| In JavaScript, real immutability is difficult to achieve. For truly immutable objects we'd need `Object.freeze`, which is rarely used.             |
-| But “real” immutability isn't always needed. Most of the time it's enough to _write and treat_ the code as if it were working with immutable data. |
+| By the way 🚜                                                                                                                                       |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In JavaScript, real immutability is difficult to achieve. For truly immutable objects, we'd need `Object.freeze`, which is rarely used.             |
+| But “real” immutability isn't always needed. Most of the time, it's enough to _write and treat_ the code as if it were working with immutable data. |
 
 ## Functional Core in Imperative Shell
 
-Immutability and pure functions are nice and all, but as we mentioned at the beginning, we can't create a useful app without any effects. Interactions with the outside world—receiving and saving data or rendering it in the UI—are always effects. Without these interactions, the application is useless.
+Immutability and pure functions are nice, but as we mentioned, we can't create a helpful app without any effects. Interactions with the outside world—receiving and saving data or rendering it in the UI—are always effects. Without these interactions, the application is useless.
 
 Since the problem with effects is that they're unpredictable, our main concern with them is to:
 
@@ -210,7 +210,7 @@ Since the problem with effects is that they're unpredictable, our main concern w
 
 ---
 
-There's a technique for managing effects called the _functional core in an imperative shell_ or _Impureim Sandwich_.[^fcis][^impureim] Using this approach, we describe the application logic as pure functions, and “push” all interaction with the outside world _to the edges of the application_.
+There's a technique for managing effects called the _functional core in an imperative shell_ or _Impureim Sandwich_.[^fcis][^impureim] Using this approach, we describe the application logic as pure functions and “push” all interaction with the outside world _to the edges of the application_.
 
 <figure>
   <img src="../images/11-impureim.png" width="600">
@@ -342,36 +342,36 @@ describe("when given a user info object", () => {
     });
 
     // We can test the function by direct comparison,
-    // no information is lost including the data types:
+    // no information is lost, including the data types:
     expect(age).toEqual(28);
   });
 });
 ```
 
-In the first case, the `updateUserInfo` function handles different tasks: transforming data and interacting with the UI. Its tests can confirm this—they check how the data has changed, but also use DOM mocks.
+In the first case, the `updateUserInfo` function handles different tasks: transforming data and interacting with the UI. Its tests confirm this—they check how the data has changed and use DOM mocks.
 
-If another similar function appears, in its tests, we'll have to mock the DOM _again_ to check for changes in the data. This should become a concern because there's obvious duplication with no additional benefits.
+If another similar function appears in its tests, we'll have to mock the DOM _again_ to check for changes in the data. It should become a concern because there's obvious duplication with no additional benefits.
 
-In the second case, the test is much easier because we don't need to create mocks. To test pure functions, all we need is the input data and the expected result. (This is why it's often said that pure functions are intrinsically testable.)
+The test is much easier in the second case because we don't need to create mocks. We only need the input data and the expected result to test pure functions. (This is why it's often said that pure functions are intrinsically testable.)
 
-Interacting with the DOM becomes a separate task. The mocks for the DOM will appear in the tests for the module that deals with UI interactions, and nowhere else.
+Interacting with the DOM becomes a separate task. The mocks for the DOM will appear in the tests for the module that deals with UI interactions and nowhere else.
 
-This way, we not only simplify the function code but also improve the separation of concerns between the different parts of the application.
+This way, we simplify the function code and improve the separation of concerns between the different parts of the application.
 
 | By the way 🔌                                                                                                                       |
 | :---------------------------------------------------------------------------------------------------------------------------------- |
 | Here, we don't imply that “mocks are always bad.” Sometimes mocks are the only way to test the desired effect, such as in adapters. |
-| The point is that if we have to write a mock to test _logic_, then there's likely a better way to organize the code.                |
+| The point is that if we have to write a mock to test _logic_, there's likely a better way to organize the code.                     |
 
-After refactoring, we can see that the task of the `updateUserInfo` function has turned into a “composition” of other functions' functionality. It now brings together reading data, transforming it, and saving it to the storage.
+After refactoring, we can see that the task of the `updateUserInfo` function has turned into a “composition” of other functions' functionality. It now brings together reading data, transforming it, and saving it in storage.
 
-The structure of the function has begun to resemble the sandwich with effects and logic. With an adequate separation of responsibility, the “layers” of the sandwich become completely independent of each other. This makes the data transformations predictable and isolated from the effects.
+The structure of the function has begun to resemble the sandwich with effects and logic. With an adequate separation of responsibility, the “layers” of the sandwich become completely independent. It makes the data transformations predictable and isolated from the effects.
 
 ### Adapters for Effects
 
 Separating logic and effects helps to detect duplication in code that reads and saves the data. It can be noticeable by identical mocks in tests or similar code in the effects themselves.
 
-If different parts of an app interact with the outside world in the same way, we can extract that interaction to a separate entity, the _adapter_. Adapters reduce duplication, decouple the application code from the outside world, and make testing of the effects easier:
+If different parts of an app interact with the outside world similarly, we can extract that interaction to a separate entity, the _adapter_. Adapters reduce duplication, decouple the application code from the outside world, and make testing of the effects easier:
 
 ```js
 // If we notice the same functionality
@@ -436,7 +436,7 @@ When we have pushed interaction with the outside world to the edges of the appli
 
 The principle that divides the code responsible for these tasks is called _Command-Query Separation (CQS)_.[^cqs]
 
-According to CQS, _queries_ only return data and produce no effects, while _commands_ change the state and return nothing. The purpose of CQS is to:
+According to CQS, _queries_ only return data and don't change the state, while _commands_ change the state and return nothing. The purpose of CQS is to:
 
 ---
 
@@ -452,7 +452,7 @@ For example, let's look at the signature of the `getLogEntry` function:
 function getLogEntry(id: Id<LogEntry>): LogEntry {}
 ```
 
-From the types, we can assume that this function somehow _gets_ data from the logs. It can become a surprise if in the implementation we see:
+From the types, we can assume that this function somehow _gets_ data from the logs. It can become a surprise if, in the implementation, we see:
 
 ```ts
 function getLogEntry(id: Id<LogEntry>): LogEntry {
@@ -469,7 +469,7 @@ The problem with the function is its unpredictability. We can't know in advance 
 function getOrCreateLogEntry(id: Id<LogEntry>): LogEntry {}
 ```
 
-There's more information now, but we still have no way of knowing what function's going to do. It still can either read an existing log entry or create a new one.
+There's more information now, but we still have no idea what the function will do. It can still either read an existing log entry or create a new one.
 
 The less predictable a function is, the more problems we'll have debugging it. Debugging is faster when we have to check fewer assumptions. When we can't predict the behavior of a function, we need to _test more assumptions_. The debugging of such a function will take longer.
 
@@ -504,9 +504,9 @@ describe("when given an ID of an entry that doesn't exist", () => {
 });
 ```
 
-From the number of mocks, we can assume that the function does “too much.” The mocks themselves, if not written carefully, may affect each other's functionality, which will make tests unreliable and fragile.
+From the number of mocks, we can assume that the function does “too much.” If not written carefully, the mocks themselves may affect each other's functionality, making tests unreliable and fragile.
 
-And finally, creation and reading data are conceptually different operations. Their reasons to change are different, so they're better to be kept separate.
+And finally, creation and reading data are conceptually different operations. Their reasons to change are different, so they better be kept separate.
 
 Let's split this function into two:
 
@@ -515,7 +515,7 @@ function readLogEntry(id: Id<LogEntry>): MaybeNull<LogEntry> {}
 function createLogEntry(id: Id<LogEntry>): void {}
 ```
 
-According to the signatures, we now see that the first function returns a result, while the second function _does something and returns nothing_. This already implies that the second function _changes_ the state, so it's an effect.
+According to the signatures, we now see that the first function returns a result, while the second function _does something and returns nothing_. The signature already implies that the second function _changes_ the state, so it's an effect.
 
 ```ts
 function readLogEntry(id: Id<LogEntry>): MaybeNull<LogEntry> {
@@ -527,7 +527,7 @@ function createLogEntry(id: Id<LogEntry>): void {
 }
 ```
 
-The code has become more predictable because the function signature no longer deceives us. On the contrary, it now helps us predict behavior before we even look at the implementation.
+The code has become more predictable because the function signature no longer deceives us. On the contrary, it now helps us predict behavior before considering the implementation.
 
 The tests for both functions now are independent. We don't need to mock the internal functionality of the `logger` service anymore to test the details of each effect. It's enough to check that the functions call the correct methods with the required data:
 
@@ -545,7 +545,7 @@ describe("when given an ID", () => {
 // createLogEntry.test.ts
 
 describe("when given an ID", () => {
-  it("should call the logger service create with that ID and default entry data", () => {
+  it("should call the logger service createEntry with that ID and default entry data", () => {
     const spy = jest.spyOn(logger, "createEntry");
     createLogEntry("test-entry-id");
     expect(spy).toHaveBeenCalledWith("test-entry-id", timeStub, "Access");
@@ -553,25 +553,25 @@ describe("when given an ID", () => {
 });
 ```
 
-| Simplification 🚧                                                                                                                                                                                                          |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Often for adapters, we also need to check if they correctly convert data between the service and our app (a.k.a “adapt the interface”). But in this particular example, I didn't find it necessary and didn't focus on it. |
+| Simplification 🚧                                                                                                                                                                                                           |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Often, for adapters, we also need to check if they correctly convert data between the service and our app (a.k.a “adapt the interface”). But in this particular example, I didn't find it necessary and didn't focus on it. |
 
 ### CQS and Generated IDs
 
-In the backend development, there's a common pattern that contradicts CQS. Imagine an app, where the database module, in response to creating an entity, returns a generated ID. The “create” action is a command and shouldn't return anything but returns an ID so it violates the CQS.
+In the backend development, there's a typical pattern that contradicts CQS. Imagine an app where the database module returns a generated ID in response to creating an entity. The “create” action is a command and shouldn't return anything but returns an ID, so it violates the CQS.
 
 In general, I don't find this violation fatal. After all, CQS is a recommendation. Its applicability should be evaluated on a case-by-case basis. If returning the ID is a common pattern in the project, there's nothing wrong with using it. We just should be consistent with it and document the reasons behind it.
 
-But if we don't want to deviate from CQS, we can pass the ID along with the data we want to save. It won't fit every project but might be a useful option to consider.
+But if we don't want to deviate from CQS, we can pass the ID along with the data we want to save. It won't fit every project, but it might be a valuable option to consider.
 
-| Read more 👀                                                                                                                                                                                               |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| This solution is well described in the article “CQS versus server-generated IDs” by Mark Seemann.[^cqsvsid] In it he explains in detail the solution itself, its variations, applicability, and drawbacks. |
+| Read more 👀                                                                                                                                                                                         |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| This solution is well described in the article “CQS versus server-generated IDs” by Mark Seemann.[^cqsvsid] He explains the solution itself, its variations, applicability, and drawbacks in detail. |
 
 ### CQRS
 
-Speaking of the backend, it's worth mentioning the CRUD operations and CQRS.[^crud][^cqrs] When designing an API we may want to use the same data types for reading and writing data:
+Speaking of the backend, it's worth mentioning the CRUD operations and CQRS.[^crud][^cqrs] When designing an API, we may want to use the same data types for reading and writing data:
 
 ```ts
 type UserModel = {
@@ -585,7 +585,7 @@ function readUser(id: Id<User>): UserModel {}
 function updateUser(user: UserModel): void {}
 ```
 
-In most cases, such a solution is sufficient and will not cause problems. However, it can become a problem if we read and write data in different ways. For example, if we want to update the user data only partially.
+In most cases, such a solution is sufficient and will not cause problems. However, it can become a problem if we read and write data differently. For example, if we want to update the user data only partially.
 
 The `updateUser` function requires the entire `UserModel` object as input, so we cannot update individual fields. We have to pass the whole updated object into the function.
 
@@ -634,9 +634,9 @@ This way, neither of the types prevents us from declaring _different_ expectatio
 
 | Be careful 🚧                                                                                                                                                                                                             |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| CQRS increases the amount of code (models, objects, types) in the project. It's worth discussing the approach with the team before using it and making sure that there are no arguments against it.                       |
+| CQRS increases the amount of code (models, objects, types) in the project. It's worth discussing the approach with the team before using it and ensuring there are no arguments against it.                               |
 | The main reasons to use CQRS are the differences in types for reading and writing and the difference in the backend load for reading and writing operations that sometimes leads to separate scaling of reads and writes. |
-| In other cases, it'll probably be easier and cheaper to use a generic model.                                                                                                                                              |
+| In other cases, using a generic model will probably be easier and cheaper.                                                                                                                                                |
 
 [^referentialtransparency]: Referential Transparency, Haskell Wiki, https://wiki.haskell.org/Referential_transparency
 [^hackpipe]: “A pipe operator for JavaScript” by Axel Rauschmayer, https://2ality.com/2022/01/pipe-operator.html
@@ -646,3 +646,4 @@ This way, neither of the types prevents us from declaring _different_ expectatio
 [^cqsvsid]: “CQS versus server generated IDs” by Mark Seemann, https://blog.ploeh.dk/2014/08/11/cqs-versus-server-generated-ids/
 [^cqrs]: “Command-Query Responsibility Segregation” by Martin Fowler, https://martinfowler.com/bliki/CQRS.html
 [^crud]: Create, Read, Update, and Delete, Wikipedia, https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+[^bisect]: git-bisect, Use binary search to find the commit that introduced a bug, https://git-scm.com/docs/git-bisect

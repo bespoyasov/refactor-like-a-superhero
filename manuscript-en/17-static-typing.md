@@ -1,25 +1,25 @@
 # Static Typing
 
-In previous chapters, when talking about readability, we mainly focused on common language features like variables, functions, and modules. We occasionally paid attention to types but didn't dive into the details of working with them.
+In previous chapters, we mainly focused on common language features like variables, functions, and modules when talking about readability. We occasionally paid attention to types but didn't dive into the details of working with them.
 
 However, static typing can also be a tool for writing expressive code. We can use types and interfaces to convey additional information to the reader or to make the app design more explicit.
 
-In this chapter, we'll discuss how to express more domain knowledge through types and make invalid data transformations unrepresentable. We'll look at how to use ubiquitous language in type signatures and track down errors in API design using types.
+This chapter will discuss how to express more domain knowledge through types and make invalid data transformations unrepresentable. We'll look at how to use ubiquitous language in type signatures and track down errors in API design using types.
 
-| Before we start 💬                                                                                                                                |
-| :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| We won't discuss if one _should_ use static typing or not. Instead, we'll focus on how to use types as a refactoring tool.                        |
-| Static typing is a controversial topic, not everyone likes it, and it's fine. If your team doesn't use or like typing, you can skip this chapter. |
+| Before we start 💬                                                                                                                               |
+| :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| We won't discuss if one _should_ use static typing or not. Instead, we'll focus on how to use types as refactoring tools.                        |
+| Static typing is a controversial topic, not everyone likes it, and it's okay. You can skip this chapter if your team doesn't use or like typing. |
 
 ## Ubiquitous Language
 
-In “Domain Modeling Made Functional”, Scott Wlaschin warns readers against primitive obsession.[^dmmf][^primitiveobsession] To avoid it, he suggests using types to describe the domain.
+In “Domain Modeling Made Functional,” Scott Wlaschin warns readers against primitive obsession.[^dmmf][^primitiveobsession] He suggests using types to describe the domain to avoid it.
 
 | Be careful 🚨                                                                                                                                    |
 | :----------------------------------------------------------------------------------------------------------------------------------------------- |
-| The idea of replacing primitives with domain types can be controversial in the team. Discuss this idea with other developers before applying it. |
+| The idea of replacing primitives with domain types can be controversial to the team. Discuss this idea with other developers before applying it. |
 
-Data types and function signatures can carry information about the task the code is solving. They can reflect the context of the task, the interaction between entities, and even the business workflow model as a whole. When used thoughtfully, types can even become an alternative to documentation:
+Data types and function signatures can carry information about the task the code is solving. They can reflect the task context, the interaction between entities, and even the business workflow model as a whole. When used thoughtfully, types can even become an alternative to documentation:
 
 ```ts
 // Primitive types don't reflect the context,
@@ -41,21 +41,21 @@ type Account = {
 };
 ```
 
-When type names use domain terms, they form a part of the _ubiquitous language_[^ddd][^ubiquitouslanguage]. It's the language used by product owners and people who are directly related to business workflows.
+When type names use domain terms, they form a part of the _ubiquitous language_.[^ddd][^ubiquitouslanguage] It's the language used by product owners and people directly related to business workflows.
 
-| Read more 👀                                                                                         |
-| :--------------------------------------------------------------------------------------------------- |
-| We talked in more detail about ubiquitous language in the chapters on entity names and architecture. |
+| Read more 👀                                                                        |
+| :---------------------------------------------------------------------------------- |
+| We talked more about ubiquitous language in entity names and architecture chapters. |
 
 The benefit of ubiquitous language is its _unambiguity_. If the whole team, including the non-developers, uses the same terms, there's less chance of “translation loss.” It makes it easier to spot bugs and errors in the domain model at the early stages.
 
 ## Domain Modeling
 
-In many statically typed languages, data transformations are conveniently expressed through functional types.[^functionaltype] A set of such types can describe the business workflows—model the domain. The benefit of such a model is that the cost of error in it is lower than in the workflow implementation.
+Data transformations are conveniently expressed through functional types in many statically typed languages.[^functionaltype] A set of such types can describe the business workflows—model the domain. The cost of an error in such a model is lower than in the workflow implementation. That is the main benefit.
 
 Types help to build a top-level understanding of how the system works. In such a model, we can see the interaction of its parts, the module contracts, and the data used. But it also shows design errors and inconsistencies between the model and the real world.
 
-Errors in types are easier to fix than errors in implementation. With types, it's possible to design an application _before_ we start implementing it. We write a draft, look at the flaws in the model, fix them, and check the model again:
+Errors in types are easier to fix than errors in implementation. With types, it's possible to design an application _before_ we start implementing it. We write a draft, look at the flaws in the model, fix them, and recheck the model:
 
 ```ts
 // Describe the data used in the application.
@@ -127,10 +127,10 @@ In TypeScript, we can use several ways to model the domain and create domain typ
 - Classes
 - Type branding
 
-The easiest, but the most unreliable way to create domain types is to use type aliases.[^typealias] They're convenient to give primitive types informative names but difficult to convey the _constraints_ of the domain. For example, such code is quite valid _syntactically_ but not from the _domain point of view_:
+The easiest but unreliable way to create domain types is to use type aliases.[^typealias] They're convenient to give primitive types informative names but challenging to convey the _constraints_ of the domain. For example, such code is quite valid _syntactically_ but not from the _domain point of view_:
 
 ```ts
-// A type alias can give the primitive a useful name,
+// A type alias can give the primitive a helpful name,
 // which reflects the type meaning according to the domain:
 type NaturalNumber = number;
 
@@ -170,7 +170,7 @@ class NaturalNumber {
 new NaturalNumber(-1); // Error!
 new NaturalNumber(42); // NaturalNumber
 
-// But the classes are quite verbose
+// But the classes are pretty verbose
 // and aren't convenient to use as wrappers over a primitive.
 // It takes a lot of code to create “numbers” via `new NaturalNumber(42)`
 // and somehow implement arithmetic operations with these values.
@@ -195,15 +195,15 @@ naturalFrom(-1); // Error!
 naturalFrom(42); // NaturalNumber
 ```
 
-The problem with classes and type branding is that we have to watch if they're used correctly. That is, we'll need to write linter rules for their use or search for mistakes during code reviews. This isn't reliable.
+The problem with classes and type branding is that we must watch if they're used correctly. We'll need to write linter rules for their use or search for mistakes during code reviews. This approach isn't reliable.
 
-It's hard to recommend a particular method here, it all depends on the project and the needs of the team. However, we can note that for _purely descriptive_ purposes, even the type aliases work quite fine. Often a domain model built with type aliases is already enough to find previously undetected design errors.
+It's hard to recommend a particular method here. It all depends on the project and the needs of the team. However, we can say that for _purely descriptive_ purposes, even the type aliases work quite fine. Often a domain model built with type aliases is enough to find previously undetected design errors.
 
 ## Model and Reality
 
-Business workflows transform data from one state to another. Types can help to syntactically fixate these states and name them. When each step of the transformation has a name, it's easier for us to reason about the whole process and find errors in its logic.
+Business workflows transform data from one state to another. Types can help to fixate these states and explicitly name them. When each step of the transformation has a name, it's easier for us to reason about the whole process and find errors in its logic.
 
-In the example below, the `sendRecoverLink` function accepts an object of type `User` as an argument. This type has a `verified` flag but there are no rules explaining _when and why_ this flag becomes `true`:
+In the example below, the `sendRecoverLink` function accepts an object of type `User` as an argument. This type has a `verified` flag, but there are no rules explaining _when and why_ this flag becomes `true`:
 
 ```ts
 type User = {
@@ -217,7 +217,7 @@ async function sendRecoverLink(user: User) {
 }
 ```
 
-With the current `User` type implementation, the `sendRecoverLink` function accepts data that is invalid half the time. We can prevent passing invalid data by making it more difficult at the type level.
+With the current `User` type implementation, the `sendRecoverLink` function accepts data that is invalid half the time. We can prevent developers from passing invalid data by making it more difficult at the type level.
 
 User verification is probably a separate business workflow that _results in_ a verified user object. This causal relationship can be expressed directly in types after we separate the types of verified and unverified users:
 
@@ -240,7 +240,7 @@ type VerifyUser = (user: CreatedUser) => Promise<VerifiedUser>;
 
 type RecoverPassword = (user: VerifiedUser) => Promise<void>;
 
-// Now it becomes impossible to send a recovery link to an unverified user.
+// Now, sending a recovery link to an unverified user becomes impossible.
 // The invalid data transformation becomes unrepresentable in the code:
 
 const sendRecoverLink: RecoverPassword = async (user) => {
@@ -250,9 +250,9 @@ const sendRecoverLink: RecoverPassword = async (user) => {
 sendRecoverLink(unverifiedUser); // Error!
 ```
 
-Again, in TypeScript, it's difficult to achieve bullet-proof “unrepresentability” of invalid transformations, in other typed languages it may be much easier. But even just showing different data states as types helps to notice errors in the business logic at the design stage.
+Again, in TypeScript, it's challenging to achieve bullet-proof “unrepresentability” of invalid transformations. In other typed languages, it may be much easier. But even just showing different data states as types helps to notice errors in the business logic at the design stage.
 
-It's easier to notice such errors in types because, unlike in implementation, branching in types is much more verbose and difficult. This forces us to describe workflow types declaratively and linearly. If we then notice ambiguity in the described model, we can act on it.
+It's easier to notice such errors in types because branching in types is much more verbose and difficult, unlike in implementation. It forces us to describe workflow types declaratively and linearly. If we notice ambiguity in the described model, we can act on it.
 
 ### Violation of Agreements
 
@@ -281,10 +281,10 @@ async function trySendRecoverLink(user: User) {
 type TryRecoverPassword = (user: User) => Promise<false | void>;
 
 // The `try*` pattern in the name explicitly says that the function
-// is still a command but may return `false` in some cases.
+// is still a command but may sometimes return' false.
 ```
 
-This way we at least make the expectations of the function more explicit. But it's better, of course, to go further and refactor the function according to CQS.
+This way, we at least make the expectations of the function more explicit. But it's better, of course, to go further and refactor the function according to CQS.
 
 | In detail 💡                                                                                      |
 | :------------------------------------------------------------------------------------------------ |
@@ -318,7 +318,7 @@ function xxx(xxx: UserId, xxx: PostSlug): Promise<PostContents> {}
 // built from the user ID and the publication URL.
 ```
 
-Informative signatures make the function meaning clearer and the information density of the code higher. Such signatures carry part of the task context, so we can convey additional knowledge to the reader in the names of functions and arguments:
+Informative signatures make the function meaning clearer and the information density of the code higher. Such signatures carry part of the task context so that we can convey additional knowledge to the reader in the names of functions and arguments:
 
 ```ts
 function fetchPost(authorId: UserId, post: PostSlug): Promise<PostContents> {}
@@ -327,11 +327,11 @@ function fetchPost(authorId: UserId, post: PostSlug): Promise<PostContents> {}
 // userId -> authorId: tells how exactly the user is associated with these posts.
 ```
 
-| By the way 📚                                                                                                           |
-| :---------------------------------------------------------------------------------------------------------------------- |
-| The “xxxing out” technique is described in more detail in “Code That Fits in Your Head” by Mark Seemann.[^codethatfits] |
+| By the way 📚                                                                                                     |
+| :---------------------------------------------------------------------------------------------------------------- |
+| Mark Seemann describes the “xxxing out” technique in more detail in “Code That Fits in Your Head.”[^codethatfits] |
 
-The same rule can be used to check if the code follows engineering practices required in the project, for example, the CQS principle:
+We can use the same rule to check if the code follows engineering practices required in the project, for example, the CQS principle:
 
 ```ts
 class PostReader {
@@ -357,9 +357,9 @@ class PostReader {
 }
 ```
 
-| By the way ❌                                                                                                                                                |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The “xxxing out” technique is more useful for designing public APIs to make them more informative. For non-public functions, it may be a bit less important. |
+| By the way ❌                                                                                                                                               |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The “xxxing out” technique is more helpful in designing public APIs to make them more informative. For non-public functions, it may be a bit less critical. |
 
 [^dmmf]: “Domain Modeling Made Functional” by Scott Wlaschin, https://www.goodreads.com/book/show/34921689-domain-modeling-made-functional
 [^ddd]: “Domain-Driven Design” by Eric Evans, https://www.goodreads.com/book/show/179133.Domain_Driven_Design

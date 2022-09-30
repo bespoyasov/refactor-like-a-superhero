@@ -427,7 +427,7 @@ const Confirming = () => "Loading...";
 function Checkout() {
   const [state] = useMachine(fsm);
 
-  state.match
+  return state.match
     .with("confirming", Confirming)
     .with("success", OrderConfirmed)
     .with("failure", OrderError)

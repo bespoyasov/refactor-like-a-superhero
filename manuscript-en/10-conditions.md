@@ -1,16 +1,16 @@
 # Conditions and Complexity
 
-In the previous chapter, we talked about the benefits of the functional pipeline and linear code execution. In real-world applications, however, it isn't always obvious how to make code linear.
+The previous chapter discussed the benefits of the functional pipeline and linear code execution. In real-world applications, however, it isn't always obvious how to make code linear.
 
-Big applications often have complex logic rules with multiple conditions. Conditions make the app useful: they describe its behavior in different situations. But they also make the code more complicated.
+Big applications often have complex logic rules with multiple conditions. Conditions make the helpful app: they describe its behavior in different situations. But they also make the code more complicated.
 
-In this chapter, we'll talk about how to unravel complex conditions and what patterns can help with it.
+This chapter will discuss unraveling complex conditions and what patterns can help.
 
 ## Cyclomatic and Cognitive Complexity
 
-To understand how exactly conditions make code more complex, let's try to define “complexity” in the first place.
+To understand how exactly conditions make code more complex, let's first try to define “complexity”.
 
-One of the heuristics for finding complex code is to pay attention to its nesting. The higher the nesting, the more complex the code. We can understand _what_ awaits us just by looking at a deeply nested code snippet:
+One heuristic for finding complex code is paying attention to its nesting. The higher the nesting, the more complex the code. We can understand _what_ awaits us just by looking at a snippet with deeply nested code:
 
 ```
 function doSomething() {
@@ -31,7 +31,7 @@ __}
 }
 ```
 
-The empty space on the left side of the text shows how much information the snippet contains. The more space, the more details we have to keep in mind, and the more complicated the code.
+The empty space on the left side of the text shows how much information the snippet contains. The more space there is, the more details we have to keep in mind, and the more complicated the code.
 
 | By the way 🫙                                                                                  |
 | :-------------------------------------------------------------------------------------------- |
@@ -39,25 +39,25 @@ The empty space on the left side of the text shows how much information the snip
 
 When reading code, we build a model of how it works in our head. This model describes what happens to the data and how the instructions are executed.
 
-Each condition and loop adds to the mental model a new “path” from the beginning of the code to its end. The more different “paths” there are, the harder it is to keep track of them all at the same time. The number of “paths” we can take from the beginning of a function to its end is called the _cyclomatic complexity_ of the function.[^cyclomaticcomplexity]
+Each condition and loop adds to the mental model a new “path.” These paths show how to go from the beginning of the code to its end. The more different “paths” there are, the harder it is to keep track of them all simultaneously. The number of “paths” we can take from the beginning of a function to its end is called the _cyclomatic complexity_ of the function.[^cyclomaticcomplexity]
 
-We can visualize the number of “paths” in the function as a graph.[^controlflowgraph][^controlflowexample] Each new condition or loop adds a new “branch”, which makes the graph and the function more complex.
+We can visualize the number of “paths” in the function as a graph.[^controlflowgraph][^controlflowexample] Each new condition or loop adds a new “branch,” which makes the graph and the function more complex.
 
 <figure>
   <img src="../images/10-cyclomatic-complexity.png" width="800">
-  <figcaption><em>Graph of function with complexity 3. We can calculate the complexity as the difference between the nodes and edges of the graph, or as the number of regions on it</em><br><br></figcaption>
+  <figcaption><em>Graph of function with complexity 3. We can calculate the complexity as the difference between the graph nodes and edges or the number of regions on it</em><br><br></figcaption>
 </figure>
 
-The more “branches”, the harder a function to work with.
+The more “branches” the function has, the harder it is to work with.
 
 | By the way 🧠                                                                                                                                                                                                      |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | In addition to cyclomatic complexity, there is also _cognitive complexity_.[^cognitivecomplexity]                                                                                                                  |
-| Cyclomatic complexity counts the number of “different paths” in a function. Cognitive complexity counts the number of “breaks in linear flow” of the function.                                                     |
+| Cyclomatic complexity counts the number of “different paths” in a function. Cognitive complexity counts the function's “breaks in the linear flow.”                                                                |
 | Because of this, it's often said that the cyclomatic complexity shows how difficult a function is to test (how many branches to cover in tests), and cognitive complexity shows how difficult it is to understand. |
-| We won't focus on the differences between the two, because they won't be significant for this book. Later in the text, we'll use the term “complexity” as a synonym for both properties.                           |
+| We won't focus on the differences between the two because they won't be significant for this book. Later in the text, we'll use the term “complexity” as a synonym for both properties.                            |
 
-An important feature of such properties is that they're _measurable_. For measurable properties, we can choose _limits_ and automate their checks. For example, we can set up the linter to tell us when the code complexity exceeds the selected limit:
+An important feature of such properties is that they're _measurable_. We can choose _limits_ for measurable properties and automate their checks. For example, we can set up the linter to tell us when the code complexity exceeds the selected limit:
 
 <figure>
   <img src="../images/10-complexity-linter.png" width="800">
@@ -76,7 +76,7 @@ Negative space and large nesting are a consequence of high code complexity. To m
 
 ---
 
-Flat conditions “straighten out” the execution flow. They decrease the number of details that we need to keep track of at the same time. This helps us see patterns in the code and simplify it even more. The flatter the code, the easier it is to see the meaning of a function or a module.
+Flat conditions “straighten out” the execution flow. They decrease the number of details that we need to keep track of at the same time. They help us see patterns in the code and simplify it even more. The flatter the code, the easier it is to understand the meaning of a function or a module.
 
 | By the way 🐍                                                                                                                                           |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -128,15 +128,15 @@ function usersController(req, res) {
 }
 ```
 
-The total amount of information and cases that the function handles hasn't changed. But we've reduced the number of branches that we need to _remember at the same time_.
+The total amount of information and cases the function handles hasn't changed. But we've reduced the number of branches that we need to _remember at the same time_.
 
-We check the edge cases one by one and _terminate_ the function if we come across one of them. If the function continues to work, it means no edge cases happened.
+We check the edge cases one by one and _terminate_ the function if we come across one of them. If the function continues to work, it means no edge cases have happened.
 
-Filtering out edge cases one by one allows us to forget about the checked ones. They no longer take up our attention and working memory.
+Filtering edge cases one by one allows us to forget the checked ones. They no longer take up our attention and working memory.
 
 <figure>
   <img src="../images/10-early-return.png" width="800">
-  <figcaption><em>The condition becomes easier to understand because we don't need to remember about so many details</em><br><br></figcaption>
+  <figcaption><em>The condition becomes easier to understand because we don't need to remember so many details</em><br><br></figcaption>
 </figure>
 
 | However 🛡                                                                                                                                                                                       |
@@ -146,7 +146,7 @@ Filtering out edge cases one by one allows us to forget about the checked ones. 
 
 ### Component Rendering
 
-Early return can be useful to simplify the rendering of React components. For example, the code of the `Cover` component below is relatively difficult to read because of conditions:
+Early return can be useful to simplify the rendering of React components. For example, the code of the `Cover` component below is relatively difficult to read because of the conditions:
 
 ```js
 function Cover({ error, isLoading, data }) {
@@ -200,17 +200,17 @@ function Cover({ error, isLoading, data }) {
 }
 ```
 
-After such refactoring, we should pay attention to the names of the changed functions and components. The old names may become inaccurate after we improved the separation of their responsibilities. In the example above, we should think if the names `Cover` and `CoverPicture` adequately reflect the meaning of these components.
+After such refactoring, we should consider the names of the changed functions and components. The old names may become inaccurate after we improve the separation of their responsibilities. In the example above, we should think if the names `Cover` and `CoverPicture` adequately reflect the meaning of these components.
 
-| By the way 🤖                                                                                                                                                                                         |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| In general, for working with UI, finite state machines are better than the early return.[^fsmfrontend] But if we can't implement them in our project, the early return can greatly simplify the code. |
+| By the way 🤖                                                                                                                                                                                              |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In general, finite state machines are better for working with UI than the early return.[^fsmfrontend] But if we can't implement them in our project, the early return can significantly simplify the code. |
 
-Conceptually, early return inside of a render function is similar to validating data at the beginning of a business workflow. We just filter out “wrong” UI states instead of invalid data.
+Conceptually, early return inside a render function is similar to validating data at the beginning of a business workflow. We just filter out “wrong” UI states instead of invalid data.
 
 ## Variables, Predicates, and Boolean Algebra
 
-We can't “invert” every condition. If the condition branches are tightly intertwined, we may not find where to start untangling it. To simplify such conditions, we need to find patterns in them.
+We can't “invert” every condition. If the condition branches are tightly intertwined, we may not find where to start untangling them. To simplify such conditions, we need to find patterns in them.
 
 The first thing we should do is extract repetitive condition parts into variables. Variable names will abstract the details and help focus on the condition's meaning. This will allow us to see if we can simplify the condition with boolean logic.
 
@@ -223,7 +223,7 @@ _De Morgan's laws_ are a set of transformation rules that link logical operation
 !(A || B) === !A && !B;
 ```
 
-We can use De Morgan's laws to make the condition less noisy. For example, the condition below has too much detail and it's hard to see its meaning “through the characters”:
+We can use De Morgan's laws to make the condition less noisy. For example, the condition below has too much detail, and it's hard to see its meaning “through the characters”:
 
 ```js
 if (user.score >= 50) {
@@ -282,7 +282,7 @@ if (hasHighScore && !hasAdvantage) {
 
 ### Predicates
 
-Not all conditions can be extracted into a variable. For example, it's more difficult to extract a condition if it itself depends on other variables or dynamic data.
+Not all conditions can be extracted into a variable. For example, extracting a condition is more difficult if it depends on other variables or dynamic data.
 
 For such cases, we can use _predicates_—functions that take an arbitrary number of arguments and return `true` or `false`. The function `isAdult` in the snippet below is an example of a predicate:
 
@@ -309,7 +309,7 @@ if (isAdult(user1)) {
 }
 ```
 
-Predicate names reflect the meaning of the performed check as a whole. This helps to fix “leaky” abstractions and make the code less noisy. For example, in the snippet below it's hard to tell the meaning of the condition check at the first glance:
+Predicate names reflect the meaning of the performed check as a whole. They help to fix “leaky” abstractions and make the code less noisy. For example, in the snippet below, it's hard to tell the meaning of the condition check at first glance:
 
 ```js
 if (user.account < totalPrice(cart.products) - cart.discount) {
@@ -333,7 +333,7 @@ In addition, predicates, like variables, help to notice patterns in complex cond
 
 ## Primitive Pattern Matching
 
-When refactoring, we should also pay attention to multiple `else-if` statements. If such conditions select a value, they can be replaced with more declarative constructions.
+When refactoring, we should also consider multiple `else-if` statements. If such conditions select a value, more declarative constructions can replace them.
 
 For example, let's look at the `showErrorMessage` function, which maps a validation error to a message for it:
 
@@ -354,13 +354,13 @@ function showErrorMessage(errorType: ValidationError): ValidationMessage {
 }
 ```
 
-The function is supposed to check all possible variants of `ValidationError` and choose a message but it misses a message for `TooShortPassword`. Without special checks (e.g. exhaustiveness check[^exhaustivecheck]) the TypeScript compiler can't help us here. So it's fairly easy to miss something and not even notice it.
+The function is supposed to check all possible variants of `ValidationError` and choose a message, but it misses a message for `TooShortPassword`. Without special checks (e.g., exhaustiveness check[^exhaustivecheck]), the TypeScript compiler can't help us here. So it's relatively easy to miss something and not even notice it.
 
-Multiple conditions can be replaced with more declarative constructions. For example, we can collect all error messages into a dictionary with error types as keys and messages as values. Selecting errors from such a dictionary may be more reliable because the compiler can spot missing keys:
+We can replace multiple conditions with more declarative constructions. For example, we can collect all error messages into a dictionary with error types as keys and messages as values. Selecting errors from such a dictionary may be more reliable because the compiler can spot missing keys:
 
 ```ts
 function showErrorMessage(errorType: ValidationError): ValidationMessage {
-  // In the `messages` variable type we explicitly specify,
+  // In the `messages` variable type, we explicitly specify,
   // that all possible errors should be listed in it:
   const messages: Record<ValidationError, ValidationMessage> = {
     MissingEmail: "Email is required.",
@@ -376,14 +376,14 @@ function showErrorMessage(errorType: ValidationError): ValidationMessage {
 
 Conceptually, this is similar to pattern matching.[^patternmatching] We match `errorType` to the keys of the `messages` object and select the appropriate value by it.
 
-This selection is somewhat similar to how `switch` works, only in this case type checking doesn't require additional actions (such as exhaustiveness check). In TypeScript, this is probably the cheapest way to simulate type-safe “pattern matching” without using third-party libraries.
+This selection is somewhat similar to how `switch` works, only, in this case, type checking doesn't require additional actions (such as an exhaustiveness check). In TypeScript, this is probably the cheapest way to simulate type-safe “pattern matching” without third-party libraries.
 
 | By the way 🔍                                                                                                                                                                                                       |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | It's worth noting that this technique is more suitable for simple cases and doesn't look as cool as real pattern matching in functional languages.[^patternmatchinghaskell]                                         |
-| Native syntax for pattern matching in JS is still in Stage 1 at the time of writing.[^patternmatchingjs] For more complex cases we can use third-party libraries like `ts-pattern`.[^tspattern][^patternmatchingts] |
+| Native syntax for pattern matching in JS is still in Stage 1 at the time of writing.[^patternmatchingjs] We can use third-party libraries like `ts-pattern` for more complex cases.[^tspattern][^patternmatchingts] |
 
-In JavaScript code, there isn't type checking, of course. But the declarative style of this approach makes the manual search for errors easier as well. The more explicitly we match keys and values, the easier it is to spot mismatches.
+In JavaScript code, there isn't type checking, of course. But the declarative style of this approach also makes the manual search for errors easier. The more explicitly we match keys and values, the easier it is to spot mismatches.
 
 | Read more 👓                                                                                    |
 | :---------------------------------------------------------------------------------------------- |
@@ -391,9 +391,9 @@ In JavaScript code, there isn't type checking, of course. But the declarative st
 
 ## Strategy
 
-Multiple `else-if` statements can choose not just a value, but the program behavior. The choice of behavior among similar variants can indicate insufficient separation of concerns or poor polymorphism.[^polymorphism] One possible solution to this problem is similar to the refactoring techniques from the previous section.
+Multiple `else-if` statements can choose not just a value but the program behavior. The choice of behavior among similar variants can indicate insufficient separation of concerns or poor polymorphism.[^polymorphism] One possible solution to this problem is identical to the refactoring techniques from the previous section.
 
-Let's look at the `notifyUser` function for example. It sends a message to a user in one of three possible ways. The choice of the particular notification option depends on the conditions within this function:
+Let's look at the `notifyUser` function, for example. It sends a message to a user in one of three possible ways. The choice of the particular notification option depends on the conditions within this function:
 
 ```ts
 function notifyUser(message) {
@@ -410,9 +410,9 @@ function notifyUser(message) {
 }
 ```
 
-The problem with the function is that it mixes different tasks. It chooses how to send a message _and_ sends the message. This means that adding a new notification option or changing an existing one will affect the whole function. _Even the parts that aren't related to that change_.
+The problem with the function is that it mixes different tasks. It chooses how to send a message _and_ sends the message. Adding a new notification option or changing an existing one will affect the whole function. Maybe even the parts that _aren't related to that change_.
 
-Because of this, we can't use one of the notification options separately in the rest of the code. We can't test different options in isolation from each other either. Also, if we add new options, the `notifyUser` function will become much bigger and more complex.
+Because of this, we can't use one of the notification options separately in the rest of the code. We can't test different options in isolation from each other, either. Also, if we add new options, the `notifyUser` function will become much bigger and more complex.
 
 Instead, we can separate the _choice_ of the behavior from the _behavior_ itself:
 
@@ -471,13 +471,13 @@ const notifiers = {
 
 Changes to an individual function won't go beyond it and won't affect `notifyUser` or other functions. Testing and using such functions independently is much easier.
 
-The separation of choice and behavior is essentially the “Strategy” pattern.[^strategy] It can be hard to recognize it in code without classes because examples of this pattern are most often shown in the OOP paradigm, but it is. The only difference is that while in OOP every behavior strategy is a class, in our example it's a function.
+The separation of choice and behavior is essentially the “Strategy” pattern.[^strategy] It can be hard to recognize it in code without classes because examples of this pattern are most often shown in the OOP paradigm, but it is. The only difference is that while in OOP, every behavior strategy is a class, in our example, it's a function.
 
 ## Null-Object
 
 “The same but slightly different” functionality can also cause unnecessary checks and conditions.
 
-As an example, let's say we create a mobile app for iOS, Android, and the web. In the mobile version, we want to add lock-screen widgets. Both iOS and Android have native APIs for making such widgets. Let's pretend we have JS adapters for such APIs.
+For example, let's say we create a mobile app for iOS, Android, and the web. In the mobile version, we want to add lock-screen widgets. Both iOS and Android have native APIs for making such widgets. Let's pretend we have JS adapters for such APIs.
 
 The `Device` interface describes the adapters' functionality. Adapters contain a platform identifier and a method to update the widget:
 
@@ -514,7 +514,7 @@ function update(device: Device, data: WidgetData) {
 
 It's not a problem if we have one or two such checks. But the more features we detect this way, the more conditions will appear in our code. If we feel that such checks are used too often, we can use the second option to solve the problem.
 
-Let's add a “dummy device object” for the web app, that will implement the `Device` interface, but won't do anything in response to an `updateWidget` call:
+Let's add a “dummy device object” for the web app that will implement the `Device` interface but won't do anything in response to an `updateWidget` call:
 
 ```ts
 const webDevice: Device = {
@@ -523,9 +523,9 @@ const webDevice: Device = {
 };
 ```
 
-Such “dummy objects” are called _null-objects_.[^nullobject] They are usually added in places where we need a method call, but don't need the implementation of that call.
+Such “dummy objects” are called _null objects_.[^nullobject] They are usually used where we need a method call but don't need the implementation of that call.
 
-When using a null-object, we no longer need to check the type of the device—we just need to call the method. If the current device is a web browser, the method call will just pass without doing anything:
+When using a null object, we no longer need to check the type of the device—we just need to call the method. If the current device is a web browser, the method call will pass without doing anything:
 
 ```ts
 function update(device: Device, data: WidgetData) {
@@ -538,7 +538,7 @@ function update(device: Device, data: WidgetData) {
 }
 ```
 
-Null-object is sometimes considered **antipattern**.[^nullobjectcriticism] It's better to decide if it's appropriate to use it depending on the task, ways of use, and preferences of the team. It's best to consult with other developers before using it and make sure no one has any reasons against it.
+The null object is sometimes considered **antipattern**.[^nullobjectcriticism] It's better to decide if it's appropriate to use it depending on the task, ways of use, and team preferences. It's best to consult with other developers before using it and make sure no one has any reasons against it.
 
 [^scene]: “Your Code As a Crime Scene” by Adam Tornhill, https://www.goodreads.com/book/show/23627482-your-code-as-a-crime-scene
 [^cyclomaticcomplexity]: Cyclomatic Complexity, Wikipedia, https://en.wikipedia.org/wiki/Cyclomatic_complexity

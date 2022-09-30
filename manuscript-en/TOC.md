@@ -124,7 +124,8 @@
       - Separate Data and Behavior
       - Interface Segregation Principle
     - Functional Composition
-      - Dependency Rejection Might not Fit
+      - Dependency Rejection
+      - Other Dependency Management Options
   - Integrity and Consistency
     - Aggregates
     - Input Prevalidation

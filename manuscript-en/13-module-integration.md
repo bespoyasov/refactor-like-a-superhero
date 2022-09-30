@@ -4,13 +4,13 @@ Complex applications consist of many parts. The interaction between the parts af
 
 ## Coupling and Cohesion
 
-Bad code is noticed by the fear of changing it. The fear arises when we feel like “everything will fall apart” or “we'll have to update a lot of code” after making a change. Such feelings appear when application modules know too much about each other.
+The fear of changing code notices bad code. It arises when we feel like “everything will fall apart” or “we'll have to update a lot of code” after making a change. Such feelings appear when application modules know too much about each other.
 
-| By the way 🧩                                                                                                                                                                     |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| By a _module_ we mean an isolated part of an application that is responsible for a specific task and communicates with the outside world or other modules through the public API. |
+| By the way 🧩                                                                                                                                                              |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| By a _module_ we mean an isolated part of an application responsible for a specific task that communicates with the outside world or other modules through the public API. |
 
-When a module directly affects the code of other modules, its changes will spread to the other modules too. Stopping the propagation of changes in such a code base becomes difficult. Changes related to a particular task begin to affect code that isn't related to it. As a result, it becomes scary to make changes in the code because anything can break and the whole application must be retested afterward.
+When a module directly affects the code of other modules, its changes will also spread to the other modules. Stopping the propagation of changes in such a code base becomes difficult. Changes related to a particular task begin to affect code that isn't related to it. As a result, making changes in the code becomes scary because anything can break, and we must retest the whole application afterward.
 
 The degree to which one module knows about the structure of other modules is called _coupling_.[^coupling] The higher the coupling, the harder it is to make changes in isolation to a particular module.
 
@@ -18,7 +18,7 @@ The degree to which one module knows about the structure of other modules is cal
 
 In a well-organized application, working on a task causes changes only in the code related to that task. This principle is known as _Separation of Concerns, SoC_.[^soc]
 
-SoC helps limit the spread of changes across the code base. If all the code responsible for one task is located in one module, the changes for this task will affect only that module. Everything that isn't related to the task is outside the module, and won't affect its code.
+SoC helps limit the spread of changes across the code base. If all the code responsible for one task is located in one module, the changes for this task will affect only that module. Everything that isn't related to the task is outside the module and won't affect its code.
 
 The degree to which the code is related to the task is called _cohesion_.[^cohesion] The higher the cohesion, the closer a module's code is related to the task it was written for. With higher cohesion, it's easier to find the module related to a particular task in the code base.
 
@@ -32,16 +32,16 @@ The first and foremost thing we should check when analyzing the interaction of m
 
 ---
 
-A program composed according to this rule looks like “islands of cohesive functionality” connected by bridges of public APIs, events or messages:
+A program composed according to this rule looks like “islands of cohesive functionality” connected by “bridges” of public APIs, events, or messages:
 
 <figure>
   <img src="../images/13-coupling-cohesion.png" width="600">
-  <figcaption><em>“Islands” in the code are responsible for related domain tasks and communicate with each other via “bridges” of public APIs, events, or messages</em><br><br></figcaption>
+  <figcaption><em>“Islands” in the code are responsible for related domain tasks and communicate with each other via “bridges” of public APIs</em></figcaption>
 </figure>
 
 ### Task Decomposition
 
-To understand how to find weak module separation during refactoring, let's look at an example. The `purchase` module from the snippet below is heavily coupled with the `cart` module. It uses the internal details of the cart object (object structure and `products` field type) to check if it's empty:
+Let's look at an example to understand how to find weak module separation during refactoring. The `purchase` module from the snippet below is heavily coupled with the `cart` module. It uses the internal details of the cart object (object structure and `products` field type) to check if it's empty:
 
 ```ts
 // purchase.ts
@@ -54,14 +54,13 @@ async function makePurchase(user, cart) {
 }
 ```
 
-The problem with this code is the encapsulation violation. The `purchase` module _doesn't and shouldn't know_ how to properly check if the cart is empty.
+The problem with this code is the encapsulation violation. The `purchase` module _doesn't and shouldn't know_ how to check if the cart is empty properly.
 
 The details of checking the cart aren't part of the “making a purchase” task. The _fact_ that the cart isn't empty is important to it, but it doesn't matter _how_ that fact is determined. Implementing the validation is the task of the cart module because it's the one that creates that object and knows how to keep it valid:
 
 ```ts
 // cart.ts
-// Extract the emptiness check
-// into a separate module `cart`:
+// Extract the emptiness check into the `cart` module:
 export function isEmpty(cart) {
   return !cart.products.length;
 }
@@ -100,19 +99,19 @@ async function makePurchase(user, cart) {
 }
 ```
 
-Modules that use the `isEmpty` function from the public API will remain unchanged. If modules were to use the cart internal structure directly, they would all have to be updated when the property changes.
+Modules that use the `isEmpty` function from the public API will remain unchanged. If modules were to use the cart's internal structure directly, they would all have to be updated when the property changes.
 
 ### Search for Cohesion
 
-It's often not clear whether a task belongs to a specific module or not. To determine it, we can look at the data that the module or function works with.
+It's often not clear whether a task belongs to a specific module or not. To determine it, we can look at the data the module or function uses.
 
-The “data” is the _input and output parameters_, and the _dependencies and context_ that the module uses. The less the data of one module is similar to the data of another module, the more likely it's that they relate to different tasks. If, for example, a function often works with data from a neighboring module, it most likely should be part of that module.
+The “data” is the _input and output parameters_, and the _dependencies and context_ that the module uses. The less the data of one module is similar to the data of another, the more likely it's that they relate to different tasks. If, for example, a function often works with data from a neighboring module, it most likely should be part of that module.
 
 | By the way 🦨                                                          |
 | :--------------------------------------------------------------------- |
 | We may know this problem as the Feature Envy code smell.[^faetureenvy] |
 
-Let's imagine that we're refactoring a finance management application that can track user expenses. Suppose we see code like this in the module responsible for the budget:
+Let's imagine we're refactoring a finance management application that can track user expenses. Suppose we see code like this in the module responsible for the budget:
 
 ```js
 // budget.js
@@ -187,13 +186,13 @@ function addSpending(spending, appState) {
 }
 ```
 
-In simple applications, such a strict separation of modules and features may not be necessary. But if the application needs to scale and more use cases need to be added, the functionality of different modules will probably need to be composed in various ways. Unclear module separation can lead to implicit dependencies between the modules, which makes it harder to compose and reuse functionality.
+Such strict separation of modules and features may not be necessary for simple applications. But if the application needs to scale and more use cases need to be added, the functionality of different modules will probably need to be composed in various ways. Unclear module separation can lead to implicit dependencies between the modules, which makes it harder to compose and reuse functionality.
 
 For scaling, we should keep an eye on coupling and cohesion. If we're sure we'll be extending and reusing functionality, it's better to divide the code into modules so that there are a minimum of implicit dependencies between them.
 
 ## Contracts
 
-The public API of a module can be called a _contract_.[^designbycontract] Contracts fix guarantees of one entity over others: they require certain arguments and obligate functions to return a specific result. This allows other parts of the program to rely not on the module's entity, but only on its “promises”, and to base their work on them.
+The public API of a module can be called a _contract_.[^designbycontract] Contracts fixate guarantees of one entity over others: they require certain arguments and obligate functions to return a specific result. They allow other parts of the program to rely not on the module's entity but only on its “promises” and to base their work on them.
 
 Let's look at an example to see why this is useful. In the code below, we rely on the structure of the `api` module, thereby increasing the coupling:
 
@@ -204,7 +203,7 @@ await api.post(api.baseUrl + "/" + api.createUserUrl, { body: user });
 await api.post(api.baseUrl + "/posts/" + api.posts.create, post);
 ```
 
-The `api` module doesn't make clear promises about how it's going to work. So when we use it, we _need to know how_ it works. But the direct dependence on the `api` module details increases the coupling: if we now change the `api` module, we have to change the code which uses it. This slows down the app development.
+The `api` module doesn't explicitly promise how it will work. So when we use it, we _need to know how_ it works. But the direct dependence on the `api` module details increases the coupling: if we now change the `api` module, we have to change the code which uses it. High coupling slows down app development.
 
 Instead, the `api` module could declare a _contract_, a set of guarantees describing how it'll work:
 
@@ -219,7 +218,7 @@ interface ApiClient {
 }
 ```
 
-Then we would implement this contract inside the `api` module only exposing the public API and not revealing any extra details:
+Then we would implement this contract inside the `api` module, only exposing the public API and not revealing any extra details:
 
 ```ts
 const client: ApiClient = {
@@ -240,12 +239,12 @@ await client.createUser(user);
 await client.createPost(post);
 ```
 
-| Clarification 📑                                                                                                                                                                                                                                                  |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| In a formal definition, contracts are pre- and post-conditions in the form of prescribed verifiable specifications.[^designbycontract] In practice, I've rarely seen contracts in this form, only in the form of fixed guarantees instead.                        |
-| Guarantees aren't necessarily a type signature or an interface. They can be sound or written agreements, DTOs, message formats, etc. The important thing is that these agreements _should declare and fix the behavior_ of parts of the system toward each other. |
+| Clarification 📑                                                                                                                                                                                                                                                     |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In a formal definition, contracts are pre- and post-conditions in the form of prescribed verifiable specifications.[^designbycontract] In practice, I've rarely seen contracts in this form, only in the form of fixed guarantees instead.                           |
+| Guarantees aren't necessarily a type signature or an interface. They can be sound or written agreements, DTOs, message formats, etc. The important thing is that these agreements _should declare and fixate the behavior_ of parts of the system toward each other. |
 
-The same “promises” can be fulfilled by different modules. So if we rely on “promises”, implementation becomes easier to change, e.g. during testing:
+Different modules can fulfill the same “promises.” So if we rely on “promises,” implementation becomes easier to change, e.g., during testing:
 
 ```ts
 // Describe the “contract” of using storage.
@@ -300,20 +299,20 @@ const saveCurrentTheme = () => saveToStorage(THEME, storage);
 
 The lower the coupling, the more module interaction resembles sending messages. Server-client communication via REST is an example of such communication.[^rest] The client and server know nothing about each other's structure and communicate only by a pre-defined contract—messages of a certain kind with data inside.
 
-Messages can be sent either directly from one module to another via a public API, or via a special entity—a _message bus_. In the second case, the modules know nothing about each other and are coupled only through the message bus:
+Messages can be sent either directly from one module to another via a public API or a special entity—a _message bus_. In the second case, the modules know nothing about each other and are coupled only through the message bus:
 
 <figure>
   <img src="../images/13-message-bus.png" width="800">
   <figcaption><em>Communication comes down to sending and receiving messages from the bus</em><br><br></figcaption>
 </figure>
 
-| Clarification 📧                                                                                                                                                                                                                                                                                                                                             |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| There's a difference between a “message bus”, a “message queue”, an “event bus”, and a “message broker”.[^messagebroker][^messagebus][^messagequeue] However, it isn't critical for this chapter, so I didn't focus on a particular term. In the text, I use “message bus” as a general synonym for all of those even though it's not “technically correct”. |
+| Clarification 📧                                                                                                                                                                                                                                                                                                                                          |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| There's a difference between a “message bus,” a “message queue,” an “event bus,” and a “message broker.”[^messagebroker][^messagebus][^messagequeue] However, it isn't critical for this chapter, so I didn't focus on a particular term. I use “message bus” in the text as a general synonym for all those, even though it's not “technically correct.” |
 
-| By the way 📆                                                                                                                                                                                                                                                                   |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Communication via events can be called “perfect communication” between modules because it only couples modules via message structure and sending protocols. Although, setting up such communication is often resource-intensive, and for small projects, it can be an overhead. |
+| By the way 📆                                                                                                                                                                                                                                                             |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Communication via events can be called “perfect communication” between modules because it only couples modules via message structure and sending protocols. However, setting up such communication is often resource-intensive and can be an overhead for small projects. |
 
 Sending events and messages is usually associated with microservice architecture, but their benefits can be used in regular applications as well. If the application is large, and it's necessary to build communication between its parts without coupling, a message bus can help to solve this problem.
 
@@ -332,7 +331,7 @@ type Observable = {
   notifyAll: (message: Message) => void;
 };
 
-// The implementation here is an object with 2 methods
+// The implementation here is an object with two methods
 // and a list of listeners:
 
 const listeners = [];
@@ -359,8 +358,8 @@ const onUserUpdated = ({ type, payload }) => {
 
 bus.subscribe(onUserUpdated);
 
-// When a new message arrives the observable
-// will notify the subscribed observers:
+// When a new message arrives,
+// the observable will notify the subscribed observers:
 
 bus.notifyAll({
   type: "updateUser",
@@ -376,7 +375,7 @@ Fully decoupled communication isn't always needed but can be useful when _differ
 
 ## Dependencies
 
-Speaking of coupling and module integration, it's worth mentioning dependency management. By _dependencies_, for simplicity, we'll mean any code that is used by ours. For example, in the function `randomInt` we use the method `Math.random` in addition to the two arguments—this is a dependency:
+Speaking of coupling and module integration, it's worth mentioning dependency management. By _dependencies_, we'll mean any code that ours use for simplicity. For example, in the function `randomInt`, we use the method `Math.random` in addition to the two arguments—this is a dependency:
 
 ```ts
 function randomInt(min, max) {
@@ -384,19 +383,19 @@ function randomInt(min, max) {
 }
 ```
 
-| By the way 👻                                                                                                                                                                                                                                                                                                |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The `Math` dependency in the example above is _implicit_, because `Math` is used directly in the body of the function and isn't designated as an argument. Such implicit dependencies increase the coupling. If we try to test the `randomInt` function, we have to make a global mock of the `Math` object. |
+| By the way 👻                                                                                                                                                                                                                                                                                        |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The `Math` dependency in the example above is _implicit_, because `Math` is used directly in the function's body and isn't designated as an argument. Such implicit dependencies increase the coupling. If we try to test the `randomInt` function, we must make a global mock of the `Math` object. |
 
-Dependencies can be managed in different ways. This depends on the paradigm and style of the code. However, it's usually convenient to separate the dependencies which produce effects from the rest. This separation helps to bring the code to the Impureim-styled structure, which we discussed in the chapter on side effects earlier. Let's look at examples of such refactoring in code written in different paradigms.
+We can manage dependencies in different ways. It depends on the paradigm and style of the code. However, it's usually convenient to separate the dependencies which produce effects from the rest. This separation helps to bring the code to the Impureim-styled structure, which we discussed in the chapter on side effects earlier. Let's look at examples of such refactoring in code written in different paradigms.
 
 ### Object Composition
 
-In object-oriented programming, the unit of composition is the object. Objects can mix data and actions (state and methods), and so it's usually more difficult to compose objects than functions. In particular, most of the design patterns and SOLID principles address exactly the problems of object composition.[^solid]
+In object-oriented programming, the unit of composition is the object. Objects can mix data and actions (state and methods), so it's usually more challenging to compose objects than functions. In particular, most design patterns and SOLID principles address the problems of object composition.[^solid]
 
-| By the way 👀                                                                                                                                                                                                                                                  |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| It's worth noting that OOP code _can_ be written to avoid these problems by separating data and actions. Although, in functional programming, it's the paradigm itself that pushes this separation, while in OOP we have to make an effort to keep it in mind. |
+| By the way 👀                                                                                                                                                                                                                                                   |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| It's worth noting that OOP code _can_ be written to avoid these problems by separating data and actions. Although, in functional programming, it's the paradigm itself that pushes this separation, while in OOP, we have to make an effort to keep it in mind. |
 
 For example, let's look at the code of a finance management app:
 
@@ -404,7 +403,7 @@ For example, let's look at the code of a finance management app:
 class BudgetManager {
   constructor(private settings: BudgetSettings, private budget: Budget) {}
 
-  // The main problem with the code is the CQS violation: here effects are mixed with logic.
+  // The main problem with the code is the CQS violation: here, effects are mixed with logic.
   // This class simultaneously validates the data and updates the budget value...
   checkIncome(record: Record): MoneyAmount | boolean {
     if (record.createdAt > this.budget.endsAt) return false;
@@ -431,15 +430,15 @@ class AddIncomeCommandHandler {
 }
 ```
 
-| By the way 💉                                                                                                                                                                                                   |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| In the example I imply that we use _Dependency Injection, DI_ through class constructors.[^di] We won't discuss it separately, but I'll leave some links with more info about it.[^diindotnet][^ditsinpractice] |
+| By the way 💉                                                                                                                                                                                                    |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In the example, I imply that we use _Dependency Injection, DI_ through class constructors.[^di] We won't discuss it separately, but I'll leave some links with more info about it.[^diindotnet][^ditsinpractice] |
 
 In the example above, because of the CQS violation, it's not clear to us _how many_ effects actually occur when the `execute` method is called. We saw 2, but there's no guarantee that `this.budget.topUp` doesn't change anything other than the `budget` object.
 
 The composition of side effects negates the point of abstraction: the more effects there are, the more overall state we have to keep in mind—it's hard to work with. If side effect composition can be avoided, it's better to avoid it.
 
-Instead, we could extract the data transformations, and push the effects to the edges of the application. This would keep effects and logic separate:
+Instead, we could extract the data transformations and push the effects to the edges of the application. It would keep effects and logic separate:
 
 ```ts
 // Extract validation into a separate entity.
@@ -480,7 +479,7 @@ class AddIncomeCommandHandler {
     const saving = record.amount * this.settings.piggyBankFraction;
     const income = record.amount - saving;
 
-    // Effects for saving the data:
+    // Effects of saving the data:
     this.budget.topUp(income);
     this.piggyBank.add(saving);
   }
@@ -558,7 +557,7 @@ interface BudgetUpdater {
 
 ### Functional Composition
 
-In projects with “slightly more functional” code we also can find “dependency injection” made by partial application of functions. The benefit of this “injection” is that it makes _implicit_ dependencies _explicit_.
+In projects with “slightly more functional” code, we also can find “dependency injection” made by partial application of functions. The benefit of this “injection” is that it makes _implicit_ dependencies _explicit_.
 
 For example, take a look at the `listingQuery` function. It outputs a list of Markdown files from a specified folder:
 
@@ -573,15 +572,15 @@ const listingQuery = (query) => {
 const projectList = listingQuery("projects");
 ```
 
-It implicitly depends on the `fs` module which gives access to the filesystem. In general, this isn't bad, but such a function is inconvenient to test. The tests would require a global mock for `fs`.
+It implicitly depends on the `fs` module, which gives access to the filesystem. In general, this isn't bad, but such a function is inconvenient to test. The tests would require a global mock for `fs`.
 
 With the partial application, we can create a “factory function.” It would take `dependencies` as an argument and return `listingQuery` function as a result:
 
 ```ts
 /**
- * 1. The `system` “service” injection;
- * 2. Passing the actual arguments;
- * 3. Using the `system` “service”;
+ * 1. Inject the `system` “service”;
+ * 2. Pass the actual arguments;
+ * 3. Use the `system` “service”;
  *    to get the desired effects.
  */
 const createListingQuery =
@@ -592,14 +591,17 @@ const createListingQuery =
       .filter((fileName) => fileName.endsWith(".mdx"))
       .map((fileName) => fileName.replace(".mdx", ""));
 
-// Then when using it, we would first “inject” the `system` service:
+// When using it, we would first create the function
+// with “injected” `system` service:
 const listingQuery = createListingQuery({ system: fs });
 
-// ...And then would use the created function:
+// ...And then would use that function:
 const projectList = listingQuery("projects");
 ```
 
-This approach isn't very “functional”, but it's fine to work with if we don't have trouble “injecting” dependencies for each such factory, and using them doesn't cause problems with the shared state and its effects.
+This approach isn't very “functional,” but it's okay to work with if we don't have trouble “injecting” dependencies for each such factory, and using them doesn't cause problems with the shared state and its effects.
+
+#### Dependency Rejection
 
 In “more hardcore” functional programming, changing state and producing side effects isn't common. The concept of “dependencies” in its usual sense doesn't really fit there. Instead of “dependencies” that “expose methods” and effects, FP offers the functional core in an imperative shell.
 
@@ -607,7 +609,7 @@ In “more hardcore” functional programming, changing state and producing side
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | I like what Mark Seemann calls this concept—_dependency rejection_.[^dependencyrejection] It's like we move away from the concept of dependencies in general and try to solve the problem differently. |
 
-In this approach, all the work with the state is pushed to the edges of the application. It means that we can read and write (or render) data only at the beginning and at the end of the module. All work between these points is based on pure data transformations.
+In this approach, all the work with the state is pushed to the edges of the application. It means that we can read and write (or render) data only at the beginning and end of the module. All work between these points is based on pure data transformations.
 
 That is, we first get all the data we need from the “impure” world, pass it as arguments to the chain of transformations, and then save the result:
 
@@ -623,36 +625,36 @@ const listingQuery = (fileNames) =>
 
 // “Composition” now is a separate function:
 // - It first calls the effect to read the data.
-// - Then it runs it through a chain of transformations.
+// - Then, it runs it through a chain of transformations.
 // - At the end, it returns the result or calls the effect to save the data.
 const listingQueryComposition = (query) => {
-  // Inside we follow the Impureim sandwich structure.
+  // Inside, we follow the Impureim sandwich structure.
   //
   // 1. Read data effect.
   //   (Because of the effects, the composition context
   //    and the composition function itself are considered “impure.”)
   const files = fs.readdirSync(query);
 
-  // 2. Data transformation logic in form of a sequence of pure functions.
+  // 2. Data transformation logic in the form of a sequence of pure functions.
   return listingQuery(files);
 
   // 3. Write (save / render) data effect.
-  //   (Here we return the result from the function.
+  //   (Here, we return the result from the function.
   //    But if we weren't, we would call an effect to saving the result.)
 };
 ```
 
-At first glance, it seems to become worse: tests for the function now need global mocks, and with “dependency injection” we could just replace the services with stubs. However, in this concept unit tests should test only the functional core—the `listingQuery` function.
+At first glance, it seems to become worse: tests for the function now need global mocks, and with “dependency injection,” we could just replace the services with stubs. However, in this concept, unit tests should test only the functional core—the `listingQuery` function.
 
-The `listingQuery` function is pure so the tests for it wouldn't require any mocks or stubs at all. As for composition, in simple cases, we may skip testing it since it just “gathers” the functionality together. In more complex cases, we should use integration or E2E tests.
+The `listingQuery` function is pure, so the tests for it wouldn't require any mocks at all. As for composition, in simple cases, we may skip testing it since it just “gathers” the functionality together. In more complex cases, we should use integration or E2E tests.
 
 When using integration tests, such a composition forces the "Ports-Adapters" architecture, which also helps reduce the number of mocks, making the tests less “fragile.”
 
-| By the way 🔌                                                                           |
-| :-------------------------------------------------------------------------------------- |
-| We'll talk more about the Ports-Adapter architecture in a separate chapter a bit later. |
+| By the way 🔌                                                                     |
+| :-------------------------------------------------------------------------------- |
+| We'll talk more about the Ports-Adapter architecture in a separate chapter later. |
 
-We'll still need the mocks, for example, for testing the adapters. But in this case, we'd write only one adapter for each service, which means that we'd only need to mock that service once.
+We'll still need the mocks, for example, for testing the adapters. But in this case, we'd write only one adapter for each service, meaning we'd only need to mock that service once.
 
 ```ts
 interface System {
@@ -678,11 +680,11 @@ describe("when asked to read the given directory", () => {
 });
 ```
 
-In the case of “dependency injection”, we'd have to mock the service _for each function_ where the service is used.
+In the case of “dependency injection,” we'd have to mock the service _for each function_ where the service is used.
 
-#### Dependency Rejection Might not Fit
+#### Other Dependency Management Options
 
-If a project is heavy on I/O operations, then “dependency injection” through the partial application is probably a better fit.
+Dependency rejection isn't always the best option. If a project is heavy on I/O operations, then “dependency injection” through the partial application is probably a better fit.
 
 However, even if we're going to “inject” services, it'll be much easier if we separate logic and effects first. So in functional code, separating logic and effects is the first refactoring worth doing.
 
@@ -693,7 +695,7 @@ However, even if we're going to “inject” services, it'll be much easier if w
 
 ## Integrity and Consistency
 
-In stateful applications, we should also keep an eye on the _integrity and consistency_ of the data. These are properties that ensure that the user sees and works with the application in a valid state.
+In stateful applications, we should also keep an eye on the _integrity and consistency_ of the data. These properties ensure that the user sees and works with the application in a valid state.
 
 | Read more 📚                                                                                                                                      |
 | :------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -730,7 +732,7 @@ function createCart(products: productList): Cart {
 By improperly changing the cart object, we can make the data inconsistent. Suppose some extraneous code added a new product to the list:
 
 ```ts
-// The extraneous code doesn't know that after adding a product
+// The outside code doesn't know that after adding a product
 // it must also recalculate the total price:
 userCart.products.push(appleJuice);
 
@@ -755,7 +757,7 @@ function addProduct(cart: Cart, product: Product): Cart {
 addProduct(userCart, appleJuice);
 ```
 
-The `addProduct` function guarantees consistency because it knows what data to update and from where to update it to keep it valid. Correct updates are its area of responsibility, aggregate is its area of influence.
+The `addProduct` function guarantees consistency because it knows what data to update and from where to update it to keep it valid. Correct updates are its area of responsibility. Aggregate is its area of influence.
 
 ### Input Prevalidation
 
@@ -765,7 +767,7 @@ Aggregates and immutability help keep data valid and consistent _inside_ a part 
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | In DDD terms, we'd call such an application part a bounded context. We discussed this topic in more detail earlier in the chapter on the functional pipeline. |
 
-With prevalidation, in the `Cart` component instead of ad-hoc checks on the required fields:
+With prevalidation, in the `Cart` component, instead of ad-hoc checks on the required fields:
 
 ```js
 function Cart({ items }) {

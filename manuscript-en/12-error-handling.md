@@ -1,66 +1,66 @@
 # Error Handling
 
-Error handling is a big topic. It can be done in many different ways and details will depend on the project, its constraints, the code style, and often the team preferences.
+Error handling is a big topic. We can do it in many ways, and details will depend on the project, its constraints, the code style, and often the team preferences.
 
-In this chapter, we won't try to cover every possible way to handle errors. Instead, we'll look at general refactoring techniques that are appropriate for _some_ projects and can help make the code a little better.
+In this chapter, we won't try to cover every possible way to handle errors. Instead, we'll look at general refactoring techniques that are appropriate for _some_ projects and can help improve the code.
 
-| Clarification 🎯                                                                                                                                                                                                                                                                             |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| In the text, I don't want to “sell” any particular way to handle errors. Instead, I want to show what I personally focus on when refactoring the code. I plan to discuss how to deal with various project constraints and limitations that can make it difficult to refactor error handling. |
-| **I can be wrong**. These techniques help _me_ but this doesn't mean they're universally applicable. I recommend studying how error handling works in your project before using them. Discuss the ideas with your team and make sure everyone is okay with them.                             |
+| Clarification 🎯                                                                                                                                                                                                                                                                  |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In the text, I don't want to “sell” any particular way to handle errors. Instead, I want to show what I focus on when refactoring the code. I plan to discuss how to deal with various project constraints and limitations that can make it difficult to refactor error handling. |
+| **I can be wrong**. These techniques help _me_ but this doesn't mean they're universally applicable. I recommend studying how error handling works in your project before using them. Discuss the ideas with your team and ensure everyone is okay with them.                     |
 
-Proper error handling _helps_ cope with abnormal situations in an application and debug problematic code. We can achieve it in many ways, but most often, when refactoring, we can focus on 3 heuristics:
+Proper error handling helps cope with abnormal situations in an application and debug problematic code. We can achieve it in many ways, but most often, when refactoring, we can focus on three heuristics:
 
-- If an error makes the correct code execution impossible, we should handle it, instead of trying to continue working “normally”.
+- If an error makes the correct code execution impossible, we should handle it instead of trying to continue working “normally.”
 - We should make error handling centralized but not mix different kinds of errors.
 - We must not silently “swallow” any errors, especially unhandled ones.
 
-In this chapter, we'll see how each point of the list is useful and how to implement them in our code. But before we get down to refactoring, let's agree on the terms and talk about types of errors.
+In this chapter, we'll see how each point of the list is practical and how to implement them in our code. But before we get down to refactoring, let's agree on the terms and discuss the types of errors.
 
 ## Types of Errors
 
-In “Domain Modeling Made Functional,” Scott Wlaschin divides errors into 3 types:[^dmmf]
+In “Domain Modeling Made Functional,” Scott Wlaschin divides errors into three types:[^dmmf]
 
 - _Domain errors_. These errors are expected in the business workflows, their cause lies in the application domain, and we know how to handle them. (For example, dividing by 0 in a calculator app is a domain error because this operation constraint is a part of the maths domain.)
-- _Infrastructural errors_. These are also expected and we know how to handle them but they're related to the infrastructure, not the business logic. (For example, a failed network request is an infrastructural error because we expect that it might happen but it's not a part of the domain.)
-- _Panics_. These are unexpected errors, we don't know how to handle them and recover the app after they happen. (For example, getting `null` where we shouldn't have is a panic because we don't know how to make the application state valid again.)
+- _Infrastructural errors_. These are also expected, and we know how to handle them, but they're related to the infrastructure, not the business logic. (For example, a failed network request is an infrastructural error because we expect that it might happen, but it's not a part of the domain.)
+- _Panics_. These are unexpected errors. We don't know how to handle them and recover the app after they happen. (For example, getting `null` where we shouldn't have is a panic because we don't know how to make the application state valid again.)
 
-| By the way 🙅                                                                                                                                                                             |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| I don't use the term “exceptions” because in different sources “exceptions” and “errors” mean exactly the opposite.[^errorsexceptions][^errormodel] I will use the term “panics” instead. |
+| By the way 🙅                                                                                                                                                                              |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| I don't use the term “exceptions” because in different sources, “exceptions” and “errors” mean exactly the opposite.[^errorsexceptions][^errormodel] I will use the term “panics” instead. |
 
 We will often refer to this list during refactoring. It'll help us to choose appropriate handling techniques for specific cases.
 
 ## Handling Techniques
 
-As we said, error handling techniques depend on the specific language, project limitations, and preferences of the team. But most often, error handling is done using these techniques:
+As we said, error handling techniques depend on the specific language, project limitations, and team preferences. But most often, error handling is done using these techniques:
 
 - Throwing panics;
 - Using result containers;
 - Combining panics and containers;
 - Combining containers and functional binding.
 
-We won't “rate” them “good or bad”. Instead, we'll investigate the pros and cons of each of them and study what project limitations can force us to use a particular technique.
+We won't “rate” them “good or bad.” Instead, we'll investigate the pros and cons of each of them and study what project limitations can force us to use a particular technique.
 
-For example, first, we'll discuss how to refactor code in a project where we can only use panics. Then we'll talk about how result containers can be useful and when to use them. Closer to the end of the chapter, we'll see how to combine the different techniques together.
+For example, first, we'll discuss how to refactor code in a project where we can only use panics. Then we'll discuss how result containers can be helpful and when to use them. Closer to the end of the chapter, we'll see how to combine the different techniques.
 
-| Be careful 🚧                                                                                                                                                      |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The techniques in the book are ideas, not rules. The decision whether to apply them should be made on a case-by-case basis, in consultation with other developers. |
+| Be careful 🚧                                                                                                                                   |
+| :---------------------------------------------------------------------------------------------------------------------------------------------- |
+| The techniques in the book are ideas, not rules. The decision to apply them should be made case-by-case, in consultation with other developers. |
 
 ## Throwing Panics
 
-In JavaScript code, the most common way to deal with errors is to throw a panic with a native `throw new Error()` statement. It's usually the first thing that pops into the head when we want to “indicate that something went wrong.” And it's reasonable since the `Error` object works natively out of the box and doesn't require any additional tools.
+The most common way to deal with errors in JavaScript code is to throw a panic with a native `throw new Error()` statement. It's usually the first thing that pops into the head when we want to “indicate that something went wrong.” And it's reasonable since the `Error` object works natively out of the box and doesn't require any additional tools.
 
-| By the way 👀                                                                                                                                               |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Besides `Error` there's also `Promise.reject`, but it's more related to asynchronous operations. For example, in business logic, it's used much less often. |
+| By the way 👀                                                                                                                                             |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Besides `Error`, there's also `Promise.reject`, but it's more related to asynchronous operations. For example, in business logic, it's almost never used. |
 
 The main problem is that panics are more suitable for unexpected errors than expected ones. They describe situations that lead the program to an inconsistent state that _can't be recovered from_.
 
-Expected errors, on the other hand, are recoverable and we know how to handle them. In business logic, for example, most of the errors are recoverable. It's even recommended to avoid panics in the business logic because it should work even after removing all the panics from it.[^replacethrow][^pragmaticprogrammer]
+Expected errors, however, are recoverable, and we know how to handle them. In business logic, for example, most of the errors are recoverable. It's even recommended to avoid panics in the business logic because it should work even after removing all the panics.[^replacethrow][^pragmaticprogrammer]
 
-In practice, however, this separation isn't always maintained. There are projects where panics and errors are mixed together. In such projects, it's often difficult to introduce new methods of error handling and we might have to deal with errors only using panics. But even in such projects, we can still make the code a little better.
+In practice, however, this separation isn't always maintained. There are projects where panics and errors are mixed. In such projects, it's often difficult to introduce new methods of error handling, and we might have to deal with errors only using panics. But even in such projects, we can still improve the code.
 
 Consider an example. Let's say we have a function `getUser` that calls the backend API to fetch data about a user. Once it gets a response, it parses it and stores the result in the storage.
 
@@ -73,7 +73,7 @@ async function getUser(id) {
 }
 ```
 
-The `fetchUser` function requests the network and returns the DTO from the server or `null` if the server responded with an error:
+The `fetchUser` function requests the network and returns the DTO from the server or `null` if the server responds with an error:
 
 ```js
 async function fetchUser(url) {
@@ -97,8 +97,8 @@ To understand how to start refactoring this code, let's first identify the probl
 
 - There's no error handling as such. We return `null` from the functions when something goes wrong, but we _swallow_ the error reasons and don't handle them in any way.
 - Because of `null` in the results of `fetchUser` and `parseUser`, we lose the context of the error. So we have to _check the data for the same errors again_ at the level above. Duplicate checks make the code noisy.
-- The `fetchUser` function addresses _only some_ problems, and there's no explicit delegation of unexpected errors to other modules. It makes the code “unsafe” because the app can crash at any point.
-- We _don't distinguish_ between infrastructural and domain errors. When analyzing bugs, we might need this information to find bugs in the app faster.
+- The `fetchUser` function addresses _only some_ problems, and there's no explicit delegation of unexpected errors to other modules. It makes the code “unsafe” because the app can crash anytime.
+- We _don't distinguish_ between infrastructural and domain errors. We might need this information to find bugs in the app faster when analyzing issues and bug reports.
 
 Let's try to fix these problems.
 
@@ -112,14 +112,14 @@ For example, if an unexpected error occurs inside the `fetchUser` function, the 
 async function fetchUser(url) {
   const response = await fetch(url);
 
-  // Let's say, after unpacking JSON we got `null` instead of an object.
+  // Let's say, after unpacking JSON, we got `null` instead of an object.
   // The next line will then throw `null is not an object`:
   const { value, error } = await response.json();
   // ...
 }
 ```
 
-We can solve this by adding `try-catch` at the level above. Then the `getUser` function will catch the thrown error and we'll be able to handle it:
+We can solve this by adding `try-catch` at the level above. Then the `getUser` function will catch the thrown error, and we'll be able to handle it:
 
 ```js
 async function getUser(id) {
@@ -168,11 +168,11 @@ async function getUser(id) {
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | We want to distinguish between errors and panics because they may need to be handled differently. Depending on the project requirements, we may want, for example, to log panics in an alert monitoring service and log expected errors in the analytics service. The easier it is to distinguish them, the less code we'll need to handle those separately. |
 
-To distinguish panics from domain and infrastructure errors, we can use different error types.
+We can use different error types to distinguish panics from domain and infrastructure errors.
 
 ### Different Error Types
 
-In the case of JavaScript, an “error type” is a separate class that extends `Error`. In such extensions, we can specify the name and kind of the error, as well as some additional information in separate fields.
+In the case of JavaScript, an “error type” is a separate class that extends `Error`. In such extensions, we can specify the name and kind of the error and some additional information in separate fields.
 
 For example, to distinguish between network errors and validation errors, we can create such types:
 
@@ -220,26 +220,26 @@ async function getUser(id) {
 
 This way of error handling has many disadvantages: it uses panics in the business logic code and violates LSP[^lsp] inside the `catch` block. But despite this, it has an advantage: when an error occurs, we don't try to continue working but go on to handle it.
 
-We don't want to continue working because an error is an _inconsistent state_ of the application. In such a state, we cannot guarantee that the application data is valid and the we can continue working with it.
+We don't want to continue working because an error is an _inconsistent state_ of the application. In such a state, we cannot guarantee that the application data is valid, and then we can continue working with it.
 
 If we terminate execution at this point and move on to handling the error, we protect ourselves from further errors that could damage the data even more. In addition, we clean up the domain model code, removing unnecessary checks from it.
 
 <figure>
   <img src="../images/12-linear-execution.png" width="600">
-  <figcaption><em>Code execution becomes linear, all error branches lead immediately to the error handling</em><br><br></figcaption>
+  <figcaption><em>Code execution becomes linear. All error branches lead immediately to error handling</em><br><br></figcaption>
 </figure>
 
 ### Rethrow
 
-You might notice that in the last example, on the last line of the `catch` block there appeared a new expression `else throw error`. It is a so-called _rethrow_. We use it as a mechanism that helps us _not to swallow_ errors that we can't handle.
+You might notice that in the last example, on the last line of the `catch` block, a new expression `else throw error` appeared. It is a so-called _rethrow_. We use it as a mechanism that helps us _not to swallow_ errors that we can't handle.
 
 If the current error handler checked the error for all known types and couldn't determine what to do with it, it can rethrow it to a level above. On that level, the error will be handled by “someone smarter, who knows what to do.”
 
-| However ❓                                                                                                                        |
-| :-------------------------------------------------------------------------------------------------------------------------------- |
-| This, of course, raises the question of who's going to handle it on the level above. We'll answer this at the end of the chapter. |
+| However ❓                                                                                                                  |
+| :-------------------------------------------------------------------------------------------------------------------------- |
+| This, of course, raises the question of who will handle it on the level above. We'll answer this at the end of the chapter. |
 
-After the refactoring, the functions start looking linear and the number of checks for `null` is reduced:
+After the refactoring, the functions start looking linear, and the number of checks for `null` decreases:
 
 ```js
 async function getUser(id) {
@@ -270,23 +270,23 @@ However, throwing has its problems as well:
 - A thrown error can crash the app at the run time if it isn't handled.
 - Yet there are no tools in the language that _force us_ to handle the potential errors, so it's easy to forget or skip handling them.
 - There's almost no syntactic difference between errors and panics in the code, which makes it hard to separate them from each other.
-- At the same time, using panics in the domain code is a smell, because domain errors aren't panics, they are expected.
+- At the same time, using panics in the domain code is a smell because domain errors aren't panics; we expect them.
 - Checking for all potential errors is possible, but it looks ugly because of `instanceof`.
-- The use of `instanceof` can be avoided with error subclasses for each “application layer”, but this makes the error model more complex.
+- We can avoid the use of `instanceof` with error subclasses for each “application layer,” but this makes the error model more complex.
 - Function signatures don't tell us that the functions may throw an error; we can only learn about the errors from the source code.
-- It isn't clear _who_ should handle a thrown error. Relying on “conventions” isn't safe, because there are no tools in the language to enforce conventions.
-- There are no explicit rules of when and how to wrap “low-level” code (`fetch`, Browser API, etc.) in `try-catch`.
+- It isn't clear _who_ should handle a thrown error. Relying on “conventions” isn't safe because there are no tools in the language to enforce conventions.
+- There are no explicit rules for wrapping “low-level” code (`fetch`, Browser API, etc.) in `try-catch`.
 - Performance may suffer because each `Error` object collects stack and other information.
 
 If a project can use _only_ panics, that's probably the maximum we can do. In a good way, we should avoid using panics in business logic. But if there are some constraints in the project that force us to do so, it makes sense to make the error handling look roughly like this.
 
-However, there are other ways to handle errors besides throwing panics. If we examine the project and see in the code something that resembles _result containers_, the `getUser` function can be improved further.
+However, there are other ways to handle errors besides throwing panics. If we examine the project and see something that resembles _result containers_ in the code, we can improve the `getUser` function further.
 
 ## Result Containers
 
 As we mentioned before, some errors are expected. For example, we can expect the API to return “404” in response to a request for a non-existing page. This situation is non-standard, but we know how to handle it.
 
-To handle expected errors, it might be convenient to use _result containers_. A container is a type that lives in one of two states: it either contains the data—the result of a successful operation, or it contains the occurred error.
+It might be convenient to use _result containers_ to handle expected errors. A container is a type that lives in one of two states: either the result of a successful operation or the occurred error.
 
 ```ts
 // The container is a “box” that can be in 1 of 2 states:
@@ -298,11 +298,11 @@ type Success<T> = { ok: true; value: T };
 type Failure<E> = { ok: false; error: E };
 ```
 
-| Clarification 🦄                                                                                                                                                                                                                |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| The implementation of `Result` in the example is intentionally approximate and incomplete so it couldn't be misinterpreted as “canonical.”                                                                                      |
-| Implementing your own container from scratch is an interesting task, but in production, I'd recommend using solutions known to the community. For example, `Either` from the fp/ts library would be good for such tasks.[^fpts] |
-| If your project already uses some implementation of containers, study its capabilities. It probably already has everything you need.                                                                                            |
+| Clarification 🦄                                                                                                                                                                                                               |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The implementation of `Result` in the example is intentionally approximate and incomplete so as not to pretend to be “canonical.”                                                                                              |
+| Implementing your own container from scratch is an interesting task, but I'd recommend using solutions known to the community in production. For example, `Either` from the fp/ts library would be good for such tasks.[^fpts] |
+| If your project already uses some implementation of containers, study its capabilities. It probably already has everything you need.                                                                                           |
 
 Using a container, we could rewrite the `parseUser` function something like this:
 
@@ -323,7 +323,7 @@ function parseUser(dto: UserDto): Result<User, ValidationError> {
 }
 ```
 
-Now the function returns a _“box” with either result or error_. This “box” encapsulates information about what happened and returns all of it to a higher level.
+The function now returns a _“box” with either result or error_. This “box” encapsulates information about what happened and returns all of it to a higher level.
 
 ### More Accurate Signature
 
@@ -343,7 +343,7 @@ async function getUser(id) {
 }
 ```
 
-If there was an error, the `value` field will be empty when unpacking. This means that it won't be possible to pass the data to the next function. So further work is possible _only_ if there are no errors or if they are handled. This way the container signature forces us to remember potential errors and handle them:
+If there is an error, the `value` field will be empty when unpacking. That way, passing the data to the next function won't be possible. So further work is possible _only_ if there are no errors or if they are handled. This way, the container signature forces us to remember potential errors and handle them:
 
 ```ts
 async function getUser(id) {
@@ -363,11 +363,11 @@ async function getUser(id) {
 
 Containers are probably a better solution for describing expected errors than panics. They are syntactically different from panics, which may help to think of them as _expected_. Also, we don't need to _throw_ containers, which means they won't break the application while we unpack them correctly.
 
-| By the way 📦                                                                                                                                   |
-| :---------------------------------------------------------------------------------------------------------------------------------------------- |
-| In Node.js, in the days of callbacks, unsafe operations returned a container—a tuple of error and value:[^errnode]                              |
-| `function errorFirstCallback(err, value) {}`                                                                                                    |
-| If there was an error, the `err` field would contain it. If there was no error, `err` would be empty. It's also known as error-first callbacks. |
+| By the way 📦                                                                                                                                      |
+| :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In Node.js, in the days of callbacks, unsafe operations returned a container—a tuple of error and value:[^errnode]                                 |
+| `function errorFirstCallback(err, value) {}`                                                                                                       |
+| If there were an error, the `err` field would contain it. If there were no errors, `err` would be empty. It's also known as error-first callbacks. |
 
 ### Explicit Handling
 
@@ -390,16 +390,16 @@ async function getUser(id) {
 }
 ```
 
-This is also known as “Fail Fast.”[^failfast]
+This approach is also known as “Fail Fast.”[^failfast]
 
 <figure>
   <img src="../images/12-linear-execution.png" width="600">
-  <figcaption><em>The results chain breaks where an error occurs, and code starts handling the error</em><br><br></figcaption>
+  <figcaption><em>The results chain breaks where an error occurs, and the code starts handling the error</em><br><br></figcaption>
 </figure>
 
-| Clarification 🔗                                                                                                                                                                                                                 |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| In imperative code with a large number of operations, it will look cumbersome. But if the number of operations is small (1-2), in general, it's not so terrible. We'll talk about how to unpack containers more elegantly later. |
+| Clarification 🔗                                                                                                                                                                                        |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| In imperative code with many operations, it will look cumbersome. But if the number of operations is small (1-2), it's not so terrible. We'll talk about how to unpack containers more elegantly later. |
 
 ### Centralized Handling
 
@@ -423,7 +423,7 @@ function handleGetUserErrors(error: UseCaseError): void {
   const message = messages[error];
   if (!message) throw new Error("Unexpected error when getting user data.");
 
-  // If it's expected, handle it:
+  // If we expect it, we handle it:
   storage.setError(message);
 
   // If necessary, we can add some infrastructure stuff:
@@ -456,7 +456,7 @@ async function fetchUser(url) {
 }
 ```
 
-We would need to wrap _every_ call to the “low-level” API—in our case, every request to the network. This may increase the amount of code. However, if the scheme of working with these APIs is the same, we can reduce duplication by using decorators:
+We would need to wrap _every_ call to the “low-level” API—in our case, every request to the network. It may increase the amount of code. However, if the scheme of working with these APIs is the same, we can reduce duplication by using decorators:
 
 ```ts
 // The decorator will accept the “unsafe” function,
@@ -485,11 +485,11 @@ const safeCreatePost = robustRequest(createPost);
 
 ### Multiple Errors
 
-We can store additional data in the `error` field of the container. We can pass objects, arrays, or even `Error` instances into this field. This can be useful, for example, for validation errors that contain a list of invalid fields.
+We can store additional data in the `error` field of the container. We can pass objects, arrays, or even `Error` instances into this field. For example, it can be helpful for validation errors containing a list of invalid fields.
 
-| By the way 🤙                                                                                                                                       |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| We can handle multiple errors with the Notification pattern.[^replacethrow][^notificationpattern] It also can be thought of as a sort of container. |
+| By the way 🤙                                                                                                                                    |
+| :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| We can handle multiple errors with the Notification pattern.[^replacethrow][^notificationpattern] It can also be considered a sort of container. |
 
 ### Unpacking
 
@@ -497,15 +497,15 @@ The main problem, of course, still persists. We still have to unpack containers 
 
 ## Binding Results
 
-| Before start 🚂                                                                                                                                                                     |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The essence of functional binding is very well written in “Railway Oriented Programming” by Scott Wlaschin.[^railwayprogramming] I suggest you read that article before continuing. |
+| Before start 🚂                                                                                                                                                                |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The essence of functional binding is well written in “Railway Oriented Programming” by Scott Wlaschin.[^railwayprogramming] I suggest you read that article before continuing. |
 
-| Also 🙃                                                                                                                                                                               |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| If your project uses manual unpacking and you're fine with it, then it isn't necessary to use the functional binding. It's only needed if you feel like manual unpacking is tiresome. |
+| Also 🙃                                                                                                                                                                          |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| If your project uses manual unpacking and you're okay with it, it isn't necessary to use the functional binding. It's only needed if you feel like manual unpacking is tiresome. |
 
-The main idea behind binding is to make the _container_ take care of calling several functions one after the other. Right now we can't call functions directly one by one—their inputs and outputs aren't compatible with each other:
+The main idea behind binding is to make the _container_ take care of calling several functions one after the other. Right now, we can't call functions directly one by one—their inputs and outputs aren't compatible with each other:
 
 ```ts
 function fetchUser(id: UserId): Result<UserDTO, FetchUserError> {}
@@ -514,8 +514,8 @@ function parseUser(dto: UserDTO): Result<User, ParseUserError> {}
 // We want to call them in a chain like this:
 // fetchUser -> parseUser -> storage.setUser
 
-// But we can't do it now, because the output of one function
-// doesn't match the input type of the next function.
+// But we can't do it now because the output of one function
+// doesn't match the input type of the following function.
 //
 // The `fetchUser` function returns `Result<UserDTO, FetchUserError>`,
 // but `parseUser` needs just `UserDTO`.
@@ -529,9 +529,9 @@ function parseUser(
 ): Result<User, ParseUserError> {}
 ```
 
-But it's not an option for us, because we don't want a function to depend on the result of a previous operation. Instead, we want this “adaptation” to happen automatically.
+But it's not an option because we don't want a function to depend on the result of a previous operation. Instead, we want this “adaptation” to happen automatically.
 
-For this, “railway-oriented programming” suggests using special functions-adapters. Depending on the implementation, these adapters can be either functions or container methods. The details aren't that important, the main point is the idea of “automating the adaptation”:
+For this, “railway-oriented programming” suggests using special functions-adapters. Depending on the implementation, these adapters can be either functions or container methods. The details aren't that important; the main point is the idea of “automating the adaptation”:
 
 ```ts
 // The implementation is schematic!
@@ -555,7 +555,7 @@ const Result = {
 // The `bind` method is going to be used to chain functions;
 // and the `match` method will “unpack” the final results of the hole chain.
 //
-// In the `match` method there are 2 arguments:
+// In the `match` method, there are two arguments:
 // - the first function is an error handler that should handle errors of the function chain;
 // - the second function is the result handler.
 ```
@@ -570,12 +570,12 @@ async function getUser(id) {
 }
 ```
 
-In such a function, an error in any of the steps immediately breaks the execution. After that, the `handleGetUserErrors` function starts to handle it. In combination with Exhaustiveness Check[^exhaustivecheck] we can safely handle all the errors for `getUser` without having to unpack containers manually.
+An error in any of the steps immediately breaks the execution of such a function. After that, the `handleGetUserErrors` function starts to handle it. In combination with Exhaustiveness Check[^exhaustivecheck] we can safely handle all the errors for `getUser` without having to unpack containers manually.
 
-| By the way ⛓                                                                                                                                                                                                                                        |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Binding can look differently depending on the style and paradigm of the project. It can be done with methods, or it can be a function like `pipe`,[^pipe] which “pushes” the results from one function to another.                                  |
-| If your project has containers, take a closer look at their implementation, maybe they have the binding too. If not, take a look at existing solutions like fp/ts or sweet-monads and pick the one you like best.[^fpts][^sweetmonads][^neverthrow] |
+| By the way ⛓                                                                                                                                                                                                                                 |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Binding can look differently depending on the style and paradigm of the project. It can be done with methods, or it can be a function like `pipe`,[^pipe] which “pushes” the results from one function to another.                           |
+| If your project has containers, take a closer look at their implementation. Maybe they have the binding too. If not, look at existing solutions like fp/ts or sweet-monads and pick the one you like best.[^fpts][^sweetmonads][^neverthrow] |
 
 So the point of binding is to _automate_ the chaining and unpacking of results. It's like we link all results into a sequence of “forks.” An error from any function travels down the fork to the “error track” and goes along it all the way to the end. It's similar to connecting railroad tracks—that's why the programming is “railway oriented” 😃
 
@@ -606,19 +606,19 @@ In general, it's possible to use promises for building chains of transformations
 Despite being attractive, the functional binding also has problems:
 
 - The code gets more complex. This can increase the entry threshold into a project.
-- The approach requires conventions. We have to check how the containers and wrappers for low-level functions are used (and if they're used at all).
+- The approach requires conventions. We must check how the containers and wrappers for low-level functions are used. (And if they're used at all).
 - In non-functional code, such code can look questionable and ambiguous.
 - JavaScript lacks native pattern matching for easier use of such ideas.
 
 ### When to Prefer Panics
 
-Containers can't completely replace panics, they're slightly different tools. Therefore, panics can be useful when working with containers, too.
+Containers can't wholly replace panics. They're slightly different tools. Therefore, panics can be helpful when working with containers, too.
 
-For example, if it doesn't matter what error occurred, a container might not be necessary. You can find a good checklist of how to choose between containers and panics in the article “Against Railway-Oriented Programming” by Scott Wlaschin.[^againstrailway]
+For example, a container might not be necessary if it doesn't matter what error occurred. You can find a good checklist of choosing between containers and panics in the article “Against Railway-Oriented Programming” by Scott Wlaschin.[^againstrailway]
 
 ## Cross-Cutting Concerns
 
-When error handling is consistent throughout the project, it's easier for us to track down the bugs in the code by, for example, a bug report. But apart from that, centralized error handling allows us to conveniently compose cross-cutting concerns like logging.[^crosscutting]
+When error handling is consistent throughout the project, it's easier for us to track down the bugs in the code by, for example, a bug report. But apart from that, centralized error handling allows us to compose cross-cutting concerns like logging conveniently.[^crosscutting]
 
 If error handlers are isolated, they can be _decorated_ with additional functionality.[^codethatfits][^decorator] For example, we can add logging to error handlers with decorators:
 
@@ -650,12 +650,12 @@ const handleNetworkError = (error: NetworkError) => {};
 const errorHandler = withLogger(handleNetworkError);
 ```
 
-In general, it's convenient to compose cross-cutting concerns with decorators. Decorators make the “service” functionality isolated from the application code and they're easy to “inject” in different parts of the code.
+In general, it's convenient to compose cross-cutting concerns with decorators. Decorators make the “service” functionality isolated from the application code, and they're easy to “inject” into different parts of the code.
 
 | Clarification 🖼                                                                                                                                                                                    |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Decorators have limitations, they won't fit in all cases. For example, if we need to send a message to the log in the middle of a function, it would probably be hard to do that with a decorator. |
-| Though in such cases it's usually worth considering why we need to log something _in the middle_ of a function. Maybe it's better to split the function into several ones.                         |
+| Decorators have limitations. They won't fit in all cases. For example, if we need to send a message to the log in the middle of a function, it would probably be hard to do that with a decorator. |
+| Though in such cases, it's usually worth considering why we need to log something _in the middle_ of a function. Maybe it's better to split the function into several ones.                        |
 
 ## So Many Different Handlers
 
@@ -669,7 +669,7 @@ Centralized handling helps to solve this problem too because it decouples the _h
 
 ## Error Handling Hierarchy
 
-Earlier, we mentioned rethrow. It's delegating an error to a handler “above” if the current one does'nt know how to handle it.
+Earlier, we mentioned rethrowing errors. It's delegating an error to a handler “above” if the current one doesn't know how to handle it.
 
 Delegation creates a hierarchy of handlers. As with any hierarchy, it's best to keep it flat. It isn't always possible to achieve this, but the flatter the hierarchy, the easier it is to handle. One convenient way of organizing handlers consists of 3 levels:
 
@@ -683,15 +683,15 @@ Wrapper functions catch low-level code panics. Depending on the error handling s
 
 At this level, we handle use case errors: business logic errors and expected low-level infrastructure errors.
 
-| By the way 🍰                                                                                                                                    |
-| :----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Such handlers can catch errors either in a single use case or in a set of related features. The latter can be called application slice handlers. |
+| By the way 🍰                                                                                                                          |
+| :------------------------------------------------------------------------------------------------------------------------------------- |
+| Such handlers can catch errors in a single use case or a set of related features. The latter can be called application slice handlers. |
 
-Signaling the user of problems is usually easiest at this level because there's access to services that can, for example, display a message on the screen or send a request to the alert monitor. It won't be the best place in all cases, but most of the time it's convenient to build the heavy lifting of error handling at this level.
+Signaling the user of problems is usually easiest at this level because there's access to services that can, for example, display a message on the screen or send a request to the alert monitor. It won't be the best place in all cases, but most of the time, it's convenient to build the heavy lifting of error handling at this level.
 
 ### Last Resort Handlers
 
-At the level of the entire application or web page, we catch all the errors and panics not handled before.
+At the entire application or web page level, we catch all the errors and panics not handled before.
 
 Here it's useful to add logging and diagnostics for future analysis. Panics are the easiest to work with at this level because they have a stack trace that makes it easier to search for the cause of the problem when analyzing the error.
 
@@ -704,7 +704,7 @@ Here it's useful to add logging and diagnostics for future analysis. Panics are 
 
 In the chapter on the functional pipeline, we mentioned data prevalidation at the input to the application. We can also think of it as a part of error handling because it interrupts program execution when invalid data appear.
 
-Prevalidation cleans the business logic code from irrelevant checks and allows us to focus on data transformations in the business workflows. With prevalidation, all validation errors are collected in one place and their handling becomes more flexible. For example, prevalidation makes it easier to bundle validation errors into sets and handle them all at once rather than one at a time.
+Prevalidation cleans the business logic code from irrelevant checks and allows us to focus on data transformations in the business workflows. With prevalidation, all validation errors are collected in one place, and their handling becomes more flexible. For example, prevalidation makes it easier to bundle validation errors into sets and handle them all at once rather than one at a time.
 
 When refactoring error handling, we can take advantage of this idea and move the data checks closer to the input of the application:
 

@@ -2,13 +2,13 @@
 
 During refactoring, we may discover “hidden patterns” in different parts of code. These can be similar algorithms or function details that can be generalized.
 
-Generalization can both simplify the code and make it more complex. In this chapter, we'll talk about how to understand when it's worth generalizing similar parts of code and when it isn't. We'll also discuss hierarchies and inheritance and talk about why composition is preferable to inheritance.
+Generalization can both simplify the code and make it more complex. In this chapter, we'll talk about how to understand when it's worth generalizing similar parts of code and when it isn't. We'll also discuss hierarchies and inheritance and explain why composition is preferable to inheritance.
 
 ## Generic Algorithms
 
 A generic algorithm is an extension of the ideas of abstraction and code deduplication.
 
-If several functions work “by the same scheme”, we can formalize this “work scheme” as a set of operations. These operations would describe the function in an abstract, “generic” way, without referring to specific variables in the code.
+If several functions work “by the same scheme,” we can formalize this “work scheme” as a set of operations. These operations would describe the function in an abstract, “generic” way without referring to specific variables in the code.
 
 For example, instead of manually going through the elements of an array:
 
@@ -26,7 +26,7 @@ for (const i of items) {
 // 0 1 2 3 4
 ```
 
-...We can extract the “work scheme”. Formalized, it'd sound something like this: “iterate over an array, apply a specified function to each element.” In the example below, the `forEach` method encapsulates this “scheme”:
+...We can extract the “work scheme.” Formalized, it'd sound like this: “iterate over an array, apply a specified function to each element.” In the example below, the `forEach` method encapsulates this “scheme”:
 
 ```js
 const printNumber = (i) => console.log(i);
@@ -45,9 +45,9 @@ The generic algorithm doesn't refer to specific variables and functions. Instead
 
 > Iterate over a _specified_ array; apply a _specified_ function to each element
 
-Such an algorithm relies on arguments' _properties_. An array can be iterated, a function can be called with an array element passed as an argument. The combination of these properties is the algorithm _contract_. Identifying such “work schemes” and defining their contracts is the basis of generalized programming.
+Such an algorithm relies on arguments' _properties_. An array is iterable; a function is callable and accepts an array element as an argument. The combination of these properties is the algorithm _contract_. The basis of generalized programming is identifying such “work schemes” and defining their contracts.
 
-To understand how generic algorithms can be useful and how to identify them, let's look at a financial management application. In the code below, there are two functions for counting expenses and incomes throughout the record history:
+To understand how generic algorithms can be helpful and how to identify them, let's look at a financial management application. In the code below, there are two functions for counting expenses and incomes throughout the history of records:
 
 ```ts
 // The type describes the history of spending and income in the application:
@@ -79,7 +79,7 @@ function calculateTotalAdded(history: RecordHistory) {
 }
 ```
 
-Let's say we want now to calculate a total for a certain period, for example, for today. When adding it, we should check if the new function has any common features with the existing ones:
+Let's say we now want to calculate a total for a certain period, for example, today. When adding it, we should check if the new function has any common features with the existing ones:
 
 ```ts
 // In the `calculateSpentToday` function, you can see the “work scheme”,
@@ -98,7 +98,7 @@ function calculateSpentToday(history: RecordHistory) {
 }
 ```
 
-Note that each of the three functions boils down to two tasks: filter the history and summarize the `amount` field in the filtered records. We can extract these tasks and generalize them:
+Note that each function boils down to two tasks: filter the history and summarize the `amount` field in the filtered records. We can extract these tasks and generalize them:
 
 ```ts
 type HistorySegment = List<Entry>;
@@ -124,7 +124,7 @@ const totalOf = (history: HistorySegment): MoneyAmount =>
 Then we can combine the original algorithms from these two functions—this will be an implementation of the generalized algorithm. All that's _different_ is going to be used as _parameters_ of this generalized algorithm:
 
 ```ts
-// Only the filter criteria differ, everything else is the same:
+// Only the filter criteria differ; everything else is the same:
 const isIncome: EntryPredicate = ({ type }) => type === "Income";
 const isSpend: EntryPredicate = ({ type }) => type === "Spend";
 const madeToday: EntryPredicate = ({ created }) =>
@@ -140,9 +140,9 @@ totalOf(added);
 totalOf(keepOnly(spent, madeToday));
 ```
 
-Generalization is useful when we're completely sure of the “work scheme”. If several pieces of code are the same, or only slightly different, generalization can help reduce duplication.
+Generalization is useful when we're entirely sure of the “work scheme.” If several pieces of code are the same or only slightly different, generalization can help reduce duplication.
 
-But generalization can also make the code more complicated. If we suspect that the “scheme” may change in the future, it's probably too early to generalize. The heuristics here are the same as when dealing with code duplication. Until we're sure of our knowledge of the code, it's better to hold off on generalizing.
+But generalization can also make the code more complicated. If we suspect that the “scheme” may change in the future, it's probably too early to generalize. The heuristics here are the same as when dealing with code duplication. Until we're sure of our code knowledge, it's better to hold off on generalizing.
 
 | By the way 💡                                                                                                                                                     |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -150,7 +150,7 @@ But generalization can also make the code more complicated. If we suspect that t
 
 ## Generic Types
 
-Sometimes similar details can be found not in algorithms but in data types. A _type_ is a set of values with some specific properties.[^typesarenotclasses][^typesandtypeclasses] Similar types can be combined into a generic one, but we should follow the rule:
+Sometimes we can find similar details not only in algorithms but in data types. A _type_ is a set of values with some specific properties.[^typesarenotclasses][^typesandtypeclasses] Similar types can be combined into a generic one, but we should follow the rule:
 
 ---
 
@@ -169,7 +169,7 @@ type Entry = {
 };
 ```
 
-If we know that only records with these properties can be found in the history, then the type describes the domain well. But if there's a possibility that there may be other records in the history, then we may have problems with this type.
+If we know that only records with these properties can be found in the history, then the type describes the domain well. But if there's a possibility that there may be other records in history, then we may have problems with this type.
 
 For example, let's say the history can show user comments that don't contain `amount` but contain text:
 
@@ -190,7 +190,7 @@ type Entry = {
 };
 ```
 
-There's a contradiction in the `Entry` type. Its `amount` and `content` fields are optional, so the type “allows” entries without amount and text. But this reflects the domain incorrectly: a comment _must_ contain text, and spendings and incomes _must_ contain amounts. Without this condition, the data in the record history is invalid.
+There's a contradiction in the `Entry` type. Its `amount` and `content` fields are optional, so the type “allows” entries without amount and text. But this reflects the domain incorrectly: a comment _must_ contain text, and spending records and incomes _must_ have amounts. Without this condition, the data in the history of records is invalid.
 
 The problem is that the `Entry` type with optional fields tries to mix _different_ entities and data states. We can check this by creating a React component to display the sum of the record from the history on the screen:
 
@@ -202,20 +202,20 @@ type RecordProps = {
 // We pass an `Entry` type record to the component,
 // to output the amount of spending or income:
 const Record = ({ record }: RecordProps) => {
-  // But internally we have to filter this data.
+  // But internally, we have to filter this data.
   // If the record is a comment, the render has to be skipped,
   // because comments don't contain amounts:
   if (record.type === "Comment") return null;
 
   const sign = isIncome(record) ? "+" : "–";
 
-  // And here we also have to tell the compiler,
+  // And here, we also have to tell the compiler,
   // that `amount` is “definitely there, we checked!”
   return `${sign} ${record.amount!}`;
 };
 ```
 
-The comment render in this component doesn't really fit. To fix this problem, we first need to understand what we know about the domain:
+The comment rendering in this component doesn't really fit. To fix this problem, we first need to understand what we know about the domain:
 
 - Can there only be comments, or can other text messages appear?
 - Can there be new record types that have the `amount` field?
@@ -246,7 +246,7 @@ type Comment = { type: "Comment"; created: TimeStamp; content: TextContent };
 type FinanceEntry = Spend | Income;
 
 // In the type `MessageEntry` we compose records _containing text_.
-// Right now there's only one such type, so `MessageEntry` is just a type alias,
+// Right now, there's only one such type, so `MessageEntry` is just a type alias,
 // but if there are more records with text, we can extend this type further.
 type MessageEntry = Comment;
 
@@ -262,7 +262,7 @@ const sortByDate = (a: Entry, b: Entry) => a.created - b.created;
 After refactoring, the `Record` component no longer needs extra checks:
 
 ```ts
-// In the props, we don't specify the `Entry` type, but `FinanceEntry`.
+// In the props, we don't specify the `Entry` type but `FinanceEntry`.
 // By definition, it has the `amount` field, so we don't need
 // any additional checks during the rendering of the component anymore.
 
@@ -278,7 +278,7 @@ const Record = ({ record }: RecordProps) => {
 
 | By the way 👀                                                                                                                                                                                      |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Even if we take into account the TypeScript “bad typing”, this is still useful. If we design an app with avoiding premature generalizations, we'll save the code from unnecessary checks.          |
+| Even if we consider TypeScript's “bad typing,” this is still useful. If we design an app to avoid premature generalizations, we'll save the code from unnecessary checks.                          |
 | Of course, there's no guarantee that we won't get the wrong data type in the component's props in production. But with proper alert monitoring and error handling, we can quickly find and fix it. |
 
 The basic idea of composition is not to generalize _early_. Type composition is easier to extend as application requirements become more complex. For example, assume we needed to add overdraft records and system text messages. Let's add the `Overdraft` and `Warning` types:
@@ -301,9 +301,12 @@ type Entry = FinanceEntry | MessageEntry;
 // to compose them by other properties.
 ```
 
-When we know enough about the domain, we can see patterns and generalize types. (We know enough when the code of the entities has stopped changing.) But this isn't a necessary step:
+Knowing enough about the domain allows us to see patterns and generalize types. (We know enough when the code of the entities has stopped changing.) But this isn't a necessary step:
 
 ```ts
+// If we're sure of the type structure now,
+// we can generalize the types.
+
 type FinanceEntry = {
   type: "Spend" | "Income" | "Overdraft";
   created: TimeStamp;
@@ -319,7 +322,7 @@ type MessageEntry = {
 
 ## Inheritance and Composition
 
-In the example above, it's easy to start using generic types for describing `Entry`.[^generics] The motivation might be that the generic type would allow determining the record kind “on the fly”:
+In the example above, it's easy to start using _generic types_ for describing `Entry`.[^generics] The motivation might be that the generic type would allow determining the record kind “on the fly”:
 
 ```ts
 type FinanceEntryKind = "Spend" | "Income" | "Overdraft";
@@ -342,11 +345,11 @@ type Comment = Entry<"Comment">;
 
 But it's best not to rush with generics, either. Generics are like “blueprints” for types. To use them, we have to make sure that the structure of the type doesn't change.
 
-| Be careful 🚧                                                                                             |
-| :-------------------------------------------------------------------------------------------------------- |
-| This section is one big IMHO. I could be totally wrong, stay alert and don't believe me without question. |
+| Be careful 🚧                                                                                              |
+| :--------------------------------------------------------------------------------------------------------- |
+| This section is one big IMHO. I could be totally wrong. Stay alert, and don't believe me without question. |
 
-Generics are fine for cases where we know the type structure but don't know its details. For example, in the code above we had a type `EntryPredicate`:
+Generics are fine for cases where we know the type structure but don't know its details. For example, in the code above, we had a type `EntryPredicate`:
 
 ```ts
 type EntryPredicate = (record: Entry) => boolean;
@@ -358,7 +361,7 @@ A predicate is _by definition_ a function that returns a boolean value, so we kn
 type SomethingPredicate = (x: Something) => boolean;
 ```
 
-If for some reason, we need to create _multiple_ predicates with different arguments, which we don't know in advance, the generic would describe such a “blueprint” perfectly:
+If, for some reason, we need to create _multiple_ predicates with different arguments, which we _don't know in advance_, the generic would describe such a “blueprint” perfectly:
 
 ```ts
 // Predicate with an “abstract parameter”:
@@ -370,7 +373,7 @@ type HistoryPredicate = Predicate<History>;
 type WhateverPredicate = Predicate<Whatever>;
 ```
 
-Here we're sure that the _structure of the type is known and won't change_. We can pass any type argument and it won't affect the type structure or its behavior. In `Entry<TKind>` we can't give such a guarantee, at least in the early stages of design.
+Here we're sure that the _structure of the type is known and won't change_. We can pass any type argument, and it won't affect the type structure or its behavior. In `Entry<TKind>`, we can't give such a guarantee, at least in the early stages of design.
 
 ### Inheritance
 
@@ -393,13 +396,13 @@ class UserTask extends AdvancedTask {
 // Task -> AdvancedTask -> UserTask
 ```
 
-Deep hierarchies are brittle. They claim to perfectly know the domain, but the model cannot describe the world _perfectly_, so sooner or later the hierarchy will divert from the real world. If we haven't provided some functionality in the base class, the broken hierarchy will force us to add it to there or redefine the inheritance chain.
+Deep hierarchies are brittle. They claim to know the domain perfectly, but the model cannot describe the world _perfectly_, so sooner or later, the hierarchy will divert from the real world. If we haven't provided some functionality in the base class, the broken hierarchy will force us to add it to it or redefine the inheritance chain.
 
 Instead of inheritance, it's preferable to use composition. In OOP code, composition usually means the implementation of interfaces:
 
 ```ts
 // Declare several interfaces,
-// Each of them describes a cohesive set of features:
+// each of them describes a cohesive set of features:
 
 interface SimpleTask {
   start(): void;
@@ -428,14 +431,14 @@ interface Cancellable {
 class UserTask
   implements SimpleTask, Restartable, Configurable, UserDefined, Cancellable {}
 
-// In the case of inheritance we would have to
+// In the case of inheritance, we would have to
 // change one of the base classes
 // or change the inheritance structure.
 ```
 
-| However 📝                                                                                                                                                                                                   |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| We're not talking about the abstract class implementation here.[^abstractclass] It, on the contrary, can be useful. But even with abstract classes, it's better to avoid hierarchies deeper than 1-2 levels. |
+| However 📝                                                                                                                                                                                                  |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| We're not talking about the abstract class implementation here.[^abstractclass] It, on the contrary, can be helpful. But even with abstract classes, avoiding hierarchies deeper than 1-2 levels is better. |
 
 In JavaScript, however, there's one use case where a deeper inheritance can be useful. If in a project, we use panics to handle errors but want to avoid verbose checks with `instanceof` for _each_ error type, we can use “error layer” hierarchies:
 
@@ -454,7 +457,7 @@ class ValidationError extends AppError {}
 class InvalidUserDto extends ValidationError {}
 class MissingPostData extends ValidationError {}
 
-// Then when handling we can reduce the number of checks,
+// Then, when handling we can reduce the number of checks,
 // by replacing the checks for every possible type:
 if (e instanceof NotFound) {
 } else if (e instanceof BadRequest) {
@@ -468,7 +471,7 @@ if (e instanceof ApiError) {
 }
 ```
 
-This way we can reduce the number of `instanceof` checks, but it'll only work if the error handling is the same for _all_ errors from the same layer.
+This way, we can reduce the number of `instanceof` checks, but it'll only work if the error handling is the same for _all_ errors from the same layer.
 
 ### The Liskov Substitution Principle
 
@@ -490,15 +493,15 @@ When we see such conditions, we should check if the Liskov substitution principl
 
 > Functions that use references to the base type must be able to use its subtypes without knowing it[^martinlsp]
 
-In practice, this means that the `Entry` type describes _any_ history record. It doesn't make a difference between a comment, spending, or an income. Therefore, we can only pass it to a function that is _ready to work with any record_.
+In practice, the `Entry` type describes _any_ history record. It doesn't make a difference between a comment, spending, or an income. Therefore, we can only pass it to a function that is _ready to work with any record_.
 
-That is, if a function is going to work only with expenses or incomes, but _not comments_, then `Entry` type cannot be passed to such a function. It can't because the function may want to read the `amount` field on the record, but the comment doesn't have this field. So to prevent errors, we have to _filter out_ the comments before using the function.
+That is, if a function works only with expenses or incomes, but _not comments_, then the `Entry` type cannot be passed to such a function. It can't because the function may want to read the `amount` field on the record, but the comment doesn't have this field. So to prevent errors, we have to _filter out_ the comments before using the function.
 
-Conversely, if the function can work with any record and only uses the `created` field, for example, it can be passed arguments of the `Entry` type, since the `created` field exists on all the `Entry` “subtypes”.
+Conversely, if the function can work with any record and only uses the `created` field, for example, it can be passed arguments of the `Entry` type since the `created` field exists on all the `Entry` “subtypes.”
 
-| Read more 🔬                                                                                                                                                                                                                                             |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| For a better understanding of the LSP, it's worth diving into the concept of variance,[^variance][^variancematters][^variancekotlin] but that's a big separate topic. We'll skip it now, but I'll leave some references to the topic in the source list. |
+| Read more 🔬                                                                                                                                                                                                                                               |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| For a better understanding of the LSP, it's worth diving into the concept of variance,[^variance][^variancematters][^variancekotlin] but that's a big separate topic. We'll skip it now, but I'll leave some references to the subject in the source list. |
 
 To avoid violating the substitution principle, we have to pass the “smallest common type” to the `Record` component:
 
@@ -516,7 +519,7 @@ const Record = ({ record }: RecordProps) => {
 };
 ```
 
-The substitution principle helps to see what types can be composed together and how. We can use it as an “integration linter” that highlights premature generalizations and incorrect abstractions.
+The substitution principle helps to see what types can be composed together. We can use it as an “integration linter,” highlighting premature generalizations and incorrect abstractions.
 
 It also helps to find places for _correct_ generalizations. For example, when we split the problem of `total` calculation into filtering and summarizing, we extracted a function that can filter not only by type but generally by whatever:
 
@@ -542,11 +545,11 @@ const addedToday = (record) => isIncome(record) && madeToday(record);
 const spentBeforeToday = (record) => isSpend(record) && beforeToday(record);
 ```
 
-In `HistoryFilter` we can now pass _any_ implementation of type `EntryPredicate`. This composition flexibility is the main benefit of the substitution principle. In the code, we can search for such places using the LSP and refactor them first.
+In `HistoryFilter` we can now pass _any_ implementation of type `EntryPredicate`. This composition flexibility is the main benefit of the substitution principle. We can search for such places using the LSP and refactor them in the code first.
 
-| Simplification 🚧                                                                                                                                                                                                            |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| We won't go into detail about how the substitution principle relates to pre- and postconditions and how those should behave. But I'll leave some links that I can recommend you to read about this topic.[^designbycontract] |
+| Simplification 🚧                                                                                                                                                                                               |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| We won't discuss how the substitution principle relates to pre- and postconditions and how those should behave. But I'll leave some links that I can recommend you to read about this topic.[^designbycontract] |
 
 [^typesarenotclasses]: “Functional Design Patterns” by Scott Wlaschin, https://youtu.be/srQt1NAHYC0
 [^typesandtypeclasses]: Types and Typeclasses, Learn You Haskell, http://learnyouahaskell.com/types-and-typeclasses

@@ -256,10 +256,14 @@ function restoreAccount(email: CustomerEmail): void {
 
 ```ts
 // Неверифицированные адреса будут обозначены одним типом:
-type UnverifiedEmail = EmailAddress;
+type UnverifiedEmail = {
+  /*...*/
+};
 
 // ...Верифицированные — другим:
-type VerifiedEmail = EmailAddress;
+type VerifiedEmail = {
+  /*...*/
+};
 
 // Общий тип обозначим как выбор между первым и вторым:
 type CustomerEmail = UnverifiedEmail | VerifiedEmail;

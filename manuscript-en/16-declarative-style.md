@@ -1,6 +1,6 @@
 # Declarative Style
 
-In the chapter about abstraction, we discussed how to decompose tasks and why it's useful to separate the intent from implementation in code. We looked at how to improve code readability and emphasize details that are important at a particular moment.
+In the chapter about abstraction, we discussed how to decompose tasks and why separating the intent from implementation in code is beneficial. We looked at how to improve code readability and emphasize details that are important at a particular moment.
 
 In this chapter, we'll extend the ideas of abstraction and talk about declarative code style. We'll discuss the notion of declarative code, its benefits, and its advantages compared to imperative-style code.
 
@@ -30,20 +30,20 @@ function keepEvenNumbers(array) {
 }
 ```
 
-Both functions filter the given array of numbers, keeping only even ones. The difference between them is how they do it. The first function describes _how_ to solve the problem:
+Both functions filter the given array of numbers, keeping only even ones. The difference between them is how they do it. The first function describes _how_ to solve the problem as a set of instructions:
 
 - Create an empty array `result`.
 - Iterate over the `array` argument.
 - For each element, check if it's even.
 - If yes, add it to `result`.
 
-The second function, on the other hand, describes _what_ needs to be done. It focuses on the filtering _criteria_, not the details of the filtering algorithm.
+On the other hand, the second function describes _what_ needs to be done. It focuses on the filtering _criteria_, not the details of the filtering algorithm.
 
 This is the difference between the imperative and declarative styles. Declarative code describes _what_ to do, while imperative code describes _how_ to do it.
 
-Imperative style is often harder to read because it mixes intent and implementation details. The declarative style, on the contrary, encourages us to decompose tasks and split the code by levels of abstraction. The names of functions and variables in declarative code convey more information, so the code becomes easier to read.
+Imperative style is often harder to read because it mixes intent and implementation details. The declarative style, on the contrary, encourages us to decompose tasks and split the code by levels of abstraction. The names of functions and variables in declarative code convey more information, making the code easier to read.
 
-As an example, let's look at the `validate` function in the code snippet below. The function body contains too many details and its name says little about the function purpose. This code is hard to understand at a glance:
+For example, look at the `validate` function in the code snippet below. The function body contains too many details, and its name says little about its purpose. This code is hard to understand at a glance:
 
 ```js
 function validate(user, cart) {
@@ -72,7 +72,7 @@ function canAffordSpending(user, amount) {
 }
 ```
 
-The extracted functions' names are now expressed in terms more appropriate to the current level of abstraction. The names now better describe the functions' meaning. This helps control the reader's attention when using these functions within `validate`:
+The extracted functions' names are now expressed in terms more appropriate to the current level of abstraction. The names now better describe the functions' meaning. They help control the reader's attention when using these functions within `validate`:
 
 ```js
 // order.js
@@ -86,7 +86,7 @@ function validate(user, cart) {
 | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | We talked more about the levels of abstraction, switching between them, and controlling the reader's attention in the chapter on abstraction. |
 
-Also, the extracted functions' names now carry some information about the purpose of the `validate` function, too. We can replace the name `validate` with a more informative one, for example, `canMakeOrder`. Then the function code will turn into “text”, similar to a regular sentence:
+Also, the extracted functions' names now carry some information about the purpose of the `validate` function. We can replace the name `validate` with a more informative one, for example, `canMakeOrder`. Then the function code will turn into “text,” similar to a regular sentence:
 
 ```js
 // order.js
@@ -100,15 +100,15 @@ function canMakeOrder(user, cart) {
 // AND they (canAffordSpending) (orderPrice) of money.
 ```
 
-Declarative code is similar to the way people talk to each other in real life, so it's easier to understand. It communicates useful information but doesn't overload the reader with unnecessary details. Such “communication” is polite, more casual, and less tiresome.
+Declarative code is similar to how people talk to each other in real life, so it's easier to understand. It communicates valuable information but doesn't overload the reader with unnecessary details. Such “communication” is polite, more casual, and less tiresome.
 
-| However 🐣                                                                                                                                                                                                                    |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| In smaller projects, thorough decomposition may not be that important. The less code, the less tiresome it is. The need for decomposition depends on how easy it is for the team to read and work with the current code base. |
+| However 🐣                                                                                                                                                                                                                                |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In smaller projects, thorough decomposition may not be that important. The less code, the less tiresome it is. The need for decomposition depends on how complex it is for the team to read the code and work with the current code base. |
 
 ## Reliability
 
-The following section is controversial and subjective, but in my experience, it's easier to make accidental mistakes in imperative code. This is partly because, in imperative code, we have to think about “the goal” and “how to achieve it” at the same time, but also because imperative code often contains more lines and statistically is more likely to contain an error.[^scene]
+The following section is controversial and subjective, but in my experience, it's easier to make accidental mistakes in imperative code. Partly because, in imperative code, we have to think about “the goal” and “how to achieve it” simultaneously, but also because imperative code often contains more lines and statistically is more likely to contain an error.[^scene]
 
 For example, let's look at the function `selectOperation` that chooses a mathematical operation by the given key:
 
@@ -144,7 +144,7 @@ function selectOperation(kind) {
 }
 ```
 
-However, this doesn't solve the problem with accidental errors, but only hides it. In the snippet above, for example, we may forget to add `return`, and the function will work incorrectly. We can get rid of the problem by making the selection declarative:
+However, this doesn't solve the problem with accidental errors but only hides them. In the snippet above, for example, we may forget to add `return`, and the function will work incorrectly. We can get rid of the problem by making the selection declarative:
 
 ```js
 const log = (x, base) => Math.log(x) / Math.log(base);
@@ -157,7 +157,7 @@ function selectOperation(kind) {
 }
 ```
 
-In the code above, we delegate the “selection” to the _language_. We specify an object with data and a selection criterion, and the interpreter finds the value in the object according to the specified key. We don't care how that choice is made, we only care about its result. That's the essence of declarative style.
+In the code above, we delegate the “selection” to the _language_. We specify an object with data and a selection criterion, and the interpreter finds the value in the object according to the specified key. We don't care how that choice is made. We only care about its result. That's the essence of declarative style.
 
 | Matter of taste 🍕                                                                                                                                                                        |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -167,13 +167,13 @@ In the code above, we delegate the “selection” to the _language_. We specify
 
 Extending imperative code is often more difficult than extending declarative code.
 
-In imperative code, when adding a new feature, we not only have to figure out _what_ to add but also _where_ and _how_ to add it. Extending the functionality of declarative code, on the other hand, often comes down to updating the “algorithm parameters”.
+In imperative code, when adding a new feature, we not only have to figure out _what_ to add but also _where_ and _how_ to add it. On the other hand, extending the functionality of declarative code often comes down to updating the “algorithm parameters.”
 
 | By the way 🖥                                                                                                                                                        |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | I borrowed the following example from a lecture by Timur Shemsedinov on declarative style and metaprogramming.[^metaprogrammingjs] Highly recommended to check out. |
 
-As an example, let's compare two implementations of the `parseDuration` function. The function converts a formatted string with a time period into the number of milliseconds in that period. In the first version, the algorithm is implemented imperatively:
+For example, let's compare two implementations of the `parseDuration` function. The function converts a formatted string with a time period into the number of milliseconds in that period. In the first version, the algorithm is implemented imperatively:
 
 ```js
 /** @example parseDuration('1h 25m 16s') === 5_116_000 */
@@ -204,7 +204,7 @@ const MULTIPLIER = {
   h: 1000 * 60 * 60,
 };
 
-// Algorithm steps are extracted into separate functions:
+// Algorithm steps are now separate functions:
 const sumDurations = (sum, [value, unit]) => sum + value * MULTIPLIER[unit];
 const hasValidValue = ([value]) => !Number.isNaN(value);
 
@@ -226,13 +226,13 @@ function parseDuration(stringRepresentation) {
 }
 ```
 
-The second snippet is easier to extend because it _divides rarely and frequently changing code_. If we, for example, want to extend the string format with days and weeks, we _only_ need to update the `MULTIPLIER` object. The rest of the function code will remain unchanged.
+The second snippet is easier to extend because it _divides code that changes rarely from the code that changes frequently_. If we, for example, want to extend the string format with days and weeks, we _only_ need to update the `MULTIPLIER` object. The rest of the function code will remain unchanged.
 
-It's like we extract the “algorithm parameters” into the `MULTIPLIER` object, separating them from the “logic” of the function. The supported string format is now more explicit, and the algorithm itself is more flexible because it can work with more different values from this object. “Parameters” are no longer “inlined” in the algorithm.
+It's like we extract the “algorithm parameters” into the `MULTIPLIER` object, separating them from the “logic” of the function. The supported string format is now more explicit, and the algorithm is more flexible because it can work with more different values from this object. “Parameters” are no longer “inlined” in the algorithm.
 
 | By the way ⛔️                                                                                                                            |
 | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| This ability to add similar functionality without changing the existing code is the goal of the open-closed principle from SOLID.[^solid] |
+| This ability to add similar functionality without changing the existing code is the goal of the Open-Closed principle from SOLID.[^solid] |
 
 The string format extension now comes down to adding new fields to the `MULTIPLIER` object. The code of the algorithm itself won't change:
 
@@ -250,7 +250,7 @@ const MULTIPLIER = {
 // Since the rest of the function code is the same,
 // the probability of an accidental error is lower.
 // Besides, by using the data in the `MULTIPLIER` object
-// it's easier to automatically generate test data for the function.
+// it's easier to generate test data for the function automatically.
 ```
 
 In the first implementation, we'd need to change the code of the entire `parseDuration` function:
@@ -279,9 +279,9 @@ function parseDuration(stringRepresentation) {
 // Have you noticed a typo in the regular expression for `weeks`? :-)
 ```
 
-| However 👀                                                                                                                                                |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Extracted “parameters” are good for extending code with _similar_ functionality. If we need to add new behavior to the algorithm itself, it may not help. |
+| However 👀                                                                                                                                                    |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Extracted “parameters” are suitable for extending code with _similar_ functionality. If we need to add new behavior to the algorithm itself, it may not help. |
 
 It's worth remembering that such “metaprogramming” isn't always needed, because _generalized functions can be more complex_.
 
@@ -289,7 +289,7 @@ As a rule, declarative generalization is useful when we notice a part of a funct
 
 ## Configurability
 
-In the previous example, we extracted the “algorithm parameters” in a separate object. We motivated this by the fact that code and its settings change at different rates, so it's better to keep them separate.
+We extracted the “algorithm parameters” in a separate object in the previous example. We motivated this because code and its settings change at different rates, so keeping them separate is better.
 
 In fact, this is one of the well-known rules that 12-Factor Apps recommend.[^twelvefactors] This rule can be described as:
 
@@ -299,9 +299,9 @@ In fact, this is one of the well-known rules that 12-Factor Apps recommend.[^twe
 
 ---
 
-Settings and configs on average change more frequently than the code they configure. When configs are inlined in the code, changing them is more dangerous and difficult than when they're separate.
+Settings and configs, on average, change more frequently than the code they configure. When configs are inlined in the code, changing them is more dangerous and difficult than when they're separate.
 
-For instance, a hardcoded configuration makes it hard to change the environment in which the program runs. For example, consider an app that should run in test and production environments. If the deployment settings or third-party services configuration is hardcoded, the environment switch requires updating the configs manually in the code.
+For instance, a hardcoded configuration makes it hard to change the program's environment. For example, consider an app that should run in test and production environments. If the deployment settings or third-party services configuration is hardcoded, the environment switch requires updating the configs manually in the code.
 
 | By the way 🔦                                                                                                                                                             |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -316,11 +316,11 @@ async function fetchUser(id) {
   return data.user;
 }
 
-// Calls to `fetchUser` access a specific version of the API: `api.our-app.com`.
-// To change the environment, we need to update the function code.
+// Calls to `fetchUser` access a specific API version: `api.our-app.com`.
+// We need to update the function code to change the environment.
 ```
 
-It's convenient to extract the configuration by following the _Transformation Priority Premise, TPP_.[^tpp] First we should extract configs to local variables, and then to environment variables or configuration files:
+It's convenient to extract the configuration by following the _Transformation Priority Premise, TPP_.[^tpp] First, we should extract configs to local variables and then to environment variables or configuration files:
 
 ```js
 // Step 1: extract configs to local variables.
@@ -348,28 +348,28 @@ async function fetchUser(id) {
 
 ## State Machines
 
-As we mentioned in the previous chapter, business logic and UI logic are best kept separate. The business logic code should be responsible for the business workflows and the data transformations associated with them. The UI-logic code should be responsible for rendering the user interface.
+As mentioned in the previous chapter, business logic and UI logic are best kept separate. The business logic code should be responsible for the business workflows and associated data transformations. The UI-logic code should be responsible for rendering the user interface.
 
-The UI logic can be complex. For example, it might describe the behavior of interdependent components or dynamic interface that depends on a large number of conditions.
+The UI logic can be complex. For example, it might describe the behavior of interdependent components or dynamic interface that depends on many conditions.
 
 To keep the code of complex UI logic readable, we can represent the UI as a finite set of its states. Each such state describes the interface visible to the user and the conditions under which it's rendered on the screen.
 
 The interaction with the UI can then be described as a network of such states. If the number of states is limited, we can call such an interaction a _Finite State Machine, FSM_.[^fsm]
 
-| By the way 🤖                                                                                                                                                                                                                                  |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Finite State Machine is a mathematical concept, but it's useful for describing UI as a function of the data state.[^fsmfrontend] It encourages the separation of data (state) and effects (UI rendering) and helps make UI more deterministic. |
+| By the way 🤖                                                                                                                                                         |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Finite State Machine is a mathematical concept, but it's useful for describing UI as a function of the data state.[^fsmfrontend] It helps make UI more deterministic. |
 
-The basic idea of an FSM is _limited sets_ of states and _unambiguous rules for transitions_ between them. For example, the UI of an online store during order placement can be expressed as such set of states and transitions:
+The basic idea of an FSM is _limited sets_ of states and _unambiguous rules for transitions_ between them. For example, the UI of an online store during order placement can be expressed as a such set of states and transitions:
 
 **“Checkout Use Case”:**
 
-| Current States | Allowed Transitions      |
-| :------------- | :----------------------- |
-| `OrderPage`    | `MainPage`, `Confirming` |
-| `Confirming`   | `Success`, `Failure`     |
-| `Success`      | `MainPage`               |
-| `Failure`      | `MainPage`, `OrderPage`  |
+| Current State | Allowed Transitions      |
+| :------------ | :----------------------- |
+| `OrderPage`   | `MainPage`, `Confirming` |
+| `Confirming`  | `Success`, `Failure`     |
+| `Success`     | `MainPage`               |
+| `Failure`     | `MainPage`, `OrderPage`  |
 
 We can represent this table as a diagram of transitions between states:
 
@@ -392,7 +392,7 @@ const fsm = createMachine({
 });
 ```
 
-The states can be described in terms of components:
+Then, we can describe the states in terms of components:
 
 ```js
 // Represents the `OrderPage` state:
@@ -428,7 +428,7 @@ Then the app entry point can use the FSM to decide what to render on the screen:
 function Checkout() {
   const [state] = useMachine(fsm);
 
-  state.match
+  return state.match
     .with("confirming", Confirming)
     .with("success", OrderConfirmed)
     .with("failure", OrderError)
@@ -436,9 +436,9 @@ function Checkout() {
 }
 ```
 
-A benefit of an FSM is that it allows going from one state _only to a certain set of following states_. It's impossible to go to states outside this list. This makes the UI more declarative and deterministic.
+A benefit of an FSM is that it allows going from one state _only to a specific set of following states_. It's impossible to go to states outside this list. FSMs make the UI more declarative and deterministic.
 
-Also, it's easier to separate UI data from business logic data using FSM. In general, the FSM states have identifiers that relate them to the result on the screen. From these identifiers, we can always separate the data that relates only to the UI and not mix it with the business logic data.
+Also, using FSM, it's easier to separate UI data from business logic data. In general, the FSM states have identifiers that relate them to the result on the screen. From these identifiers, we can always separate the data that relates only to the UI and not mix it with the business logic data.
 
 | Tools 🤖                                                                                                                                                                                                                      |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -452,13 +452,13 @@ As we mentioned above, the declarative code style has disadvantages.
 
 Generalizations can make code more complex. A declarative “facade” can hide an overly complex abstraction that's hard for other developers to understand.
 
-After refactoring, we should always check to see if the code changes have really benefited. If the code has become harder to read or maintain, it's better to roll back the changes.
+After refactoring, we should always check to see if the code changes have benefited. If the code has become harder to read or maintain, it's better to roll back the changes.
 
-When in doubt about support complexity, we can request a code review from more developers than usual. This way we'll know if the code is still readable and easy to maintain.
+When we doubt support complexity, we can request a code review from more developers than usual. This way, we'll know if the code is still readable and easy to maintain.
 
 ### Performance
 
-Imperative code tends to be more efficient. If performance is more important than readability, declarative code can be sacrificed.
+Imperative code tends to be more efficient. If performance is more important than readability, we can sacrifice declarative style.
 
 In doing so, it can be useful to isolate imperative code from the rest. For example, if we need some efficient algorithm in an application, we can implement it in a function:
 
@@ -479,7 +479,7 @@ function mergeCompanyDepartments(departmentIdA, departmentIdB) {
 }
 ```
 
-In this way we bring the imperative implementation “down a level”, isolate it from the rest of the code, and make the function name a declarative description of the entire algorithm.
+In this way, we bring the imperative implementation “down a level,” isolating it from the rest of the code, making the function name a declarative description of the entire algorithm.
 
 [^scene]: “Your Code As a Crime Scene” by Adam Tornhill, https://www.goodreads.com/book/show/23627482-your-code-as-a-crime-scene
 [^metaprogrammingjs]: “Metaprogramming with JavaScript Examples” by Timur Shemsedinov, https://github.com/HowProgrammingWorks/Metaprogramming

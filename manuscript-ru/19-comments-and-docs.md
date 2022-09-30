@@ -49,9 +49,7 @@ function createOrder(userId, products) {
 Комментарии могут врать — то есть сообщать читателю неправильную информацию. Иногда ложь может быть откровенной:
 
 ```js
-/**
- * @obsolete Not used anymore across the code base.
- */
+/** @obsolete Not used anymore across the code base. */
 function isEmpty(cart) {}
 
 // ...

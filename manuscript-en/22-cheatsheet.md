@@ -4,7 +4,7 @@ This appendix contains a list of short recommendations for finding and fixing pr
 
 The recommendations are based on the topics from the previous chapters. Before applying them, it's worth reading the chapters to assess whether these techniques fit your project, style, and coding habits.
 
-This isn't a list of strict rules. Rather, it's a set of tips you can consider.
+It isn't a list of strict rules. Instead, it's a set of tips you can consider.
 
 ## Searching for Problems
 
@@ -56,8 +56,8 @@ This isn't a list of strict rules. Rather, it's a set of tips you can consider.
 ## Abstraction as a Tool
 
 - Describe intent in function names.
-- Structure code in a way to give information that is needed to the reader at a particular moment.
-- Remember about the limits of humans' working memory; limit the number of entities in the function.
+- Structure code to give information that is needed to the reader at a particular moment.
+- Remember the limits of humans' working memory; limit the number of entities in the function.
 - Split information by levels of abstraction.
 - Decompose tasks based on the data used in them.
 - Make sure the function has only one reason to change.
@@ -106,9 +106,9 @@ This isn't a list of strict rules. Rather, it's a set of tips you can consider.
 - Designate module guarantees through its public API.
 - Make module communication less coupled:
   - Use messages or events when appropriate;
-  - Apply patterns (e.g. Observer).
+  - Apply patterns (e.g., Observer).
 - Limit the number of module dependencies.
-- Compose data transformations, not side-effects.
+- Compose data transformations instead of side effects.
 - Separate logic from side effects.
 - Separate data from behavior.
 
@@ -150,5 +150,5 @@ This isn't a list of strict rules. Rather, it's a set of tips you can consider.
 - Use project meta information from the version control system to analyze project health.
 - Use the “Strangler Fig” technique when refactoring large chunks of code.
 - Refactor code regularly.
-- Remember the “Boy-Scout Rule”.
+- Remember the “Boy-Scout Rule.”
 - Rely on measurable metrics when evaluating improvements.

@@ -1,6 +1,6 @@
 # Functional Pipeline
 
-As we saw in the previous chapter, abstraction helps to divide the program by “levels of detail.” At each level, we pay attention to the most important details and use the most appropriate terms.
+As we saw in the previous chapter, abstraction helps to divide the program by “levels of detail.” We pay attention to the most important details at each level and use the most appropriate terms.
 
 In user applications, one of such levels describes the _business logic_—the domain processes that make the application unique and gain profit. Those, in other words, are the problems that business wants the developers to solve.
 
@@ -8,13 +8,13 @@ In user applications, one of such levels describes the _business logic_—the do
 | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | For an online store, the business logic would be creating orders and checking out. For transport company—route and traffic load optimization. |
 
-Business logic speaks in the language of the domain. It describes workflows as sequences of events and their consequences: “When a user inputs a discount coupon, the application checks its validity and reduces the order price.”
+Business logic speaks in the language of the domain. It describes workflows as sequences of events and consequences: “When a user inputs a discount coupon, the application checks its validity and reduces the order price.”
 
-Such language is “far from code.” Because of the high abstraction level, translating business workflows into code can be difficult. Functional pipeline, which we'll discuss in this chapter, helps to describe business workflows in code more clear and closer to reality.
+Such language is “far from code.” Because of the high abstraction level, translating business workflows into code can be difficult. Functional pipeline, which we'll discuss in this chapter, helps to describe business workflows in code more precisely and closer to reality.
 
 ## Data Transformations
 
-Business workflows are basically data transformations. For example, applying a discount to an order can be expressed as a transition from one data state to another:
+Business workflows are data transformations. For example, applying a discount to an order can be expressed as a transition from one data state to another:
 
 ```
 “Coupon Application”:
@@ -22,7 +22,7 @@ Business workflows are basically data transformations. For example, applying a d
 [Created Order] + [Valid Coupon] -> [Discounted Order]
 ```
 
-In larger applications, transformations can be longer, and the data can go through several steps:
+In larger applications, transformations can be more extended, and the data can go through several steps:
 
 ```
 “Selecting Product Recommendations”:
@@ -40,18 +40,18 @@ In poorly organized code, business workflows don't resemble such chains. They ar
 [Product Cart] + ... + [Magic 🔮] -> [Recommendation List]
 ```
 
-In well-organized code, the workflows look linear, and the data in them go through several steps one at a time. The final state of the data is the desired result of the entire workflow.
+In well-organized code, the workflows look linear, and the data in them go through several steps one at a time. The final state of the data is the workflow's desired result.
 
 <figure>
   <img src="../images/09-functional-pipeline.png" width="800">
-  <figcaption><em>Data goes through a chain of different states, the output is the desired workflow result</em><br><br></figcaption>
+  <figcaption><em>Data goes through a chain of different states. The output is the desired workflow result</em><br><br></figcaption>
 </figure>
 
-This kind of code organization is called a _functional pipeline_. When refactoring business logic, we can focus on it to make the workflows in the code clearer and more obvious.
+This kind of code organization is called a _functional pipeline_. When refactoring business logic, we can focus on it to make the workflows in the code clearer and more apparent.
 
 ## Data States
 
-In “Domain Modeling Made Functional”, Scott Wlaschin describes how to design a program based on the business workflows and their data.[^dmmf] The suggestion is to represent the workflow steps as separate functions. We can use this idea as a basis for refactoring.
+In “Domain Modeling Made Functional,” Scott Wlaschin describes how to design a program based on business workflows and their data.[^dmmf] The suggestion is to represent the workflow steps as separate functions. We can use this idea as a basis for refactoring.
 
 To do this, we first need to highlight all the stages that data passes through. These stages will help us understand how to divide the workflow and what should consider in the code.
 
@@ -78,18 +78,18 @@ function makeOrder(user, products, coupon) {
 }
 ```
 
-The function isn't big but it does quite a lot:
+The function isn't big, but it does quite a lot:
 
 - It validates the input data;
 - Creates an order object;
 - Applies a discount from the passed coupon;
-- Adds promo products when the conditions are met.
+- Adds promo products under certain conditions.
 
 At a glance, it's hard to distinguish each of these actions in the function code. There are so many details that it's difficult to see the individual workflow steps.
 
-| Not only that 💊                                                                                                                                                                                                             |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The order object changes within the function chaotically. And although formally its encapsulation isn't broken—it's created and changed in the same function—it feels like `makeOrder` is “trying to do someone else's job”. |
+| Not only that 💊                                                                                                                                                                                                                       |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The order object changes within the function chaotically. And although formally, its encapsulation isn't broken—the object is created and changed in the same function—it feels like `makeOrder` is “trying to do someone else's job.” |
 
 Let's highlight the workflow steps and data states that appear in them:
 
@@ -109,7 +109,7 @@ Let's highlight the workflow steps and data states that appear in them:
   [Order] + [User] -> [Order with Promo Products]
 ```
 
-During refactoring, our goal is to make the function code look like this list. We can start by grouping the code into “sections”, each of which will represent a different workflow step:
+We aim to make the function code look like this list during refactoring. We can start by grouping the code into “sections,” each of which will represent a different workflow step:
 
 ```js
 function makeOrder(user, products, coupon) {
@@ -182,7 +182,7 @@ function makeOrder(user, products, coupon) {
 }
 ```
 
-After the changes, the workflow steps are encapsulated in separate functions. These functions only change the order object, keeping it valid. The `makeOrder` function doesn't change data uncontrollably anymore, but only calls those functions. It makes invalid orders less likely and the testing of data transformations easier.
+After the changes, the workflow steps are encapsulated in separate functions. These functions only change the order object, keeping it valid. The `makeOrder` function doesn't change data uncontrollably anymore but only calls those functions. It makes invalid orders less likely and the testing of data transformations easier.
 
 The code of `makeOrder` now resembles the list of workflow steps we've started with. The details of each step are hidden behind the name of the corresponding function. The name describes the entire step, which makes the code easier to read.
 
@@ -201,23 +201,23 @@ function makeOrder(user, products, coupon, shipDate) {
 }
 ```
 
-And when we remove a step, it's easier to find the function to delete. By deleting a function call, we're guaranteed to remove all code related to that step in the process.
+And when we remove a step, it's easier to find the function to delete—deleting a function call guarantees removing all the code related to that step in the process.
 
-| By the way 🕵️                                                                                                                                                                                                                    |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| It's not always easy to spot a pipeline. Business logic can be “scattered” across the codebase. In such cases, it can be useful to draw a diagram of how the application parts communicate with each other to discover patterns. |
+| By the way 🕵️                                                                                                                                                                                                                     |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| It's not always easy to spot a pipeline. Business logic can be “scattered” across the codebase. In such cases, it can be helpful to draw a diagram of how the application parts communicate with each other to discover patterns. |
 
 ## Unrepresentable Invalid States
 
-Some business workflows only need data in certain states to work. For example, we don't want to ship an order until it's paid or miss the delivery address. Such orders are invalid for this workflow.
+Some business workflows only need data in certain states to work. For example, we don't want to ship an order until it's paid or if it misses the delivery address. Such orders are invalid for this workflow.
 
-We can make the code more reliable if we “forbid” the passing of invalid data. That is if we design the code in such a way that their passing is impossible or much harder than the passing of valid data.
+We can make the code more reliable if we “forbid” the passing of invalid data. To do that, we can design the code in such a way that makes it harder or impossible to pass invalid data.
 
-For example, in languages with static typing, it can be done with types. We can describe each data state as a separate type and specify what types are valid for a workflow. _This adds domain constraints directly to the signature_ of functions and methods.
+For example, we can do this using types in languages with static typing. We can describe each data state as a separate type and specify what types are valid for a workflow. _This adds domain constraints directly to the signature_ of functions and methods.
 
-| However 👀                                                                                                                                                                                                                                                                                                                 |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Clearly, we have to remember about constraints of a particular language. For example, in TypeScript it's harder to achieve “validation in signature” and it still will be limited by the JS-runtime. But even without the “true validation”, this technique helps to reflect more domain knowledge directly into the code. |
+| However 👀                                                                                                                                                                                                                                                                                                                   |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Clearly, we have to remember about constraints of a particular language. For example, in TypeScript, it's harder to achieve “validation in signature,” and it still will be limited by the JS-runtime. But even without the “true validation,” this technique helps to reflect more domain knowledge directly into the code. |
 
 For example, let's look at the `CustomerEmail` type, which describes the email address of the store's user:
 
@@ -236,7 +236,7 @@ The type has a `verified` flag that shows if the email is verified. The problem 
 
 ---
 
-For example, let's imagine that there's a link in the store's UI to restore the user account. When clicked, it should send the user to the “Reset Password” page, but only if their email is verified:
+For example, imagine a link in the store's UI to restore the user account. When clicked, it should send the user to the “Reset Password” page, but only if their email is verified:
 
 ```ts
 function restoreAccount(email: CustomerEmail): void {
@@ -248,18 +248,22 @@ function restoreAccount(email: CustomerEmail): void {
 }
 ```
 
-With the current `CustomerEmail` implementation, the `restoreAccount` function accepts data that is invalid half the time.
+With the current `CustomerEmail` implementation, the `restoreAccount` function accepts invalid data half the time.
 
-This can be fine if the type contains only one such flag. But the more flags there are, the more different states the type contains simultaneously, and the more probable the errors due to the inconsistent data.
+It can be fine if the type contains only one such flag. But the more flags there are, the more different states the type has simultaneously and the more probable the errors due to the inconsistent data.
 
 We can solve this by separating different data states into different types:
 
 ```ts
 // For unverified emails, we use one type:
-type UnverifiedEmail = EmailAddress;
+type UnverifiedEmail = {
+  /*...*/
+};
 
 // ...And for verified emails, we use another:
-type VerifiedEmail = EmailAddress;
+type VerifiedEmail = {
+  /*...*/
+};
 
 // The “any email” can be used
 // when the verification isn't important:
@@ -282,13 +286,13 @@ function verifyEmail(email: UnverifiedEmail): void {}
 function isValidEmail(email: CustomerEmail): boolean {}
 ```
 
-Now, the function signatures are more accurate in describing the domain because they convey more knowledge about it. The functions `restorePassword` and `verifyEmail` warn about their requirements and constraints. The function `isValidEmail` says that it's ready to handle any email and verification isn't important to it.
+Now, the function signatures are more accurate in describing the domain because they convey more knowledge about it. The functions `restorePassword` and `verifyEmail` warn about their requirements and constraints. The function `isValidEmail` says that it's ready to handle any email, and verification isn't essential.
 
-| However 🚧                                                                                                                                                   |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| In the case of TypeScript, type aliases may not be enough. We may want to make sure that we can't create a non-verified email with the `VerifiedEmail` type. |
-| For this, we can use type branding[^typebranding] or agree to create entities only with special classes or factories.                                        |
-| However, for descriptive purposes—transferring knowledge about the domain—aliases may suffice just fine.                                                     |
+| However 🚧                                                                                                                                                |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In the case of TypeScript, type aliases may not be enough. We may want to ensure that we can't create a non-verified email with the `VerifiedEmail` type. |
+| For this, we can use type branding[^typebranding] or agree to create entities only with special classes or factories.                                     |
+| However, for descriptive purposes—transferring knowledge about the domain—aliases may suffice just fine.                                                  |
 
 ## Data Validation
 
@@ -302,14 +306,14 @@ For this idea to work, data within the workflow must be safe and not break the p
 
 DDD has an analog for such islands—_bounded contexts_.[^boundedcontext][^ddd][^dmmf] Simply put, a bounded context is a set of functions that refer to some part of an application.
 
-According to DDD, it's convenient to validate data _on the boundaries_ of contexts, for example, at the context input. In this case, “inside” the context, we don't need additional checks, because the data is already validated and safe.
+According to DDD, validating data is more convenient _at the boundaries_ of contexts, for example, at the context input. In this case, “inside” the context, we don't need additional checks because the data is already validated and safe.
 
 <figure>
   <img src="../images/09-bounded-context.png" width="800">
-  <figcaption><em>All validation takes place at the boundaries; the data inside the context is considered valid and safe</em><br><br></figcaption>
+  <figcaption><em>All validation occurs at the boundaries; the data inside the context is considered valid and safe</em><br><br></figcaption>
 </figure>
 
-We can use this rule in our code to get rid of unnecessary data checks at runtime. By validating the data once at the beginning of the workflow, we can assume later that it meets our requirements.
+We can use this rule in our code to get rid of unnecessary data checks at runtime. By validating the data at the beginning of the workflow, we can assume later that it meets our requirements.
 
 Then, for example, in the `Cart` component, instead of ad-hoc checks for the existence of products and their properties inside the render function:
 
@@ -363,21 +367,21 @@ Typically, information between parts of a system is transferred as a _Data Trans
 
 The structure and format of DTOs are intentionally simple: only strings, numbers, booleans, arrays, and objects. For example, JSON, which is often used to communicate between the server and the client, has no complex types or structures.
 
-During “translation” between complex domain types and intentionally simple DTOs, something can go wrong and the data can become invalid. This data can break the workflow if not checked before use.
+During “translation” between complex domain types and intentionally simple DTOs, something can go wrong, and the data can become invalid. This data can break the workflow if not checked before use.
 
 | In detail 📚                                                                                                                                                                                                  |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| More about the functional pipeline, business workflows, bonded contexts, data validation, and DDD you can read in “Domain Modeling Made Functional” by Scott Wlaschin.[^dmmf] Great book, highly recommended. |
+| You can read more about the functional pipeline, business workflows, bonded contexts, data validation, and DDD in “Domain Modeling Made Functional” by Scott Wlaschin.[^dmmf] Great book, highly recommended. |
 
 ## Data Mapping and Selectors
 
-The same data may be needed for different purposes. For example, the UI may render a shopping cart differently depending on the user's settings.
+We might need the same data for different purposes. For example, the UI may render a shopping cart differently depending on the user's settings.
 
 The functional pipeline suggests “preparing” data for such situations in advance. For example, we might want to select the required fragments from the original data in advance, transform some data sets into others or even merge several data sets into one.
 
 | Beware the simplification 🚧                                                                                                                                                     |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| From the description above you might remember some of the terms: mapping, projection, slice, lens, mapping.[^mappers][^projections][^slices][^lenses]                            |
+| From the description above, you might remember some terms: mapping, projection, slice, lens, and mapping.[^mappers][^projections][^slices][^lenses]                              |
 | I decided not to use them in this book to avoid introducing too many new concepts. Instead, I will use the word “selector” in the text as a general synonym for all these terms. |
 
 Data selectors help to decouple modules that use similar but slightly different data. For example, let's look at the `Cart` component, which renders a shopping cart:
@@ -396,7 +400,7 @@ function Cart({ serverCart }) {
 }
 ```
 
-Right now it relies on the cart data structure, which comes from the server. If the structure changes, we'll have to change the component too:
+Right now, it relies on the cart data structure, which comes from the server. If the structure changes, we'll have to change the component too:
 
 ```js
 // If products start to arrive separately, we'll have to search
@@ -425,7 +429,7 @@ Data selectors can help us decouple the server response and the data structure w
 
 ```js
 // The `toClientCart` function “converts” the data into a structure,
-// which will be used by the application components.
+// which the application components will use.
 
 function toClientCart(cart, products) {
   return cart.map(({ productId, ...item }) => {
@@ -470,7 +474,7 @@ So if the API response changes, we won't need to update all the components that 
 
 It's also convenient to use selectors if the UI has different representations for the same data. For example, in addition to the cart, the store can have a list of all available products with some of them marked as “In Cart”.
 
-To render such a list we can reuse already existing data, but “prepare” them in a slightly different way:
+To render such a list, we can reuse already existing data but “prepare” them in a slightly different way:
 
 ```js
 // We use the existing server data,
@@ -502,7 +506,7 @@ function Showcase({ items }) {
 
 This approach helps to separate the responsibility between the code: components only care about the render, and selectors “convert” the data.
 
-Components become less coupled to the rest of the code because they rely on structures that we fully control. This makes it easier, for example, to replace one component with another if we need to update the UI.
+Components become less coupled to the rest of the code because they rely on structures we fully control. It makes it easier, for example, to replace one component with another if we need to update the UI.
 
 Testing data transformations becomes easier because any selector is a regular function. We don't need a complex infrastructure to test it. Testing transformations within a component, for example, would require its rendering.
 
@@ -510,10 +514,10 @@ We have more control over the data we want (or don't want) to include in the sel
 
 It's usually best to apply selection right after the data is validated. At that point, we _already know_ that the data is safe, but _don't rely_ on its structure anywhere in the code yet. This gives us the ability to convert the data for a particular task.
 
-| Note 🔗                                                                                                                                                                                             |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The data in this example goes through the chain of states: “Raw Server Data” → “Valid Data” → “Prepared for a Task” → “Displayed in the UI.”                                                        |
-| Functional pipeline helps to describe _any task_ as a similar chain. This makes the decomposition easier because chains help to build a clear mental model of the workflow that we express in code. |
+| Note 🔗                                                                                                                                                                                   |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The data in this example goes through the chain of states: “Raw Server Data” → “Valid Data” → “Prepared for a Task” → “Displayed in the UI.”                                              |
+| Functional pipeline helps to describe _any task_ as a similar chain. It makes the decomposition easier because chains help build a clear mental model of the workflow we express in code. |
 
 [^dmmf]: “Domain Modeling Made Functional” by Scott Wlaschin, https://www.goodreads.com/book/show/34921689-domain-modeling-made-functional
 [^typebranding]: “Branding and Type-Tagging” by Kevin B. Greene, https://medium.com/@KevinBGreene/surviving-the-typescript-ecosystem-branding-and-type-tagging-6cf6e516523d
