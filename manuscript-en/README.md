@@ -41,7 +41,7 @@ Alex Bespoyasov, software engineer at 0+X with more than 10 years of experience 
 
 - [bespoyasov.me](https://bespoyasov.me)
 - [twitter](https://twitter.com/bespoyasov_)
-- [0x.se](https://0x.se/experts/alexander-bespoyasov)
+- [0x.se](https://0x.se)
 
 ## License & Copyright
 

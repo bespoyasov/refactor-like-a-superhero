@@ -41,7 +41,7 @@
 
 - [bespoyasov.ru](https://bespoyasov.ru)
 - [twitter](https://twitter.com/bespoyasov)
-- [0x.se](https://0x.se/experts/alexander-bespoyasov)
+- [0x.se](https://0x.se)
 
 ## Лицензии и копирайт
 
