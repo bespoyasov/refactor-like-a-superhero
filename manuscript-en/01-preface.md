@@ -26,7 +26,7 @@ Not all practices have to be applied at all times. Using an idea depends signifi
 
 If something in the book seems helpful to you, discuss it with your colleagues and other developers. Make sure you and your team have the same opinion about the chosen idea's benefits and costs. Don't apply something controversial to your team.
 
-## Limits and Constraints
+## Limitations and Applicability
 
 All of the techniques described here are a compilation of the books I've read and my experience in development. I have spent most of my time developing medium and sometimes large user applications.
 
