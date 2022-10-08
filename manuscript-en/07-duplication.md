@@ -8,7 +8,7 @@ In this chapter, we'll discuss what to look for when searching for duplication a
 
 ## Not All Duplication is Evil
 
-If two pieces of code have the same purpose, contain the same set of actions, and process the same data, that is _direct_ duplication. For example, we can safely get rid of it by extracting the repeating code into a variable, function, or module.
+If two pieces of code have the same purpose, contain the same set of actions, and process the same data, that is _direct_ duplication. We can safely get rid of it by extracting the repeating code into a variable, function, or module.
 
 But there are cases when two pieces of code seem “similar” but later turn out different. If we merge them too early, it'll be harder to split such code later. In general, it's much easier to combine identical code than to break modules merged earlier.
 
