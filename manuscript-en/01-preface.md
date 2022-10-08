@@ -1,8 +1,8 @@
 # Preface
 
-The idea for this book appeared after my talk “Refactoring Like a Superhero,”[^talk] which I was making in January 2022.
+The idea for this book appeared after my talk “Refactoring Like a Superhero,”[^talk] which I was making in January 2022. For that talk, I've collected various technics and heuristics of refactoring I wanted to share.
 
-At some point, it became apparent that I couldn't fit everything I wanted to discuss into a 40-minute slot. I had to cut and trim the material for the talk to show the most valuable practices and technics of refactoring.
+At some point, it became apparent that I couldn't fit everything I wanted to discuss into a 40-minute slot. I had to cut and trim the material for the talk to show the most valuable practices and technics.
 
 The cut-out material wasn't useless, though. It contained details and clarifications about the technics' usage and applicability. I decided it would make more sense not to throw out everything that didn't fit but to change the format and release it as an online book. That's how this project came to be.
 
