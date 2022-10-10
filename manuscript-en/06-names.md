@@ -203,7 +203,7 @@ _Ubiquitous language_ can help us fight naming problems. It is a set of terms th
 
 | By the way 🎙                                                                                                                                          |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The term comes from the _Domain-Driver Design, DDD_ methodology.[^ddd] I find it helpful in describing business logic, you might find it helpful too. |
+| The term comes from the _Domain-Driven Design, DDD_ methodology.[^ddd] I find it helpful in describing business logic, you might find it helpful too. |
 
 In practice, ubiquitous language tells us that if “business people” use the term “Order” to describe orders, we should use this word in our code, tests, documentation, and verbal communication.
 
