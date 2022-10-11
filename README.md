@@ -18,6 +18,12 @@ The book is currently available in 2 languages:
 
 If you are interested in translating it into other languages, please, contact me. I'll be happy to discuss details!
 
+## Errata and Feedback
+
+If you found a typo or an error, please, open an issue or a pull request in this repository. I'll also be glad to hear your ideas and code snippets that can make the examples in the book more descriptive.
+
+You can find all previous fixes and updates in the commit history of this repository.
+
 ## License & Copyright
 
 All materials are © 2022 Alex Bespoyasov. The work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
