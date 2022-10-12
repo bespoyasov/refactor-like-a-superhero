@@ -16,6 +16,10 @@ The book is currently available in 2 languages:
 - [In English](./manuscript-en/README.md)
 - [In Russian](./manuscript-ru/README.md)
 
+Currently WIP translations:
+
+- [Spanish by @DavidRamiroBarragan](https://github.com/DavidRamiroBarragan/refactor-like-a-superhero-online-book)
+
 If you are interested in translating it into other languages, please, contact me. I'll be happy to discuss details!
 
 ## Errata and Feedback
