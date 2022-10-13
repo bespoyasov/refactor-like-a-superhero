@@ -88,7 +88,7 @@ function setDiscount(discount) {
 const startsWith = (str, chunk) => str.indexOf(chunk) === 0;
 const yup = startsWith("Some String", "So");
 
-// ...Можно заменить нативный метод:
+// ...Можно заменить нативным методом:
 const yup = "Some String".startsWith("So");
 ```
 
