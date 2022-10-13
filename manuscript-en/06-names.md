@@ -20,9 +20,11 @@ An “obscure” name can hide valuable project details and the experience of ot
 - Search for the meaning in the code documentation;
 - As a last resort, do a series of experiments, changing the variable and seeing how it affects the code.
 
-| By the way 🔬                                                                                                       |
-| :------------------------------------------------------------------------------------------------------------------ |
-| For the last case, reliable tests are essential: they can show the result of changing variable values more clearly. |
+| By the way 🔬                                                                                                                                                                                                                          |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| If the effect of a variable is visible on the “seam,” tests can help us with such experiments. The test results will show how the different variable values change the code output. It can help us conclude the real variable purpose. |
+| In other cases, we will probably have to evaluate the changes manually. As an option in the debugger, we can observe how the different values affect the other variables and data the code works with.                                 |
+| Such experiments will not _guarantee_ that we understand the meaning of the variable correctly,[^posthoc] but they can tell us what knowledge about the project we lack.                                                               |
 
 It's better to keep the gained knowledge directly in the code by renaming a variable. If we can't do this, it's worth keeping it _as close to the code_ as possible. We can use a comment, documentation, a commit message, or a ticket description. The point is to allow developers to find and use this information _easier_.
 
@@ -288,3 +290,4 @@ sendOrder(order);
 [^ahclc]: Naming functions, A/HC/LC Pattern, https://github.com/kettanaito/naming-cheatsheet#ahclc-pattern
 [^ddd]: “Domain-Driven Design” by Eric Evans, https://www.goodreads.com/book/show/179133.Domain_Driven_Design
 [^dmmf]: “Domain Modeling Made Functional” by Scott Wlaschin, https://www.goodreads.com/book/show/34921689-domain-modeling-made-functional
+[^posthoc]: Post Hoc Ergo Propter Hoc, Wikipedia, https://en.wikipedia.org/wiki/Post_hoc_ergo_propter_hoc
