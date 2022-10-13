@@ -163,7 +163,7 @@ function applyCoupon(order, coupon) {
 function applyPromo(order, user) {
   if (!isPromoParticipant(user) || order.total < 2000) return order;
 
-  const products = [...data.products, FREE_PRODUCT_OF_THE_DAY];
+  const products = [...order.products, FREE_PRODUCT_OF_THE_DAY];
   return { ...order, products };
 }
 ```
@@ -483,7 +483,7 @@ To render such a list, we can reuse already existing data but “prepare” them
 function toClientShowcase(products, cart) {
   return products.map((product) => ({
     ...product,
-    inCart: !!cart.find(({ productId }) => productId === product.id),
+    inCart: cart.some(({ productId }) => productId === product.id),
   }));
 }
 ```
