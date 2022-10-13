@@ -26,6 +26,8 @@ This book is available in 2 languages: Russian and English. If you are intereste
 
 Thanks to Maksim Ivanov (@satansdeer),[^satansdeer] Nick Lopin (@nlopin),[^nlopin] and Artem Samofalov (@dex157)[^dex157] for help in proofreading and fact-checking!
 
+Thanks to all project contributors for finding typos, improving phrasing, and other help with the text![^contributors]
+
 ## Extras
 
 In the appendices to this book, you'll find a list of links to books, articles, talks, and tools that I refer to in my work and can recommend.
@@ -37,3 +39,4 @@ You'll also find a list of shortened recommendations for finding and fixing code
 [^satansdeer]: Maksim Ivanov, https://github.com/satansdeer
 [^nlopin]: Nikolai Lopin, https://github.com/nlopin
 [^dex157]: Artem Samofalov, https://github.com/dex157
+[^contributors]: Project Contributors, https://github.com/bespoyasov/refactor-like-a-superhero-online-book/graphs/contributors
