@@ -202,6 +202,7 @@ Why naming is important, how variable and function names affect code perception 
 - Declarative Programming, Wikipedia, https://en.wikipedia.org/wiki/Declarative_programming
 - Decomposition, Wikipedia, https://en.wikipedia.org/wiki/Decomposition_(computer_science)
 - Entropy, Wikipedia, https://en.wikipedia.org/wiki/Entropy
+- Post Hoc Ergo Propter Hoc, Wikipedia, https://en.wikipedia.org/wiki/Post_hoc_ergo_propter_hoc
 
 ### Tools
 
