@@ -719,8 +719,10 @@
 
 ### Связанные понятия
 
+- Nominal & Structural Typing, Flow Documentation, https://flow.org/en/docs/lang/nominal-structural/
 - Ubiquitous Language, https://martinfowler.com/bliki/UbiquitousLanguage.html
 - Type Aliases, TypeScript Handbook, https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases
+- Type Compatibility, TypeScript Documentation, https://www.typescriptlang.org/docs/handbook/type-compatibility.html
 
 ### Инструменты
 
