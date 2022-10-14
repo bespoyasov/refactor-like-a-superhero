@@ -121,24 +121,30 @@ const divide: Divider = (a, b) => a / b;
 
 ### Types in TypeScript
 
-In TypeScript, we can use several ways to model the domain and create domain types:[^typealias][^typebranding][^factorymethod]
+Type systems of different languages may differ. This difference can affect the usability and reliability of the types in a particular language. In TypeScript, we can use several ways to model the domain and create domain types:[^typealias][^typebranding][^factorymethod]
 
 - Type aliases
 - Classes
 - Type branding
 
+However, because of TypeScript's structural typing,[^typecompatibility] the usability and applicability of each option may differ.
+
 The easiest but unreliable way to create domain types is to use type aliases.[^typealias] They're convenient to give primitive types informative names but challenging to convey the _constraints_ of the domain. For example, such code is quite valid _syntactically_ but not from the _domain point of view_:
 
 ```ts
-// A type alias can give the primitive a helpful name,
+// For example, a type alias can give the primitive a helpful name,
 // which reflects the type meaning according to the domain:
+type RealNumber = number;
 type NaturalNumber = number;
 
 // But it won't force the domain constraints:
-const x: NaturalNumber = -1;
+const x: RealNumber = -1;
+const y: NaturalNumber = x;
+
+// Oops! -1 isn't a natural number.
 ```
 
-By default, type aliases don't validate assigned values, so there's no guarantee that `NaturalNumber` will be a natural number:
+It's difficult to reflect the domain constraints and validate assigned values in the type alias. So there's no guarantee that the argument of type `NaturalNumber` will be a natural number:
 
 ```ts
 function divide(a: NaturalNumber, b: NaturalNumber): RealNumber {
@@ -149,7 +155,7 @@ function divide(a: NaturalNumber, b: NaturalNumber): RealNumber {
 divide(1, 0);
 ```
 
-So if we need to distinguish between types and enforce value validation, we have to use classes or branded types:[^typebranding][^factorymethod]
+So if we need to distinguish between types or enforce value validation, we have to use classes or branded types:[^typebranding][^factorymethod]
 
 ```ts
 // When using classes, we can add validation
@@ -370,3 +376,4 @@ class PostReader {
 [^codethatfits]: “Code That Fits in Your Head” by Mark Seemann, https://www.goodreads.com/book/show/57345272-code-that-fits-in-your-head
 [^primitiveobsession]: “Primitive Obsession”, Refactoring Guru, https://refactoring.guru/smells/primitive-obsession
 [^functionaltype]: More on Functions, TypeScript Documentation, https://www.typescriptlang.org/docs/handbook/2/functions.html
+[^typecompatibility]: Type Compatibility, TypeScript Documentation, https://www.typescriptlang.org/docs/handbook/type-compatibility.html

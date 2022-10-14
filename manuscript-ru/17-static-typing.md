@@ -121,24 +121,31 @@ const divide: Divider = (a, b) => a / b;
 
 ### Типизация в TypeScript
 
-В TypeScript для моделирования домена и создания доменных типов мы можем использовать несколько способов:[^typealias][^typebranding][^factorymethod]
+Особенности типизации конкретного языка влияют на удобство работы с типами в этом языке. В TypeScript для моделирования предметной области и создания доменных типов мы можем использовать несколько вариантов:[^typealias][^typebranding][^factorymethod]
 
 - Использовать тайп-алиасы;
 - Использовать классы в качестве типов;
 - «Брендировать» типы.
 
+Однако из-за структурной типизации TypeScript удобство и применимость каждого из вариантов может отличаться.[^typecompatibility]
+
 Самый простой, но при этом самый ненадёжный способ создания доменных типов — использовать тайп-алиасы.[^typealias] С их помощью удобно давать примитивным типам информативные имена, но сложно передавать _ограничения_ предметной области. Например, такой код синтаксически вполне валиден, а с точки зрения домена — нет:
 
 ```ts
-// Тайп-алиас может дать примитиву полезное имя,
+// Тайп-алиас может, например, дать примитиву полезное имя,
 // которое будет отражать смысл типа согласно домену:
+type RealNumber = number;
 type NaturalNumber = number;
 
-// Но валидации значений в нём не будет:
-const x: NaturalNumber = -1;
+// Но из-за особенностей проверки на сопоставимость типов
+// мы можем получить невалидную доменную модель:
+const x: RealNumber = -1;
+const y: NaturalNumber = x;
+
+// Упс! -1 не может быть натуральным числом.
 ```
 
-Тайп-алиасы по умолчанию не валидируют присвоенные значения, поэтому нет гарантий, что в `NaturalNumber` окажется именно натуральное число:
+В тайп-алиасах сложно выразить ограничения домена и настроить «валидацию» присваиваемых значений, поэтому нет гарантий, что в `NaturalNumber` окажется именно натуральное число:
 
 ```ts
 function divide(a: NaturalNumber, b: NaturalNumber): RealNumber {
@@ -149,7 +156,7 @@ function divide(a: NaturalNumber, b: NaturalNumber): RealNumber {
 divide(1, 0);
 ```
 
-Поэтому если нам нужна настоящая проверка на несопоставимость разных типов, придётся использовать классы или брендированные типы:[^typebranding][^factorymethod]
+Поэтому если нам нужна валидация или проверка на несопоставимость разных типов, придётся использовать классы или брендированные типы:[^typebranding][^factorymethod]
 
 ```ts
 // При использовании классов
@@ -377,3 +384,4 @@ class PostReader {
 [^codethatfits]: “Code That Fits in Your Head” by Mark Seemann, https://www.goodreads.com/book/show/57345272-code-that-fits-in-your-head
 [^primitiveobsession]: Одержимость элементарными типами, Refactoring Guru, https://refactoring.guru/ru/smells/primitive-obsession
 [^functionaltype]: More on Functions, TypeScript Documentation, https://www.typescriptlang.org/docs/handbook/2/functions.html
+[^typecompatibility]: Type Compatibility, TypeScript Documentation, https://www.typescriptlang.org/docs/handbook/type-compatibility.html
