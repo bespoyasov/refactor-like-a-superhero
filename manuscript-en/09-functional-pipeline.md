@@ -365,16 +365,16 @@ function CartProducts({ items }) {
 Often input validation helps us discover data states we did not notice earlier. For example, the code of the `CartProducts` component in the previous snippet has become simpler, and the flaws in it have become easier to spot:
 
 ```js
-// For example, if the cart is valid but empty,
+// If we render a valid but empty cart,
 // the component will render an empty list:
 
 const validEmptyCart = [];
 <CartProducts items={validEmptyCart} />;
 
-// Results in: <ul></ul>
+// Results in <ul></ul>
 ```
 
-The “Empty cart” state is valid but represents an edge case. Functional pipeline makes such cases more noticeable because they fall out of “regular” code execution. And the more prominent the edge cases are, the sooner we can detect and handle them:
+The “Empty cart” state is valid but represents an edge case. Together with input validation, the functional pipeline makes such cases more noticeable because they fall out of “regular” code execution. And the more prominent the edge cases are, the sooner we can detect and handle them:
 
 ```js
 // Let's split the “Empty cart” and “Cart with products” states
