@@ -59,7 +59,7 @@ Alarmes cognitivos são os sentimentos que temos ao ler um código ruim. Eu acre
 
 #### Difícil de Ler
 
-- É difícil para nós ler um código não formatado, entrelaçado ou "barulhento".
+- É difícil para nós lermos um código não formatado, entrelaçado ou "barulhento".
 - Se houver muitos detalhes desnecessários no código, não há um ponto de entrada claro.
 - Se for difícil acompanhar a execução do código, se precisarmos pular entre telas, arquivos ou linhas constantemente.
 - Se o código for inconsistente, se não seguir as regras do projeto.
