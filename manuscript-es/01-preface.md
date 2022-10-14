@@ -1,42 +1,42 @@
 # Prefacio
 
-The idea for this book appeared after my talk “Refactoring Like a Superhero,”[^talk] which I was making in January 2022. For that talk, I've collected various technics and heuristics of refactoring I wanted to share.
+La idea para este libro apareció después de mi charla “Refactoring Like a Superhero,”[^talk] que realicé en Enero del 2022. Para esta charla había recopilado técnicas y metodologías de refactorización. Quería compartirlas.
 
-At some point, it became apparent that I couldn't fit everything I wanted to discuss into a 40-minute slot. I had to cut and trim the material for the talk to show the most valuable practices and technics.
+En algún punto, se hizo evidente que no podía meter todo lo que quería explicar en 40 minutos.
 
-The cut-out material wasn't useless, though. It contained details and clarifications about the technics' usage and applicability. I decided it would make more sense not to throw out everything that didn't fit but to change the format and release it as an online book. That's how this project came to be.
+Sin embargo, el material recortado no era inútil. Contenía detalles y explicaciones sobre el uso y aplicación de las técnicas. Decidí que, tendría más sentido no eliminar todo lo que no cabía sino cambiar el formato y publicarlo como un libro online. Así es como empezó este proyecto.
 
-## Who Might Want to Read This Book
+## Quién podría querer leer este libro
 
-This book might be helpful for developers of web services and user applications who write in high-level languages and have a couple of years of experience.
+Este libro puede ser de gran ayuda para desarrolladores de servicios web y aplicaciones de usuarios, que escriben código en un lenguaje de alto nivel y tienen algunos años de experiencia.
 
-Library developers might also find some ideas, but I'll mainly focus on user applications since I have more experience in that area.
+Los desarrolladores de librerías también pueden encontrar ideas, pero me he centrado en las aplicaiones de usuario, ya que tengo más experiencia en esa area.
 
-This book doesn't consider the needs and constraints of low-level development. Some heuristics in it might contradict best practices of low-level code. If you write “closer to the hardware,” please, be careful, and proceed at your own risk 😃
+Este libro no considera las necesidades y limitaciones del desarrollo de bajo nivel. Algunas metodologías en él pueden contradecir las buenas prácticas del código de bajo nivel. Si tu desarrollas "cerca del hardware", por favor, se cuidadoso y hazlo bajo tu propio riesgo. 😃
 
-## What This Book Is Not
+## Que no es este libro
 
-I don't claim to show “the only correct way” to refactor and write code in this book. If you have a lot of experience, you probably already know most of the techniques described and have your own opinion.
+No pretendo mostrarte el "único camino correcto" de refactorizar y escribir código en este libro. Si tienes mucha experiencia, probablemente ya sepas la mayoría de técnicas descritas y tienes tu propia opinión.
 
-Also, this is not a “step-by-step manual” universally applicable to all projects. My development experience biases my coding habits and programming style. Your experience, projects, and habits may differ from mine, so our views may not be the same. That's okay.
+Además, no se trata de un manual paso a paso de aplicación universal a todos los proyectos.
 
-The purpose of this book is to describe a set of practices and heuristics that helped _me_ start writing code that _looks good_ to me and the people I worked with.
+El propósito de este libro es el de describir un conjunto de prácticas y metodologías que me ayudaron, a mí y a las personas con las que he trabajado, a escribir un código mejor.
 
-Not all practices have to be applied at all times. Using an idea depends significantly on the project, the context, available resources, and the purpose of refactoring. Try to choose techniques that bring more benefits at less cost.
+No todas las prácticas son aplicables en todos los casos. El uso de una idea depende en gran medida del proyecto, el contexto, los recursos disponibles, y el propósito de la refactorización. Trata de elegir aquellas técnicas que te proporcionan un mayor beneficio y un menor costo.
 
-If something in the book seems helpful to you, discuss it with your colleagues and other developers. Make sure you and your team have the same opinion about the chosen idea's benefits and costs. Don't apply something controversial to your team.
+Si algo del libro te parece útil, discútelo con tus colegas y otros desarrolladores. Asegúrate de que tú y tu equipo tenéis la misma opinión sobre los beneficios y los costes de la idea elegida. No apliques algo que resulte controvertido a tu equipo.
 
-## Limitations and Applicability
+## Limitaciones y aplicación
 
-All of the techniques described here are a compilation of the books I've read and my experience in development. I have spent most of my time developing medium and sometimes large user applications.
+Todas las técnicas descritas son una recopilación de libros que he leído y de mi experiencia en desarrollo. He pasado la mayoría de mi tiempo desarrollando medianas, y a veces grandes, aplicaciones de usuario.
 
-My experience imprints on the way I see good code. Basically, the whole book is a snapshot of my perception of development in 2022. My opinion may have changed if you're reading this in the future.
+Mi experiencia influye en mi forma de ver el buen código. Básicamente, todo el libro es una muestra de mi percepción del desarrollo en 2022. Mi opinión puede haber cambiado si estás leyendo esto en el futuro.
 
-| By the way 🐝                                                                                                       |
-| :------------------------------------------------------------------------------------------------------------------ |
-| I will update the book's text as my opinion changes, but I can't guarantee I will do so promptly and without delay. |
+| Por cierto 🐝                                                                                             |
+|:----------------------------------------------------------------------------------------------------------|
+| Actualizaré los textos si mi opinión cambia, pero no puedo garantizar de que lo haga rápido y sin demora. |
 
-As you read the book, be aware of the author's cognitive biases. Weigh the techniques before using them and consider their applicability to your project.
+Al leer el libro, ten en cuenta los sesgos cognitivos del autor. Sopesa las técnicas antes de utilizarlas y considera su aplicabilidad a tu proyecto.
 
 ## Good to Know Before Reading
 
