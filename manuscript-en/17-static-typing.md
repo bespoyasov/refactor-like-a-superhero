@@ -121,13 +121,17 @@ const divide: Divider = (a, b) => a / b;
 
 ### Types in TypeScript
 
-Type systems of different languages may differ. This difference can affect the usability and reliability of the types in a particular language. In TypeScript, we can use several ways to model the domain and create domain types:[^typealias][^typebranding][^factorymethod]
+In TypeScript, we have several ways to model the domain and create domain types:[^typealias][^typebranding][^factorymethod]
 
 - Type aliases
 - Classes
 - Type branding
 
-However, because of TypeScript's structural typing,[^typecompatibility] the usability and applicability of each option may differ.
+| 🧵 By the way                                                                                                                                                                                               |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Because of TypeScript's structural typing,[^typecompatibility] the usability and applicability of each option in the list may differ.                                                                       |
+| In this book, we won't dive into the nuances of TypeScript's type system. Instead, we'll focus primarily on using types as a refactoring tool.                                                              |
+| However, for a better understanding of the constraints of structural typing and how it can affect the code, I'll leave some links on the subject in the sources.[^typecompatibility][^nominalandstructural] |
 
 The easiest but unreliable way to create domain types is to use type aliases.[^typealias] They're convenient to give primitive types informative names but challenging to convey the _constraints_ of the domain. For example, such code is quite valid _syntactically_ but not from the _domain point of view_:
 
@@ -141,7 +145,8 @@ type NaturalNumber = number;
 const x: RealNumber = -1;
 const y: NaturalNumber = x;
 
-// Oops! -1 isn't a natural number.
+// Oops!
+// -1 isn't a natural number.
 ```
 
 It's difficult to reflect the domain constraints and validate assigned values in the type alias. So there's no guarantee that the argument of type `NaturalNumber` will be a natural number:
@@ -377,3 +382,4 @@ class PostReader {
 [^primitiveobsession]: “Primitive Obsession”, Refactoring Guru, https://refactoring.guru/smells/primitive-obsession
 [^functionaltype]: More on Functions, TypeScript Documentation, https://www.typescriptlang.org/docs/handbook/2/functions.html
 [^typecompatibility]: Type Compatibility, TypeScript Documentation, https://www.typescriptlang.org/docs/handbook/type-compatibility.html
+[^nominalandstructural]: Nominal & Structural Typing, Flow Documentation, https://flow.org/en/docs/lang/nominal-structural/
