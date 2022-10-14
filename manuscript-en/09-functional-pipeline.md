@@ -425,10 +425,10 @@ The functional pipeline suggests “preparing” data for such situations in adv
 | From the description above, you might remember some terms: mapping, projection, slice, lens, and mapping.[^mappers][^projections][^slices][^lenses]                              |
 | I decided not to use them in this book to avoid introducing too many new concepts. Instead, I will use the word “selector” in the text as a general synonym for all these terms. |
 
-Data selectors help to decouple modules that use similar but slightly different data. For example, let's look at the `Cart` component, which renders a shopping cart:
+Data selectors help to decouple modules that use similar but slightly different data. For example, let's look at the `CartProducts` component, which renders a shopping cart:
 
 ```js
-function Cart({ serverCart }) {
+function CartProducts({ serverCart }) {
   return (
     <ul>
       {serverCart.map((item) => (
@@ -447,7 +447,7 @@ Right now, it relies on the cart data structure, which comes from the server. If
 // If products start to arrive separately, we'll have to search
 // for a particular product during the rendering.
 
-function Cart({ serverCart, serverProducts }) {
+function CartProducts({ serverCart, serverProducts }) {
   return (
     <ul>
       {serverCart.map((item) => {
@@ -488,13 +488,13 @@ const cart = toClientCart(serverCart, serverProducts)
 
 // ...
 
-<Cart items={cart} />
+<CartProducts items={cart} />
 ```
 
 The component then will rely on the data structure that is defined _by us_, not a third-party:
 
 ```js
-function Cart({ items }) {
+function CartProducts({ items }) {
   return (
     <ul>
       {items.map(({ id, count, product }) => (

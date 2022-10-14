@@ -421,10 +421,10 @@ function Cart({ serverCart }) {
 | По описанию выше вы могли вспомнить какой-то из терминов: маппинг, проекция, слайс, линза, отображение.[^mappers][^projections][^slices][^lenses]                                                                                                                                                  |
 | Я решил не уделять в этой книге внимание их различиям, чтобы сократить текст и не вводить слишком много новых понятий. Вместо этого я далее по тексту буду использовать слово «выборка» как общий синоним для всех этих терминов, точное значение которого будет зависеть от контекста применения. |
 
-Выборки данных помогают «расцепить» модули, которые используют схожие, но слегка отличающиеся данные. Например, посмотрим на компонент `Cart`, который рендерит корзину товаров:
+Выборки данных помогают «расцепить» модули, которые используют схожие, но слегка отличающиеся данные. Например, посмотрим на компонент `CartProducts`, который рендерит корзину товаров:
 
 ```js
-function Cart({ serverCart }) {
+function CartProducts({ serverCart }) {
   return (
     <ul>
       {serverCart.map((item) => (
@@ -444,7 +444,7 @@ function Cart({ serverCart }) {
 // то искать конкретный продукт придётся
 // прямо во время рендера пункта корзины.
 
-function Cart({ serverCart, serverProducts }) {
+function CartProducts({ serverCart, serverProducts }) {
   return (
     <ul>
       {serverCart.map((item) => {
@@ -485,13 +485,13 @@ const cart = toClientCart(serverCart, serverProducts)
 
 // ...
 
-<Cart items={cart} />
+<CartProducts items={cart} />
 ```
 
 Компонент тогда будет полагаться на структуру, которую _определяем мы сами_:
 
 ```js
-function Cart({ items }) {
+function CartProducts({ items }) {
   return (
     <ul>
       {items.map(({ id, count, product }) => (
