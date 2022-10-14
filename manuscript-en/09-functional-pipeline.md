@@ -315,10 +315,10 @@ According to DDD, validating data is more convenient _at the boundaries_ of cont
 
 We can use this rule in our code to get rid of unnecessary data checks at runtime. By validating the data at the beginning of the workflow, we can assume later that it meets our requirements.
 
-Then, for example, in the `Cart` component, instead of ad-hoc checks for the existence of products and their properties inside the render function:
+Then, for example, in the `CartProducts` component, instead of ad-hoc checks for the existence of products and their properties inside the render function:
 
 ```js
-function Cart({ items }) {
+function CartProducts({ items }) {
   return (
     !!items && (
       <ul>
@@ -340,12 +340,16 @@ function validateCart(cart) {
 
   return cart;
 }
+
+// ...
+
+const validCart = validateCart(serverCart);
 ```
 
 ...And later would use it without any additional checks:
 
 ```js
-function Cart({ items }) {
+function CartProducts({ items }) {
   return (
     <ul>
       {items.map((item) => (
@@ -354,12 +358,49 @@ function Cart({ items }) {
     </ul>
   );
 }
-
-// ...
-
-const cart = validateCart(serverCart);
-<Cart items={cart} />;
 ```
+
+### Missing States
+
+Often input validation helps us discover data states we did not notice earlier. For example, the code of the `CartProducts` component in the previous snippet has become simpler, and the flaws in it have become easier to spot:
+
+```js
+// For example, if the cart is valid but empty,
+// the component will render an empty list:
+
+const validEmptyCart = [];
+<CartProducts items={validEmptyCart} />;
+
+// Results in: <ul></ul>
+```
+
+The “Empty cart” state is valid but represents an edge case. Functional pipeline makes such cases more noticeable because they fall out of “regular” code execution. And the more prominent the edge cases are, the sooner we can detect and handle them:
+
+```js
+// Let's split the “Empty cart” and “Cart with products” states
+// into different components:
+
+const EmptyCart = () => <p>The cart is empty</p>;
+const CartProducts = ({ items }) => {};
+
+// Then, when rendering, we can first handle all the edge cases,
+// and then proceed to Happy Path:
+
+function Cart({ serverCart }) {
+  const cart = validateCart(serverCart);
+
+  if (isEmpty(cart)) return <EmptyCart />;
+  return <CartProducts items={cart} />;
+}
+```
+
+Such handling helps us detect more potential edge cases in the earlier stages of development. Considering these edge cases makes the program more reliable and accurate in describing the business workflows.
+
+| 👀 By the way                                                                                                                                                                               |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Handling edge cases before working with Happy Path might remind you of the technic called “Early return.” We will discuss it more closely in the chapter on conditions and code complexity. |
+
+### DTO and Deserialization
 
 Validation at the beginning is also useful if the data can get corrupted by serialization or deserialization.[^serialization]
 
