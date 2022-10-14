@@ -1,4 +1,4 @@
-# Antes da refatoração
+# Antes da Refatoração
 
 Para refatorar o código mais rápido, sem regressões e sem “muito trabalho extra”, precisamos primeiro _estudar e preparar_ o código. Em particular, devemos:
 
@@ -8,7 +8,7 @@ Para refatorar o código mais rápido, sem regressões e sem “muito trabalho e
 
 Neste capítulo, discutiremos por que essas etapas são úteis e como torná-las mais simples.
 
-## Definir o escopo e os limites
+## Definir o Escopo e os Limites
 
 A refatoração não deve demorar para sempre. Em vez disso, deve ser um pequeno pedaço de trabalho com limites claros e uma definição de pronto. Isso é essencial por dois motivos:
 
