@@ -723,6 +723,7 @@
 - Ubiquitous Language, https://martinfowler.com/bliki/UbiquitousLanguage.html
 - Type Aliases, TypeScript Handbook, https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases
 - Type Compatibility, TypeScript Documentation, https://www.typescriptlang.org/docs/handbook/type-compatibility.html
+- Совместимость типов на основе вида типизации, TypeScript: Definitive Guide, https://typescript-definitive-guide.ru/book/chapters/Sovmestimost_tipov_na_osnove_vida_tipizacii/
 
 ### Инструменты
 
