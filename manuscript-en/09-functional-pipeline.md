@@ -377,7 +377,8 @@ const validEmptyCart = [];
 The “Empty cart” state is valid but represents an edge case. Together with input validation, the functional pipeline makes such cases more noticeable because they fall out of “regular” code execution. And the more prominent the edge cases are, the sooner we can detect and handle them:
 
 ```js
-// Let's split the “Empty cart” and “Cart with products” states
+// To fix the problem with the empty list, we can split
+// the “Empty cart” and “Cart with products” states
 // into different components:
 
 const EmptyCart = () => <p>The cart is empty</p>;
@@ -394,7 +395,11 @@ function Cart({ serverCart }) {
 }
 ```
 
-Such handling helps us detect more potential edge cases in the earlier stages of development. Considering these edge cases makes the program more reliable and accurate in describing the business workflows.
+| 💡 However                                                                                                                                                                                                                                 |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| We remember that refactoring must not change the code functionality, so it's better to fix bugs separately. In one of the last chapters, we will discuss how to address problems found in the code but not mix refactoring with bug fixes. |
+
+Such edge case handling, as in the `Cart` component, helps us detect more potential edge cases in the earlier stages of development. Considering these edge cases makes the program more reliable and accurate in describing the business workflows.
 
 | 👀 By the way                                                                                                                                                                               |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
