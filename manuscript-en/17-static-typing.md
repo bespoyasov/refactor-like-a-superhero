@@ -127,7 +127,7 @@ In TypeScript, we have several ways to model the domain and create domain types:
 - Classes
 - Type branding
 
-| 🧵 By the way                                                                                                                                                                                               |
+| By the way 🧵                                                                                                                                                                                               |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Because of TypeScript's structural typing,[^typecompatibility] the usability and applicability of each option in the list may differ.                                                                       |
 | In this book, we won't dive into the nuances of TypeScript's type system. Instead, we'll focus primarily on using types as a refactoring tool.                                                              |

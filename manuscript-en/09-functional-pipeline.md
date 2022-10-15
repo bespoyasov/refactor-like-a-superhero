@@ -395,13 +395,13 @@ function Cart({ serverCart }) {
 }
 ```
 
-| 💡 However                                                                                                                                                                                                                                 |
+| However 💡                                                                                                                                                                                                                                 |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | We remember that refactoring must not change the code functionality, so it's better to fix bugs separately. In one of the last chapters, we will discuss how to address problems found in the code but not mix refactoring with bug fixes. |
 
 Such edge case handling, as in the `Cart` component, helps us detect more potential edge cases in the earlier stages of development. Considering these edge cases makes the program more reliable and accurate in describing the business workflows.
 
-| 👀 By the way                                                                                                                                                                               |
+| By the way 👀                                                                                                                                                                               |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Handling edge cases before working with Happy Path might remind you of the technic called “Early return.” We will discuss it more closely in the chapter on conditions and code complexity. |
 
