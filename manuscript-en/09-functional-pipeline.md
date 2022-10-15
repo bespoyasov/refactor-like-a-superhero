@@ -163,7 +163,7 @@ function applyCoupon(order, coupon) {
 function applyPromo(order, user) {
   if (!isPromoParticipant(user) || order.total < 2000) return order;
 
-  const products = [...data.products, FREE_PRODUCT_OF_THE_DAY];
+  const products = [...order.products, FREE_PRODUCT_OF_THE_DAY];
   return { ...order, products };
 }
 ```
@@ -315,10 +315,10 @@ According to DDD, validating data is more convenient _at the boundaries_ of cont
 
 We can use this rule in our code to get rid of unnecessary data checks at runtime. By validating the data at the beginning of the workflow, we can assume later that it meets our requirements.
 
-Then, for example, in the `Cart` component, instead of ad-hoc checks for the existence of products and their properties inside the render function:
+Then, for example, in the `CartProducts` component, instead of ad-hoc checks for the existence of products and their properties inside the render function:
 
 ```js
-function Cart({ items }) {
+function CartProducts({ items }) {
   return (
     !!items && (
       <ul>
@@ -340,12 +340,16 @@ function validateCart(cart) {
 
   return cart;
 }
+
+// ...
+
+const validCart = validateCart(serverCart);
 ```
 
 ...And later would use it without any additional checks:
 
 ```js
-function Cart({ items }) {
+function CartProducts({ items }) {
   return (
     <ul>
       {items.map((item) => (
@@ -354,12 +358,54 @@ function Cart({ items }) {
     </ul>
   );
 }
-
-// ...
-
-const cart = validateCart(serverCart);
-<Cart items={cart} />;
 ```
+
+### Missing States
+
+Often input validation helps us discover data states we did not notice earlier. For example, the code of the `CartProducts` component in the previous snippet has become simpler, and the flaws in it have become easier to spot:
+
+```js
+// If we render a valid but empty cart,
+// the component will render an empty list:
+
+const validEmptyCart = [];
+<CartProducts items={validEmptyCart} />;
+
+// Results in <ul></ul>
+```
+
+The “Empty cart” state is valid but represents an edge case. Together with input validation, the functional pipeline makes such cases more noticeable because they fall out of “regular” code execution. And the more prominent the edge cases are, the sooner we can detect and handle them:
+
+```js
+// To fix the problem with the empty list, we can split
+// the “Empty cart” and “Cart with products” states
+// into different components:
+
+const EmptyCart = () => <p>The cart is empty</p>;
+const CartProducts = ({ items }) => {};
+
+// Then, when rendering, we can first handle all the edge cases,
+// and then proceed to Happy Path:
+
+function Cart({ serverCart }) {
+  const cart = validateCart(serverCart);
+
+  if (isEmpty(cart)) return <EmptyCart />;
+  return <CartProducts items={cart} />;
+}
+```
+
+| 💡 However                                                                                                                                                                                                                                 |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| We remember that refactoring must not change the code functionality, so it's better to fix bugs separately. In one of the last chapters, we will discuss how to address problems found in the code but not mix refactoring with bug fixes. |
+
+Such edge case handling, as in the `Cart` component, helps us detect more potential edge cases in the earlier stages of development. Considering these edge cases makes the program more reliable and accurate in describing the business workflows.
+
+| 👀 By the way                                                                                                                                                                               |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Handling edge cases before working with Happy Path might remind you of the technic called “Early return.” We will discuss it more closely in the chapter on conditions and code complexity. |
+
+### DTO and Deserialization
 
 Validation at the beginning is also useful if the data can get corrupted by serialization or deserialization.[^serialization]
 
@@ -384,10 +430,10 @@ The functional pipeline suggests “preparing” data for such situations in adv
 | From the description above, you might remember some terms: mapping, projection, slice, lens, and mapping.[^mappers][^projections][^slices][^lenses]                              |
 | I decided not to use them in this book to avoid introducing too many new concepts. Instead, I will use the word “selector” in the text as a general synonym for all these terms. |
 
-Data selectors help to decouple modules that use similar but slightly different data. For example, let's look at the `Cart` component, which renders a shopping cart:
+Data selectors help to decouple modules that use similar but slightly different data. For example, let's look at the `CartProducts` component, which renders a shopping cart:
 
 ```js
-function Cart({ serverCart }) {
+function CartProducts({ serverCart }) {
   return (
     <ul>
       {serverCart.map((item) => (
@@ -406,7 +452,7 @@ Right now, it relies on the cart data structure, which comes from the server. If
 // If products start to arrive separately, we'll have to search
 // for a particular product during the rendering.
 
-function Cart({ serverCart, serverProducts }) {
+function CartProducts({ serverCart, serverProducts }) {
   return (
     <ul>
       {serverCart.map((item) => {
@@ -447,13 +493,13 @@ const cart = toClientCart(serverCart, serverProducts)
 
 // ...
 
-<Cart items={cart} />
+<CartProducts items={cart} />
 ```
 
 The component then will rely on the data structure that is defined _by us_, not a third-party:
 
 ```js
-function Cart({ items }) {
+function CartProducts({ items }) {
   return (
     <ul>
       {items.map(({ id, count, product }) => (
@@ -483,7 +529,7 @@ To render such a list, we can reuse already existing data but “prepare” them
 function toClientShowcase(products, cart) {
   return products.map((product) => ({
     ...product,
-    inCart: !!cart.find(({ productId }) => productId === product.id),
+    inCart: cart.some(({ productId }) => productId === product.id),
   }));
 }
 ```
