@@ -38,40 +38,40 @@ Mi experiencia influye en mi forma de ver el buen código. Básicamente, todo el
 
 Al leer el libro, ten en cuenta los sesgos cognitivos del autor. Sopesa las técnicas antes de utilizarlas y considera su aplicabilidad a tu proyecto.
 
-## Good to Know Before Reading
+## Es bueno saberlo antes de leerlo
 
-In the text, I assume you're already familiar with the concept of refactoring[^term] and that you have a couple of years of programming experience. I expect you've already encountered issues with task decomposition, “leaky” abstractions, separation of concerns between modules, etc.
+En el texto, asumo que ya conoces el concepto de refactorización[^term] y que tienes algunos años de experiencia programando. Espero que ya hayas encontrado problemas con la descomposición de tareas, "débiles" abstracciones, separación de conceptos entre módulos, etc.
 
-I expect you've heard about some of the “programming buzzwords” on this list:
+Espero que hayas escuchado algunas de "las palabras de moda en la programación" de esta lista:
 
-- Separation of concerns
-- Coupling and cohesion
-- Declarative style
-- Abstraction layers
-- Command-query separation
-- Referential transparency
-- Functional pipeline
-- Functional core in an imperative shell
-- Layered architecture, “Ports and Adapters”
-- Direction of dependencies
-- Immutability and statelessness
-- 12-factor applications
+- Separación de conceptos
+- Acoplamiento y cohesión
+- Estilo declarativo
+- Capas de abstracción
+- Separación entre comandos y consultas
+- Transparencia referencial
+- Canalización funcional
+- Núcleo funcional en un caparazón imperativo
+- Arquitectura en capas, "Puertos y adaptadores"
+- Dirección de las dependencias
+- Inmutabilidad y ausencia de estado
+- Aplicaciones de 12 factores
 
-You don't have to _know_ them. We'll be exploring the terms and techniques as the book progresses. But it's good if you have a rough idea about their basic meaning.
+No tienes por qué conocerlos. Exploraremos estos términos y técnicas a medida que vayamos progresando. Pero, es bueno si tienes una ligera idea sobre su significado.
 
-## Why Another Book
+## Por qué otro libro
 
-There are many books on refactoring, why do we need another one?
+Hay muchos libros escritos sobre refactorización, ¿Por qué necesitamos otro?
 
-By and large, we don't. All the principles and techniques are described in other books, most likely in a much more detailed, logical, and correct way.
+En general, no lo hacemos. Todos los principios y técnicas se describen en otros libros, muy probablemente de forma mucho más detallada, lógica y correcta.
 
-I need this text, first of all, for myself:
+Necesito este texto, en primer lugar, para mí:
 
-- To systematize what I know today;
-- To refer to a specific topic when discussing a problem;
-- To mark the level of my knowledge so that I understand where to improve and what to learn.
+- Para sistematizar lo que hoy sé;
+- Para referirme a un tema concreto cuando discuta un problema;
+- Para marcar el nivel de mis conocimientos, de modo que entienda dónde debo mejorar y qué debo aprender.
 
-However, I thought that maybe this text could be helpful to someone else, so here we are. I hope you'll find this book helpful!
+Sin embargo, pensé que tal vez este texto podría ser útil para alguien más, así que aquí está. Espero que este libro le resulte útil.
 
-[^talk]: “Refactor Like a Superhero” Talk, https://bespoyasov.me/talks/refactor-like-a-superhero/
-[^term]: Code Refactoring, Wikipedia, https://en.wikipedia.org/wiki/Code_refactoring
+[^talk]: “Refactor Like a Superhero” Charla, https://bespoyasov.me/talks/refactor-like-a-superhero/
+[^term]: Refactorización del código, Wikipedia, https://en.wikipedia.org/wiki/Code_refactoring
