@@ -29,6 +29,8 @@ If you found a typo or an error, please, open an issue or a pull request in this
 
 You can find all previous fixes and updates in the commit history of this repository.
 
+If you like the book, give it a ⭐️ on GitHub and share the link with other developers who might want to read it! 
+
 ## License & Copyright
 
 All materials are © 2022 Alex Bespoyasov. The work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).

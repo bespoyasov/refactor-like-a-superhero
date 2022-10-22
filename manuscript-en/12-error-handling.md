@@ -472,7 +472,7 @@ function robustRequest(request) {
     } catch (error) {
       const reason = errorFromStatus(error);
       if (reason) return Result.failure(reason);
-      else throw new Error("Unexpected error when fetching user data.");
+      else throw new Error("Unexpected error when making a request.");
     }
   };
 }

@@ -63,6 +63,8 @@
   - Data States
   - Unrepresentable Invalid States
   - Data Validation
+    - Missing States
+    - DTO and Deserialization
   - Data Mapping and Selectors
 - Conditions and Complexity
   - Cyclomatic and Cognitive Complexity
