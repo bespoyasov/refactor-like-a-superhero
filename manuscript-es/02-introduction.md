@@ -6,26 +6,27 @@ Para justificar la inversión de recursos y buscar un balance entre costes y ben
 
 ## Beneficios para desarrolladores
 
-Code quality is an investment in developers' free time in the future. The simpler and cleaner the code is, the less time we'll spend fixing bugs and developing new features.
+La calidad del código es una inversión en los desarrolladores, más tiempo libre en el futuro. Cuanto más simple y limpio se el código, menos tiempo invertiremos en arreglar bugs y desarrollar nuevas funcionalidades.
 
-Developers may care about different properties of the code. For example, we might want to:
+Los desarrolladores pueden preocuparse por diferentes propiedades del código. Por ejemplo, podríamos querer:
 
-- Find code related to specific parts of the application faster.
-- Eliminate misunderstanding about how the code works and avoid miscommunication and conflicts in the team.
-- Make it easier to review code and check it against business requirements.
-- Painlessly add, change, and delete code without regressions.
+- Encontrar código relacionado con partes específicas de la aplicación más rápidamente.
+- Eliminar malentendidos sobre como el código trabaja y evitar mala comunicación y conflictos en el equipo.
+- Hacer más fáciles las revisiones de código y comprobar que se cumplen los requerimientos de negocio.
+- Añadir, cambiar y eliminar código sin problemas y sin regresiones.
 - Reduce the time to find and fix bugs and make debugging process more convenient.
-- Simplify project exploration for new developers.
+- Reducir el tiempo de buscar y arreglar bugs y hacer el proceso de depuración más fácil.
+- Simplificar la exploración del proyecto a los nuevos desarrolladores.
 
-This list is incomplete. Other properties may be necessary to a particular team, varying from project to project.
+Esta lista está incompleta. Otras cualidades pueden ser necesarias para un equipo en particular, variando de proyecto a proyecto.
 
-Regular refactoring helps pay attention to code properties before problems appear. It makes daily work more efficient, gives developers extra time and resources, and prevents “big refactorings” in the future.
+Refactorizar periodicamente ayuda a prestar atención a las propiedades del código antes de que los problemas aparezcan. hace que trabajemos de forma más eficiente, dando a los desarrolladores tiempo y recursos extras y previene "grandes refactorizaciones" en el futuro.
 
-## Benefits for Business
+## Beneficios para la empresa
 
-In a perfectly organized development process, there's no need to “sell” refactoring to the business. In such projects, regular code improvement is at the core of the development, and bad code does not accumulate—no need to “explain the benefits to the business” in this case.
+En un proceso de desarrollo perfectamente organizado, no es necesario "vender" la refactorización a la empresa. En este tipo de proyectos, la mejora periódica del código es el nucleo del desarrollo, y el mal código no se acumula: no es necesario "no es necesario explicar los beneficios a la empresa" en este caso.
 
-However, there are projects where development is organized differently for various reasons. In such projects, as a rule, legacy code tends to accumulate.
+Sin embargo, hay proyectos en los que el desarrollo se organiza de forma diferente por diversas razones. En estos proyectos, por regla general, el código heredado tiende a acumularse.
 
 We may feel the need to improve the code, but we may not have enough resources to do that. A proposal to “take a week to refactor” might cause a conflict of interests because, to the business, it sounds like “we'll do nothing useful for a week.” These are the cases where we may need to “sell” the ideas of the code improvement.
 
