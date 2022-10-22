@@ -693,12 +693,15 @@ Signaling the user of problems is usually easiest at this level because there's 
 
 At the entire application or web page level, we catch all the errors and panics not handled before.
 
-Here it's useful to add logging and diagnostics for future analysis. Panics are the easiest to work with at this level because they have a stack trace that makes it easier to search for the cause of the problem when analyzing the error.
+Here it's useful to log the error in the alert monitoring tool for future analysis. Panics are the easiest to work with at this level because they have a stack trace that makes it easier to search for the cause of the problem when analyzing the error.
 
-| By the way 📌                                                                                                             |
-| :------------------------------------------------------------------------------------------------------------------------ |
-| In React, Error Boundaries can be handy in use case handlers and last resort handlers.[^errorboundaries]                  |
-| Error Boundaries errors during rendering and render a separate UI where developers can inform the user about the problem. |
+| For example 📌                                                                                                                                                                                                                     |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In React, Error Boundaries can be handy in use case handlers and last resort handlers.[^errorboundaries] Error Boundaries errors during rendering and render a separate UI where developers can inform the user about the problem. |
+
+| By the way 🗑                                                                                                                                                                                                                                                                                                        |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| In JavaScript, we can catch unhandled errors at the global object level with special events.[^eventerror][^eventrejection][^unhandlederrors] These events usually contain information about why and where the error occurred, so it is practical to combine their handling with logging and alert monitoring tools. |
 
 ## Data Prevalidation
 
@@ -738,3 +741,6 @@ When refactoring error handling, we can take advantage of this idea and move the
 [^errnode]: Error-first callbacks, Node.js Documentation, https://nodejs.org/api/errors.html#error-first-callbacks
 [^lsp]: “A behavioral notion of subtyping” by Barbara H. Liskov, Jeannette M. Wing, https://dl.acm.org/doi/10.1145/197320.197383
 [^adapter]: Adapter Pattern, Refactoring Guru, https://refactoring.guru/design-patterns/adapter
+[^eventerror]: Window: `error` event, MDN Web Docs, https://developer.mozilla.org/en-US/docs/Web/API/Window/error_event
+[^eventrejection]: Window: `unhandledrejection` event, MDN Web Docs, https://developer.mozilla.org/en-US/docs/Web/API/Window/unhandledrejection_event
+[^unhandlederrors]: “Dealing with Unhandled Exceptions”, by Alexander Zlatkov https://blog.sessionstack.com/how-javascript-works-exceptions-best-practices-for-synchronous-and-asynchronous-environments-39f66b59f012#ecc9
