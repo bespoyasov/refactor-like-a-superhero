@@ -1,10 +1,10 @@
-# Introduction
+# Introducción
 
-Refactoring requires resources. The amount of these resources depends on the size of the project and its code quality. The larger the project and the worse the code, the more difficult it is to clean it up and the more resources it may require.
+Refactorizar requiere recursos. La cantidad de estos recursos depende del tamaño del proyecto y de la calidad de su código. Cuanto más grande sea el proyecto y peor la calidad de su código, más difícil es limpiarlo y más recursos requerirá.  
 
-To justify the investment of resources and find a balance between costs and benefits, we need to understand the benefits and limitations of refactoring.
+Para justificar la inversión de recursos y buscar un balance entre costes y beneficios. necesitamos entender los beneficios y limitaciones de refactorizar.
 
-## Benefits for Developers
+## Beneficios para desarrolladores
 
 Code quality is an investment in developers' free time in the future. The simpler and cleaner the code is, the less time we'll spend fixing bugs and developing new features.
 
@@ -46,7 +46,7 @@ We can use various metrics to measure code quality. It'll be much easier to dete
 It isn't easy to name a list of _universal_ characteristics of a good code. There are a few, but they have limits in applicability, too.
 
 | For example 💡                                                                                                                                                      |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | I think of cyclomatic complexity and the number of dependencies as more or less universal characteristics. But we'll talk about them separately in future chapters. |
 
 Most of the books I've read also describe good code subjectively.[^workingeffectively][^readablecode][^cleancode] Different authors use different words, but they always emphasize “readability.”
@@ -90,7 +90,7 @@ Some of those problems have already been shaped in the form of code smells. _Cod
 There are solutions for most of the code smells. Sometimes it's enough to look at the code, find the smell, and apply a specific solution to it.
 
 | About smells 🦨                                                                                                                                                                                                                 |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Most often, examples of code smells are given in code written in OOP style, which may not be as valuable in the JavaScript world. Nevertheless, some of the smells are universal and applicable to OOP and multi-paradigm code. |
 
 [^workingeffectively]: “Working Effectively with Legacy Code” by Michael C. Feathers, https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code
