@@ -484,6 +484,7 @@
 ### Статьи
 
 - “Against Railway-Oriented Programming” by by Scott Wlaschin, https://fsharpforfunandprofit.com/posts/against-railway-oriented-programming/
+- “Dealing with Unhandled Exceptions”, by Alexander Zlatkov https://blog.sessionstack.com/how-javascript-works-exceptions-best-practices-for-synchronous-and-asynchronous-environments-39f66b59f012#ecc9
 - “Distinguish Business Exceptions from Technical” by Dan Bergh Johnssonm https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_21/
 - “Don't Ignore that Error!” by Pete Goodliffe, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_26/
 - “The Error Model” by Joe Duffy, http://joeduffyblog.com/2016/02/07/the-error-model/
