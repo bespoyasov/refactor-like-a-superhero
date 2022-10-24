@@ -62,7 +62,7 @@ If we don't have a version control system, we can try to collect indirect indica
 
 ## Estimates
 
-If we decide to refactor a particular piece of code, we'll need to estimate the required time.
+If we decide to refactor a particular piece of code, we'll need to evaluate the size of the task and the required time.
 
 To understand how much time a piece of code can take to refactor, we should first point out the places that raise questions. To find out what problems we're dealing with, we can lay out those questions in the following table:
 
@@ -71,11 +71,15 @@ To understand how much time a piece of code can take to refactor, we should firs
 | Clear   | Research is unnecessary, clear how to solve, and takes minimal time. | Clear how to solve but definitely takes a long time.                   |
 | Unclear | The problem is small and isolated but might need research.           | Definitely need research, lots of hidden connections, unfamiliar area. |
 
-The amount of time needed directly depends on the proportion of topics in this table. The more complex and unclear questions we have, the harder it is to give an exact estimate.
+The amount of time needed directly depends on the proportion of topics in this table. The more complex and unclear questions we have, the harder it is to plan the development iteration.
 
 Tasks from the last table cell are the most difficult to plan. For such problems, we can suggest the team use the “Hypothesis per Iteration” method. Each assumption about the problem would be a separate development iteration in this method. Disproving or confirming that assumption is the goal of the iteration.
 
-Testing one assumption doesn't take as much time as examining the whole problem. Iterations with such checks are easier to plan and conduct. At the same time, with each tested assumption, we understand more about the problem, and sooner or later, it'll move from the lower right cell to another cell in the table. Then we can give a more accurate estimate.
+Testing one assumption doesn't take as much time as examining the whole problem. Iterations with such checks are easier to plan and conduct. At the same time, with each tested assumption, we understand more about the problem, and sooner or later, it'll move from the lower right cell to another cell in the table. Then we can plan the development more thoroughly.
+
+| By the way 👀                                                                                                                                                                                                                                                          |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Evaluating the scope and size of the task can be helpful even if the team follows the “No Estimates” methodology.[^noestimates] For example, with the evaluation, it is easier to decide when to change the work strategy without wasting extra resources on the task. |
 
 ## Refactoring Large Chunks of Code
 
@@ -124,3 +128,4 @@ If we measure these metrics before and after refactoring, we can compare the qua
 [^opportunistic]: “Opportunistic Refactoring” by Martin Fowler https://martinfowler.com/bliki/OpportunisticRefactoring.html
 [^codethatfits]: “Code That Fits in Your Head” by Mark Seemann, https://www.goodreads.com/book/show/57345272-code-that-fits-in-your-head
 [^wherefrom]: “Where Does Bad Code Come From?” https://youtu.be/7YpFGkG-u1w
+[^noestimates]: “No Estimates” by Allen Holub, https://youtu.be/QVBlnCTu9Ms
