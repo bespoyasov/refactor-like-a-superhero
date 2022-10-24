@@ -8,9 +8,9 @@ As we work, we want the changes to be as helpful as possible while staying withi
 
 A small step is a minimal change that makes sense. An excellent example of a small step is an _atomic commit_.[^atomic] Such a commit contains a meaningful functionality change and evolves the code from one working state to another. We can develop and change the code base with atomic commits while keeping it valid at every point.
 
-| By the way 💡                                                                                                                                                                                                                                    |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Atomic commits allow us to bisect the repository in the future while searching for bugs.[^bisect] When code is valid and can compile in each of the commits, we can “time travel” through the repository by switching between different commits. |
+| By the way 💡                                                                                                                                                                                                                                                    |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Atomic commits allow us to bisect the repository in the future while searching for bugs.[^bisect][^bettercommits] When code is valid and can compile in each of the commits, we can “time travel” through the repository by switching between different commits. |
 
 The size of commits depends on the habits and preferences of the team. Personally, my rule of thumb is “the smaller the commit, the better.” For example, I commit separately even function and variable renames on my projects.
 
@@ -114,3 +114,4 @@ It's better to refactor the application code and test code one at a time. If, wh
 [^beyond]: “Beyond Legacy Code” by David Scott Bernstein, https://www.goodreads.com/book/show/26088456-beyond-legacy-code
 [^tpp]: Transformation Priority Premise, Wikipedia https://en.wikipedia.org/wiki/Transformation_Priority_Premise
 [^shorttermmemory]: Working memory, Capacity, Wikipedia, https://en.wikipedia.org/wiki/Working_memory#Capacity
+[^bettercommits]: “Write Better Commits, Build Better Projects” by Victoria Dye, https://github.blog/2022-06-30-write-better-commits-build-better-projects/
