@@ -115,6 +115,7 @@
 - “Convenience Is not an -ility” by Gregor Hohpe, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_19/
 - “Deploy Early and Often” by Steve Berczuk, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_20/
 - “How to Get Your Code Reviewed Faster” by Artem Sapegin, https://blog.sapegin.me/all/faster-code-reviews/
+- “Write Better Commits, Build Better Projects” by Victoria Dye, https://github.blog/2022-06-30-write-better-commits-build-better-projects/
 - Не надо заставлять, надо автоматизировать, https://bespoyasov.ru/blog/do-not-push-automate-instead/
 
 ### Связанные понятия
@@ -185,6 +186,7 @@
 
 - “7 Ineffective Coding Habits of Many Programmers” by Kevlin Henney, https://youtu.be/ZsHMHukIlJY
 - “All the Little Things” by Sandi Metz, https://youtu.be/8bZh5LMaSmE
+- “Evolutionary Software Architectures” by Neal Ford, https://youtu.be/CglSFhwbI3s
 - “Transforming Code into Beautiful, Idiomatic Python” https://youtu.be/OSGv2VnC0go
 - «Антипаттерны общие для всех парадигм» Тимур Шемсединов, https://youtu.be/NMUsUiFokr4
 - «Рефакторинг: причины, цели, техники и процесс» Тимур Шемсединов, https://youtu.be/z73wmpdweQ4
@@ -277,6 +279,7 @@
 
 - “7 Ineffective Coding Habits of Many Programmers” by Kevlin Henney, https://youtu.be/ZsHMHukIlJY
 - “All the Little Things” by Sandi Metz, https://youtu.be/8bZh5LMaSmE
+- “Category Theory in Life” by Eugenia Cheng, https://youtu.be/ho7oagHeqNc
 - “Design, Composition, and Performance” by Rich Hickey, https://youtu.be/MCZ3YgeEUPg
 - “Functional Design Patterns” by Scott Wlaschin, https://youtu.be/srQt1NAHYC0
 - «Антипаттерны общие для всех парадигм» Тимур Шемсединов, https://youtu.be/NMUsUiFokr4
@@ -286,6 +289,7 @@
 - “Climbing the infinite ladder of abstraction” by Alexis King, https://lexi-lambda.github.io/blog/2016/08/11/climbing-the-infinite-ladder-of-abstraction/
 - “Coupling, Cohesion & Connascence” by Khalil Stemmler, https://khalilstemmler.com/wiki/coupling-cohesion-connascence/
 - “Maintain a Single Layer of Abstraction at a Time” by Khalil Stemmler, https://khalilstemmler.com/articles/oop-design-principles/maintain-a-single-layer-of-abstraction/
+- “Out of the Tar Pit”, by Ben Moseley and Peter Marks, https://github.com/papers-we-love/papers-we-love/blob/master/design/out-of-the-tar-pit.pdf
 - “The Power of Composition” by Scott Wlaschin, https://fsharpforfunandprofit.com/composition/
 - “Prefer Domain-Specific Types to Primitive Types” by Einar Landre, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_65/
 - «Полиморфизм простыми словами» Sergey Ufocoder, https://medium.com/devschacht/polymorphism-207d9f9cd78
@@ -324,6 +328,7 @@
 
 ### Видео
 
+- “CQRS and Event Sourcing” by Greg Young, https://youtu.be/JHGkaShoyNs
 - “Is Domain-Driven Design Overrated?” by Stefan Tilkov, https://youtu.be/ZZp9RQEGeqQ
 - “Functional architecture: The pits of success” by Mark Seemann, https://youtu.be/US8QG9I1XW0
 - “Functional Design Patterns” by Scott Wlaschin, https://youtu.be/srQt1NAHYC0
@@ -399,6 +404,7 @@
 - “Decoupling decisions from effects” by Mark Seemann, https://blog.ploeh.dk/2016/09/26/decoupling-decisions-from-effects/
 - “Destroy all `if`s” by John A De Goes, https://degoes.net/articles/destroy-all-ifs
 - “Functional design is intrinsically testable” by Mark Seemann, https://blog.ploeh.dk/2015/05/07/functional-design-is-intrinsically-testable/
+- “Out of the Tar Pit”, by Ben Moseley and Peter Marks, https://github.com/papers-we-love/papers-we-love/blob/master/design/out-of-the-tar-pit.pdf
 - “Parse, don’t validate” by Alexis King, https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/
 - “Why should you return early?” by Szymon Krajewski https://szymonkrajewski.pl/why-should-you-return-early/
 - «Распутываем сложные условия в коде» isqua, https://isqua.ru/blog/2017/07/09/simplify-if-else/
@@ -435,6 +441,7 @@
 
 ### Видео
 
+- “CQRS and Event Sourcing” by Greg Young, https://youtu.be/JHGkaShoyNs
 - “Functional architecture: The pits of success” by Mark Seemann, https://youtu.be/US8QG9I1XW0
 - «Быстрорастворимое проектирование» Максим Аршинов, https://youtu.be/qJPwSvDLmQE
 - «Грамотная работа с ошибками» Андрей Мелихов, https://youtu.be/eh5flHypkDg
@@ -450,6 +457,7 @@
 - “Functional Core in Imperative Shell” by Gary Bernhardt, https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell
 - “Impureim Sandwich” by Mark Seemann, https://blog.ploeh.dk/2020/03/02/impureim-sandwich/
 - “Message Passing Leads to Better Scalability in Parallel Systems” by Russel Winder, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_57/
+- “Out of the Tar Pit”, by Ben Moseley and Peter Marks, https://github.com/papers-we-love/papers-we-love/blob/master/design/out-of-the-tar-pit.pdf
 - “A pipe operator for JavaScript” by Axel Rauschmayer, https://2ality.com/2022/01/pipe-operator.html
 - «Разделение функций на команды и запросы», https://bespoyasov.ru/blog/commands-and-queries/
 
@@ -499,6 +507,7 @@
 - “Replacing Throwing Exceptions with Notification in Validations” by Martin Fowler, https://martinfowler.com/articles/replaceThrowWithNotification.html
 - “Stop catching errors in TypeScript; Use the Either type to make your code predictable” by Anthony Manning-Franklin, https://antman-does-software.com/stop-catching-errors-in-typescript-use-the-either-type-to-make-your-code-predictable
 - “Using Results in TypeScript” by Dan Imhoff, https://imhoff.blog/posts/using-results-in-typescript
+- “When life gives you lemons, write better error messages” by Jenni Nadler, https://wix-ux.com/when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f
 - “Why should you return early?” by Szymon Krajewski https://szymonkrajewski.pl/why-should-you-return-early/
 - «Декларативная валидация с помощью правило-ориентированного подхода и функционального программирования», https://bespoyasov.ru/blog/declarative-rule-based-validation/
 
@@ -577,6 +586,7 @@
 
 ### Видео
 
+- “Category Theory in Life” by Eugenia Cheng, https://youtu.be/ho7oagHeqNc
 - “The Grand Unified Theory of Clean Architecture and Test Pyramid” by Guilherme Ferreira, https://youtu.be/gHSpj2zM9Nw
 - “Functional Design Patterns” by Scott Wlaschin, https://youtu.be/srQt1NAHYC0
 - «Контрактное программирование» Тимур Шемсединов, https://youtu.be/K5_kSUvbGEQ
@@ -617,7 +627,9 @@
 
 ### Видео
 
+- “CQRS and Event Sourcing” by Greg Young, https://youtu.be/JHGkaShoyNs
 - “Design, Composition, and Performance” by Rich Hickey, https://youtu.be/MCZ3YgeEUPg
+- “Evolutionary Software Architectures” by Neal Ford, https://youtu.be/CglSFhwbI3s
 - “Is Domain-Driven Design Overrated?” by Stefan Tilkov, https://youtu.be/ZZp9RQEGeqQ
 - “The Grand Unified Theory of Clean Architecture and Test Pyramid” by Guilherme Ferreira, https://youtu.be/gHSpj2zM9Nw
 - “Functional architecture: The pits of success” by Mark Seemann, https://youtu.be/US8QG9I1XW0
@@ -706,6 +718,7 @@
 
 ### Видео
 
+- “Category Theory in Life” by Eugenia Cheng, https://youtu.be/ho7oagHeqNc
 - “Type Level Programming in TypeScript” by Gabriel Vergnaud, https://youtu.be/vGVvJuazs84
 
 ### Статьи
@@ -774,6 +787,8 @@
 
 - “How to ask good questions” by Julia Evans, https://jvns.ca/blog/good-questions/
 - “Information Density and Linguistic Encoding”, by Matthew W. Crocker, Vera Demberg, Elke Teich https://www.researchgate.net/publication/283938800_Information_Density_and_Linguistic_Encoding_IDeaL
+- “When life gives you lemons, write better error messages” by Jenni Nadler, https://wix-ux.com/when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f
+- “Write Better Commits, Build Better Projects” by Victoria Dye, https://github.blog/2022-06-30-write-better-commits-build-better-projects/
 - «Копипаста в коде», https://bespoyasov.ru/blog/copy-paste/
 
 ### Инструменты
@@ -793,11 +808,14 @@
 - “Code That Fits in Your Head” by Mark Seemann, https://www.goodreads.com/book/show/57345272-code-that-fits-in-your-head
 - “Refactoring” by Martin Fowler, Kent Beck, https://www.goodreads.com/book/show/44936.Refactoring
 - “Working Effectively with Legacy Code” by Michael C. Feathers, https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code
+- “Write Better Commits, Build Better Projects” by Victoria Dye, https://github.blog/2022-06-30-write-better-commits-build-better-projects/
 - “Your Code As a Crime Scene” by Adam Tornhill, https://www.goodreads.com/book/show/23627482-your-code-as-a-crime-scene
 
 ### Видео
 
 - “All the Little Things” by Sandi Metz, https://youtu.be/8bZh5LMaSmE
+- “Evolutionary Software Architectures” by Neal Ford, https://youtu.be/CglSFhwbI3s
+- “No Estimates” by Allen Holub, https://youtu.be/QVBlnCTu9Ms
 - “Preventing the Collapse of Civilization” by Jonathan Blow, https://youtu.be/pW-SOdj4Kkk
 - “Where Does Bad Code Come From?” https://youtu.be/7YpFGkG-u1w
 - «Рефакторинг: причины, цели, техники и процесс» Тимур Шемсединов, https://youtu.be/z73wmpdweQ4
