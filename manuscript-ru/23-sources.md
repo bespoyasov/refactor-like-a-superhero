@@ -115,6 +115,7 @@
 - “Convenience Is not an -ility” by Gregor Hohpe, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_19/
 - “Deploy Early and Often” by Steve Berczuk, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_20/
 - “How to Get Your Code Reviewed Faster” by Artem Sapegin, https://blog.sapegin.me/all/faster-code-reviews/
+- “Use Git Tactically” by Mark Seeman, https://stackoverflow.blog/2022/04/06/use-git-tactically/
 - “Write Better Commits, Build Better Projects” by Victoria Dye, https://github.blog/2022-06-30-write-better-commits-build-better-projects/
 - Не надо заставлять, надо автоматизировать, https://bespoyasov.ru/blog/do-not-push-automate-instead/
 
@@ -159,6 +160,7 @@
 - How Readable Code Is, https://howreadable.com
 - “Know Your IDE” by Heinz Kabutz, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_45/
 - “Know Your Next Commit” by Dan Bergh Johnsson, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_47/
+- “Use Git Tactically” by Mark Seeman, https://stackoverflow.blog/2022/04/06/use-git-tactically/
 - “Why robots should format our code for us”, https://blog.sapegin.me/all/prettier/
 
 ### Инструменты
@@ -788,6 +790,7 @@
 
 - “How to ask good questions” by Julia Evans, https://jvns.ca/blog/good-questions/
 - “Information Density and Linguistic Encoding”, by Matthew W. Crocker, Vera Demberg, Elke Teich https://www.researchgate.net/publication/283938800_Information_Density_and_Linguistic_Encoding_IDeaL
+- “Use Git Tactically” by Mark Seeman, https://stackoverflow.blog/2022/04/06/use-git-tactically/
 - “When life gives you lemons, write better error messages” by Jenni Nadler, https://wix-ux.com/when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f
 - “Write Better Commits, Build Better Projects” by Victoria Dye, https://github.blog/2022-06-30-write-better-commits-build-better-projects/
 - «Копипаста в коде», https://bespoyasov.ru/blog/copy-paste/
