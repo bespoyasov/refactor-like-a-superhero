@@ -60,11 +60,11 @@ If we use git “tactically” and check all the changes since the previous comm
   <figcaption><em>Git shows all changes the formatter caused</em><br><br></figcaption>
 </figure>
 
-...But looking for such errors manually is unreliable, so it is better to automate the search too.
+...But looking for such errors only manually is unreliable, so it is better to automate this search as well.
 
-The most convenient strategy is to cover the code with a reliable test set before using the formatters. If the tests run beside the editor, we will instantly see what exactly was broken by the formatter.
+The most reliable strategy is to cover the code with a set of tests before using the formatters. If the tests run beside the editor, we will instantly see what exactly was broken by the formatter. Then we will need to check the results of using automatic tools manually less often.
 
-Formatting can be a separate refactoring technique, so the result can be a commit or even an independent PR. The main goal is to integrate into the main branch as early as possible so we don't have to handle complex merge conflicts between formatting and other code changes made by other developers.
+Applying a formatter can be a refactoring technique on its own so the result can be a commit or even a separate PR. Our main goal is to integrate the changes into the main branch as early as possible so we don't have to handle complex merge conflicts between our changed formatting and updates made by other developers.
 
 ## Code Linting
 
@@ -133,7 +133,7 @@ type AccountProps = { firstName: string };
 const Account = ({ firstName: name }: AccountProps) => <>{name}</>;
 ```
 
-To avoid this, we can use the “tactical” git again. We can study the diff from the latest commit and check what was renamed and how.
+To avoid this, we can use the benefits of “tactical” git again. We can study the diff from the latest commit and check what was renamed and how.
 
 <figure>
   <img src="../images/05-git-diff.png" width="800">

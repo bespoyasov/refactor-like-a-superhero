@@ -24,7 +24,7 @@ Blocking tasks should be avoided in general, but especially when refactoring cod
 
 In addition, small steps allow us to “postpone” refactoring at any time and switch to another task. If we work with git, we can use “stash” to save unfinished work via `git stash`. That way, the developers become more flexible and respond faster to sudden bugs and other problems.
 
-The results of small steps are easier to check and evaluate before committing. Such checks help us filter out changes that are not relevant to the current task. For example, accidental changes caused by automated formatters or linters.
+Also, the results of small steps are easier to check and evaluate before committing. Such checks help us filter out changes that are not relevant to the current task. For example, they can help us spot accidental changes caused by automated formatters or linters.
 
 And lastly, small steps are easier to describe in commit messages. The scope of such changes is less, so it is easier to explain their meaning in a short sentence.
 
@@ -75,9 +75,9 @@ As long as we don't mix different techniques in one commit, it's easier for us t
 
 Complex techniques that are too big for a single commit can be broken up into steps. We can commit each of these steps separately. But when splitting the task, we should remember that each step must leave the code in a valid state.
 
-| By the way 👀                                                                                                                                                                                                   |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Such a combination of atomic commits, continuous integration, and checks before committing changes is also called the “tactical” git.[^tacticalgit] We will also use this term later in the following chapters. |
+| By the way 👀                                                                                                                                                                                              |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Such a combination of atomic commits, continuous integration, and checks before committing changes is sometimes called the “tactical” git.[^tacticalgit] We will occasionally use this term later as well. |
 
 ## No Features, No Bug Fixes
 
