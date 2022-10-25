@@ -150,6 +150,7 @@ How to use all the capabilities of automated code refactoring tools and analyzer
 ### Blog Posts and Studies
 
 - “Automate Your Coding Standard” by Filip van Laenen, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_04/
+- “Automatic semicolon insertion in JavaScript” by Dr. Axel Rauschmayer, https://2ality.com/2011/05/semicolon-insertion.html
 - “Code Layout Matters” by Steve Freeman, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_13/
 - How Readable Code Is, https://howreadable.com
 - “Know Your IDE” by Heinz Kabutz, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_45/
