@@ -22,9 +22,11 @@ Smaller steps encourage us to decompose tasks into simpler ones. This way, exten
 
 Blocking tasks should be avoided in general, but especially when refactoring code. If the whole team is busy with refactoring, it can become expensive. The precedent of being expensive can deprive the project of resources for refactoring at all in the future.
 
-Except for that, small steps allow you to “postpone” refactoring at any time and switch to another task. If we're working with git, we can use “stash” to save unfinished work via `git stash`.
+In addition, small steps allow us to “postpone” refactoring at any time and switch to another task. If we work with git, we can use “stash” to save unfinished work via `git stash`. That way, the developers become more flexible and respond faster to sudden bugs and other problems.
 
-And lastly, small changes are easier to describe in commit messages. The scope of such changes is less, so it's easier to explain their meaning in a short sentence.
+The results of small steps are easier to check and evaluate before committing. Such checks help us filter out changes that are not relevant to the current task. For example, accidental changes caused by automated formatters or linters.
+
+And lastly, small steps are easier to describe in commit messages. The scope of such changes is less, so it is easier to explain their meaning in a short sentence.
 
 ## Small but Detailed Pull Requests
 
