@@ -34,7 +34,7 @@ function ProductList({ products }) {
 
 It's better to automate code formatting. In the example above, I used automatic code formatted called Prettier,[^prettier] but the particular tool is not as important here as the overall approach. If the team is not satisfied with Prettier, we can choose another formatter and use it. The point is to _automate the process_.
 
-Sometimes the formatter might break the code, for example, when it doesn't consider ASI (Automatic Semicolon Insertion)[^asijs] in JavaScript:
+However, sometimes the formatter might break the code, for example, when it doesn't consider ASI (Automatic Semicolon Insertion)[^asijs] in JavaScript:
 
 ```
 // Before applying formatter:
@@ -53,7 +53,16 @@ export function connect(userChannel, appChannel, credentials) {
 }
 ```
 
-To notice such errors quicker, we need tests. If the tests run beside the editor, we'll instantly see what exactly was broken by the formatter.
+If we use git “tactically” and check all the changes since the previous commit, we may notice this error in the diff ourselves:
+
+<figure>
+  <img src="../images/05-tactical-git.png" width="800">
+  <figcaption><em>Git shows all changes the formatter caused</em><br><br></figcaption>
+</figure>
+
+...But looking for such errors manually is unreliable, so it is better to automate the search too.
+
+The most convenient strategy is to cover the code with a reliable test set before using the formatters. If the tests run beside the editor, we will instantly see what exactly was broken by the formatter.
 
 Formatting can be a separate refactoring technique, so the result can be a commit or even an independent PR. The main goal is to integrate into the main branch as early as possible so we don't have to handle complex merge conflicts between formatting and other code changes made by other developers.
 
