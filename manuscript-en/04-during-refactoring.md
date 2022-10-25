@@ -75,6 +75,10 @@ As long as we don't mix different techniques in one commit, it's easier for us t
 
 Complex techniques that are too big for a single commit can be broken up into steps. We can commit each of these steps separately. But when splitting the task, we should remember that each step must leave the code in a valid state.
 
+| By the way 👀                                                                                                                                                                                                   |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Such a combination of atomic commits, continuous integration, and checks before committing changes is also called the “tactical” git.[^tacticalgit] We will also use this term later in the following chapters. |
+
 ## No Features, No Bug Fixes
 
 During refactoring, we may find an idea for a feature or a piece of code that doesn't work correctly. We may want to “fix it along the way,” but it's better not to mix bug fixes and new features with refactoring.
@@ -117,3 +121,4 @@ It's better to refactor the application code and test code one at a time. If, wh
 [^tpp]: Transformation Priority Premise, Wikipedia https://en.wikipedia.org/wiki/Transformation_Priority_Premise
 [^shorttermmemory]: Working memory, Capacity, Wikipedia, https://en.wikipedia.org/wiki/Working_memory#Capacity
 [^bettercommits]: “Write Better Commits, Build Better Projects” by Victoria Dye, https://github.blog/2022-06-30-write-better-commits-build-better-projects/
+[^tacticalgit]: “Use Git Tactically” by Mark Seeman, https://stackoverflow.blog/2022/04/06/use-git-tactically/
