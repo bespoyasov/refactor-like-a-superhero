@@ -133,7 +133,7 @@ type AccountProps = { firstName: string };
 const Account = ({ firstName: name }: AccountProps) => <>{name}</>;
 ```
 
-To avoid this, we should study the diff from the latest commit and check what was renamed and how.
+To avoid this, we can use the “tactical” git again. We can study the diff from the latest commit and check what was renamed and how.
 
 <figure>
   <img src="../images/05-git-diff.png" width="800">
