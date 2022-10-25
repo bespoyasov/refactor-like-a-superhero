@@ -113,6 +113,7 @@ What to avoid during refactoring, how to make the process easier. How to isolate
 - “Deploy Early and Often” by Steve Berczuk, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_20/
 - “Don't Push: Automate Instead” by Alex Bespoyasov, https://bespoyasov.me/blog/do-not-push-automate-instead/
 - “How to Get Your Code Reviewed Faster” by Artem Sapegin, https://blog.sapegin.me/all/faster-code-reviews/
+- “Use Git Tactically” by Mark Seeman, https://stackoverflow.blog/2022/04/06/use-git-tactically/
 - “Write Better Commits, Build Better Projects” by Victoria Dye, https://github.blog/2022-06-30-write-better-commits-build-better-projects/
 
 ### Related Concepts
@@ -155,6 +156,7 @@ How to use all the capabilities of automated code refactoring tools and analyzer
 - How Readable Code Is, https://howreadable.com
 - “Know Your IDE” by Heinz Kabutz, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_45/
 - “Know Your Next Commit” by Dan Bergh Johnsson, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_47/
+- “Use Git Tactically” by Mark Seeman, https://stackoverflow.blog/2022/04/06/use-git-tactically/
 - “Why robots should format our code for us”, https://blog.sapegin.me/all/prettier/
 
 ### Tools
@@ -762,6 +764,7 @@ How to synchronize the sources of information in a project. How and why to make 
 - “Copypaste in Code” by Alex Bespoyasov, https://bespoyasov.me/blog/copy-paste/
 - “How to ask good questions” by Julia Evans, https://jvns.ca/blog/good-questions/
 - “Information Density and Linguistic Encoding”, by Matthew W. Crocker, Vera Demberg, Elke Teich https://www.researchgate.net/publication/283938800_Information_Density_and_Linguistic_Encoding_IDeaL
+- “Use Git Tactically” by Mark Seeman, https://stackoverflow.blog/2022/04/06/use-git-tactically/
 - “When life gives you lemons, write better error messages” by Jenni Nadler, https://wix-ux.com/when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f
 - “Write Better Commits, Build Better Projects” by Victoria Dye, https://github.blog/2022-06-30-write-better-commits-build-better-projects/
 
