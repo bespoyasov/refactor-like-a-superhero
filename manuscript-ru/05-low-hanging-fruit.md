@@ -38,7 +38,7 @@ function ProductList({ products }) {
 
 Форматирование лучше автоматизировать. В примере выше я использовал Prettier,[^prettier] но конкретный инструмент здесь не так важен, как подход в целом. Если команду не устраивает Prettier, можно выбрать другой форматер и использовать его. Суть в _автоматизации процесса_.
 
-Бывает, что форматер ломает работу кода, например, при неосторожном переносе фрагмента на новую строку:
+Бывает, что форматер ломает работу кода, например, если не учитывает особенности ASI (Automatic Semicolon Insertion)[^asijs] в JavaScript:
 
 ```
 // До форматирования:
@@ -139,3 +139,4 @@ const Account = ({ firstName: name }: AccountProps) => <>{name}</>;
 [^proposals]: List of EcmaScript Proposals, https://proposals.es
 [^caniuse]: Can I Use, support tables for web, https://caniuse.com
 [^vscode]: Refactoring Source Code in VSCode, https://code.visualstudio.com/docs/editor/refactoring
+[^asijs]: “Automatic semicolon insertion in JavaScript” by Dr. Axel Rauschmayer, https://2ality.com/2011/05/semicolon-insertion.html

@@ -34,7 +34,7 @@ function ProductList({ products }) {
 
 It's better to automate code formatting. In the example above, I used automatic code formatted called Prettier,[^prettier] but the particular tool is not as important here as the overall approach. If the team is not satisfied with Prettier, we can choose another formatter and use it. The point is to _automate the process_.
 
-Sometimes the formatter might break the code, for example, when it carelessly moves a fragment to a new line:
+Sometimes the formatter might break the code, for example, when it doesn't consider ASI (Automatic Semicolon Insertion)[^asijs] in JavaScript:
 
 ```
 // Before applying formatter:
@@ -139,3 +139,4 @@ Linters and tests help us avoid name conflicts and other bugs. For example, we c
 [^proposals]: List of EcmaScript Proposals, https://proposals.es
 [^caniuse]: Can I use, support tables for the web, https://caniuse.com
 [^vscode]: Refactoring Source Code in VSCode, https://code.visualstudio.com/docs/editor/refactoring
+[^asijs]: “Automatic semicolon insertion in JavaScript” by Dr. Axel Rauschmayer, https://2ality.com/2011/05/semicolon-insertion.html
