@@ -43,18 +43,17 @@ function ProductList({ products }) {
 ```
 // До форматирования:
 
-function setDiscount(discount) {
-  if (user.isVip) order.discount = discount; order.total -= discount
+export function connect(userChannel, appChannel, credentials) {
+  establishConnection(credentials)
+  [userChannel, appChannel].forEach(handshake)
 }
 
 // После:
 
-function setDiscount(discount) {
-  if (user.isVip) {
-    order.discount = discount;
-  }
-
-  order.total -= discount;
+export function connect(userChannel, appChannel, credentials) {
+  establishConnection(credentials)[(userChannel, appChannel)].forEach(
+    handshake
+  );
 }
 ```
 

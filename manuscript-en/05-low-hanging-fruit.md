@@ -39,18 +39,17 @@ Sometimes the formatter might break the code, for example, when it carelessly mo
 ```
 // Before applying formatter:
 
-function setDiscount(discount) {
-  if (user.isVip) order.discount = discount; order.total -= discount
+export function connect(userChannel, appChannel, credentials) {
+  establishConnection(credentials)
+  [userChannel, appChannel].forEach(handshake)
 }
 
 // After:
 
-function setDiscount(discount) {
-  if (user.isVip) {
-    order.discount = discount;
-  }
-
-  order.total -= discount;
+export function connect(userChannel, appChannel, credentials) {
+  establishConnection(credentials)[(userChannel, appChannel)].forEach(
+    handshake
+  );
 }
 ```
 
