@@ -640,7 +640,7 @@ How poor architecture can hamper refactoring. How to use ubiquitous language to 
 ### Tools
 
 - Anti-corruption Layer Pattern, https://docs.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
-- Evey Programmer Should Know, Architecture, https://github.com/mtdvio/every-programmer-should-know#architecture
+- Every Programmer Should Know, Architecture, https://github.com/mtdvio/every-programmer-should-know#architecture
 - Feature-Sliced Design, Architectural methodology for frontend projects, https://feature-sliced.design
 - Ubiquitous Language, https://martinfowler.com/bliki/UbiquitousLanguage.html
 
@@ -771,7 +771,7 @@ How to synchronize the sources of information in a project. How and why to make 
 ### Tools
 
 - Architectural Decision Records, ADR, https://adr.github.io
-- Evey Programmer Should Know, Practices, https://github.com/mtdvio/every-programmer-should-know#practices
+- Every Programmer Should Know, Practices, https://github.com/mtdvio/every-programmer-should-know#practices
 - JSDoc Reference, TypeScript Documentation https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
 
 ## Refactoring as a Process
@@ -807,5 +807,5 @@ How to decide whether to refactor or rewrite the code. The information to collec
 
 ### Tools
 
-- Evey Programmer Should Know, Engineering Philosophy, https://github.com/mtdvio/every-programmer-should-know#engineering-philosophy
-- Evey Programmer Should Know, Practices, https://github.com/mtdvio/every-programmer-should-know#practices
+- Every Programmer Should Know, Engineering Philosophy, https://github.com/mtdvio/every-programmer-should-know#engineering-philosophy
+- Every Programmer Should Know, Practices, https://github.com/mtdvio/every-programmer-should-know#practices
