@@ -11,7 +11,7 @@ It is a book about how to efficiently refactor code. In it, we'll discuss the be
 
 ## Manuscript
 
-The book is currently available in 2 languages:
+The book is available in 2 languages:
 
 - [In English](./manuscript-en/README.md)
 - [In Russian](./manuscript-ru/README.md)
