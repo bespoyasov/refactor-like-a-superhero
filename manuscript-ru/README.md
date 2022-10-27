@@ -1,8 +1,8 @@
 # Рефакторинг на максималках
 
 <figure>
-  <img src="../images/cover-ru.png" width="300">
-  <figcaption><em>Обложка книги «Рефакторинг на максималках»</em></figcaption>
+  <img src="../images/cover.png" width="300">
+  <figcaption><em>Обложка книги (англоязычная версия)</em></figcaption>
 </figure>
 
 ---

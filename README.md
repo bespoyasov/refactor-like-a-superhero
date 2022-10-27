@@ -1,8 +1,8 @@
 # Refactor Like a Superhero
 
 <figure>
-  <img src="./images/cover-en.png" width="300">
-  <figcaption><em>“Refactor Like a Superhero” book cover</em></figcaption>
+  <img src="./images/cover.png" width="300">
+  <figcaption><em>Book cover</em></figcaption>
 </figure>
 
 ---
@@ -29,7 +29,7 @@ If you found a typo or an error, please, open an issue or a pull request in this
 
 You can find all previous fixes and updates in the commit history of this repository.
 
-If you like the book, give it a ⭐️ on GitHub and share the link with other developers who might want to read it! 
+If you like the book, give it a ⭐️ on GitHub and share the link with other developers who might want to read it!
 
 ## License & Copyright
 
