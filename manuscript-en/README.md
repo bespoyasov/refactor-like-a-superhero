@@ -7,7 +7,9 @@
 
 ---
 
-It is a book about how to efficiently refactor code. In it, we'll discuss the benefits of refactoring for developers and business, how to search for problems in your code, and how to solve them.
+It is a book about how to refactor code efficiently and without pain. In it, we'll discuss the benefits of refactoring for development and business, explore how to search for problems in your code, and investigate possible solutions for those problems.
+
+We will use code examples primarily in JavaScript and sometimes in TypeScript. However, the technics we're going to discuss can be used in other high-level languages as well. So if you don't code in JS/TS but feel comfortable around them, you might find something that you can adopt to your language too.
 
 ## [Table of Contents](./TOC.md)
 
