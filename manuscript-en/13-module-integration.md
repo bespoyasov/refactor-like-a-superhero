@@ -4,7 +4,7 @@ Complex applications consist of many parts. The interaction between the parts af
 
 ## Coupling and Cohesion
 
-The fear of changing code notices bad code. It arises when we feel like “everything will fall apart” or “we'll have to update a lot of code” after making a change. Such feelings appear when application modules know too much about each other.
+Complicated code can cause fear of changing it. If we feel like “everything will fall apart” or “we'll have to update a lot of code” after making a change, we don't want to touch it because we don't feel safe doing so. Such feelings appear when application modules know too much about each other.
 
 | By the way 🧩                                                                                                                                                              |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
