@@ -289,7 +289,7 @@ function updateUserInfo(event) {
 }
 ```
 
-To check if the code has gotten better, we can try and write tests for data transformation logic. In the first version of the code, the test would look like this:
+To check if the code has gotten better, we can try and write tests for data transformation logic.[^testingprinciples] In the first version of the code, the test would look like this:
 
 ```js
 // 1. In the case of `updateUserInfo`,
@@ -358,10 +358,10 @@ Interacting with the DOM becomes a separate task. The mocks for the DOM will app
 
 This way, we simplify the function code and improve the separation of concerns between the different parts of the application.
 
-| By the way 🔌                                                                                                                       |
-| :---------------------------------------------------------------------------------------------------------------------------------- |
-| Here, we don't imply that “mocks are always bad.” Sometimes mocks are the only way to test the desired effect, such as in adapters. |
-| The point is that if we have to write a mock to test _logic_, there's likely a better way to organize the code.                     |
+| By the way 🔌                                                                                                                                           |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Here, we don't imply that “mocks are always bad.” Sometimes mocks are the only way to test the desired effect, such as in adapters.[^testingprinciples] |
+| The point is that if we have to write a mock to test _logic_, there's likely a better way to organize the code.                                         |
 
 After refactoring, we can see that the task of the `updateUserInfo` function has turned into a “composition” of other functions' functionality. It now brings together reading data, transforming it, and saving it in storage.
 
@@ -473,7 +473,7 @@ There's more information now, but we still have no idea what the function will d
 
 The less predictable a function is, the more problems we'll have debugging it. Debugging is faster when we have to check fewer assumptions. When we can't predict the behavior of a function, we need to _test more assumptions_. The debugging of such a function will take longer.
 
-Also, unpredictable effects are much harder to test. For example, to test the `getOrCreateLogEntry` function, we would have to write a test somewhat like this one:
+Also, unpredictable effects are much harder to test.[^testingprinciples] For example, to test the `getOrCreateLogEntry` function, we would have to write a test somewhat like this one:
 
 ```ts
 afterEach(() => jest.clearAllMocks());
@@ -647,3 +647,4 @@ This way, neither of the types prevents us from declaring _different_ expectatio
 [^cqrs]: “Command-Query Responsibility Segregation” by Martin Fowler, https://martinfowler.com/bliki/CQRS.html
 [^crud]: Create, Read, Update, and Delete, Wikipedia, https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 [^bisect]: git-bisect, Use binary search to find the commit that introduced a bug, https://git-scm.com/docs/git-bisect
+[^testingprinciples]: “Unit Testing: Principles, Practices, and Patterns” by Vladimir Khorikov, https://www.goodreads.com/book/show/48927138-unit-testing

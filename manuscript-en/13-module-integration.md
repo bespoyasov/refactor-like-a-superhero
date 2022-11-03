@@ -572,7 +572,7 @@ const listingQuery = (query) => {
 const projectList = listingQuery("projects");
 ```
 
-It implicitly depends on the `fs` module, which gives access to the filesystem. In general, this isn't bad, but such a function is inconvenient to test. The tests would require a global mock for `fs`.
+It implicitly depends on the `fs` module, which gives access to the filesystem. In general, this isn't bad, but such a function is inconvenient to test.[^testingprinciples] The tests would require a global mock for `fs`.
 
 With the partial application, we can create a “factory function.” It would take `dependencies` as an argument and return `listingQuery` function as a result:
 
@@ -648,7 +648,7 @@ At first glance, it seems to become worse: tests for the function now need globa
 
 The `listingQuery` function is pure, so the tests for it wouldn't require any mocks at all. As for composition, in simple cases, we may skip testing it since it just “gathers” the functionality together. In more complex cases, we should use integration or E2E tests.
 
-When using integration tests, such a composition forces the "Ports-Adapters" architecture, which also helps reduce the number of mocks, making the tests less “fragile.”
+When using integration tests, such a composition forces the “Ports-Adapters” architecture, which also helps reduce the number of mocks, making the tests less “fragile.”[^testingprinciples]
 
 | By the way 🔌                                                                     |
 | :-------------------------------------------------------------------------------- |
@@ -853,3 +853,4 @@ function Cart({ items }) {
 [^freemonadsfordi]: “Dependency Interpretation” by Scott Wlaschin, https://fsharpforfunandprofit.com/posts/dependencies-4/
 [^fpdependencies]: “Six approaches to dependency injection” by Scott Wlaschin, https://fsharpforfunandprofit.com/posts/dependencies/
 [^dmmf]: “Domain Modeling Made Functional” by Scott Wlaschin, https://www.goodreads.com/book/show/34921689-domain-modeling-made-functional
+[^testingprinciples]: “Unit Testing: Principles, Practices, and Patterns” by Vladimir Khorikov, https://www.goodreads.com/book/show/48927138-unit-testing

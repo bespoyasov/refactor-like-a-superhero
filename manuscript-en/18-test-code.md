@@ -46,7 +46,7 @@ Sometimes tests feel “brittle” and unreliable. Most of the time, this happen
 
 In such cases, any changes to the application code, even the smallest ones, result in many updates to the test code. The tests require more resources to support and slow down the development. This effect is called _test-induced damage_.[^testinduceddamage]
 
-Unlike mocks, _stubs and simple test data_ help write more change-resistant tests. They're more straightforward in use and forgive far more than they demand. They help us avoid test-induced damage and spend less time updating test code.
+Unlike mocks, _stubs and simple test data_ help write more change-resistant tests.[^testingprinciples] They're more straightforward in use and forgive far more than they demand. They help us avoid test-induced damage and spend less time updating test code.
 
 | In detail 🥸                                                                                                                                                |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -60,7 +60,7 @@ To make the tests less brittle, we can use this heuristic:
 
 ---
 
-For example, to reduce the number of mocks, we can organize business logic to test it without mocks. It isn't easy to achieve when the logic is mixed with various effects. So it's better to keep effects separated and describe the logic in the form of pure functions.
+For example, to reduce the number of mocks, we can organize business logic to test it without mocks.[^codethatfits][^testingprinciples] It isn't easy to achieve when the logic is mixed with various effects. So it's better to keep effects separated and describe the logic in the form of pure functions.
 
 Pure functions are intrinsically testable. They don't require a fancy test infrastructure and only need the test data and the expected result to be tested.
 
@@ -160,7 +160,7 @@ Such a function may no longer need to be tested by unit tests. Since it combines
 
 The test-induced damage slows down development because, after each code change, we have to update the tests. One reason for this slowdown can be tests that check the same functionality multiple times.
 
-Ideally, we want only _one_ test to be responsible for a particular part of the code. When there're more, we start spending unnecessary time updating them. The more duplicates, the greater the “time tax.”
+Ideally, we want only _one_ test to be responsible for a particular unit of behavior. When there're more, we start spending unnecessary time updating them. The more duplicates, the greater the “time tax.”
 
 For example, if we wrote an additional unit test for the `fetchPostList` function in the example above, it would most likely be redundant and duplicate the tests of the `postsByType` and `namesFromFiles` functions. Then for every change to those functions, we would need to update not one but two tests.
 
@@ -186,7 +186,7 @@ A test should be responsible for a specific problem and _must fail_ when it occu
 
 When choosing what and how to test, we should compare the benefits of the test and its costs. For example, we can pay attention to the cyclomatic complexity of the function this test covers.
 
-If the complexity of the function equals one and the test brings more additional work than real benefit, we can abandon the test. For example, a separate unit test for the `fullName` function may be unnecessary:
+If the complexity of the function equals one and the test brings more additional work than real benefit, we can abandon the test.[^testingprinciples] For example, a separate unit test for the `fullName` function may be unnecessary:
 
 ```js
 const fullName = (user) => `${user.firstName} ${user.lastName}`;
@@ -219,3 +219,4 @@ describe("when called with a user object", () => {
 [^testinduceddamage]: “Test-Induced Design Damage” by David Heinemeier Hansson, https://dhh.dk/2014/test-induced-design-damage.html
 [^unittestsdotnet]: Unit testing best practices with .NET Core and .NET Standard, Microsoft Docs, https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
 [^faker]: Faker, Generate fake (but realistic) data for testing and development, https://fakerjs.dev
+[^testingprinciples]: “Unit Testing: Principles, Practices, and Patterns” by Vladimir Khorikov, https://www.goodreads.com/book/show/48927138-unit-testing

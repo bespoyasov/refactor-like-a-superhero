@@ -492,7 +492,7 @@ const $representation = combine<UiRepresentation>(
 - можем протестировать адаптеры интеграционными тестами;
 - а юзкейсы или слайсы приложения — можем протестировать E2E тестами...
 
-...То архитектура работает: код достаточно расцеплен, UI не влезает в бизнес-логику, времени и ресурсов на тестирование и поддержание тестов будет уходить меньше.
+...То архитектура работает: код достаточно расцеплен, UI не влезает в бизнес-логику, времени и ресурсов на тестирование и поддержание тестов будет уходить меньше.[^testingprinciples]
 
 [^architectureinpractice]: “Software Architecture in Practice” by L. Bass, P. Clements, R. Kazman, https://www.goodreads.com/book/show/70143.Software_Architecture_in_Practice
 [^integrationpatterns]: “Enterprise Integration Patterns” by Gregor Hohpe, https://www.goodreads.com/book/show/85012.Enterprise_Integration_Patterns
@@ -518,3 +518,4 @@ const $representation = combine<UiRepresentation>(
 [^mvvm]: Model-View-ViewModel, Википедия, https://ru.wikipedia.org/wiki/Model-View-ViewModel
 [^viewmodel]: View Models, Reactive UI, https://www.reactiveui.net/docs/handbook/view-models/
 [^testingpyramid]: “The Grand Unified Theory of Clean Architecture and Test Pyramid” by Guilherme Ferreira, https://youtu.be/gHSpj2zM9Nw
+[^testingprinciples]: “Unit Testing: Principles, Practices, and Patterns” by Vladimir Khorikov, https://www.goodreads.com/book/show/48927138-unit-testing

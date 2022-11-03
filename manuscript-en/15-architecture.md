@@ -502,7 +502,7 @@ From the architecture point of view, we can evaluate the result of the refactori
 - And we can test adapters with integration tests;
 - And we can test application use cases with E2E tests...
 
-...Then the architecture works. The code is sufficiently decoupled, the UI doesn't get mixed with the business logic, and it takes less time and resources to test and maintain the tests.
+...Then the architecture works. The code is sufficiently decoupled, the UI doesn't get mixed with the business logic, and it takes less time and resources to test and maintain the tests.[^testingprinciples]
 
 [^architectureinpractice]: “Software Architecture in Practice” by L. Bass, P. Clements, R. Kazman, https://www.goodreads.com/book/show/70143.Software_Architecture_in_Practice
 [^integrationpatterns]: “Enterprise Integration Patterns” by Gregor Hohpe, https://www.goodreads.com/book/show/85012.Enterprise_Integration_Patterns
@@ -529,4 +529,4 @@ From the architecture point of view, we can evaluate the result of the refactori
 [^viewmodel]: View Models, Reactive UI, https://www.reactiveui.net/docs/handbook/view-models/
 [^testingpyramid]: “The Grand Unified Theory of Clean Architecture and Test Pyramid” by Guilherme Ferreira, https://youtu.be/gHSpj2zM9Nw
 [^effector]: Effector, Business logic with ease, https://effector.dev
-[^softwarquirements]:
+[^testingprinciples]: “Unit Testing: Principles, Practices, and Patterns” by Vladimir Khorikov, https://www.goodreads.com/book/show/48927138-unit-testing
