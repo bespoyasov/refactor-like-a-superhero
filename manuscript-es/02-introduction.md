@@ -6,7 +6,7 @@ Para justificar la inversión de recursos y buscar un balance entre costes y ben
 
 ## Beneficios para desarrolladores
 
-La calidad del código es una inversión en los desarrolladores, más tiempo libre en el futuro. Cuanto más simple y limpio se el código, menos tiempo invertiremos en arreglar bugs y desarrollar nuevas funcionalidades.
+La calidad del código es una inversión en los desarrolladores, más tiempo libre en el futuro. Cuanto más simple y limpio sea el código, menos tiempo invertiremos en arreglar bugs y desarrollar nuevas funcionalidades.
 
 Los desarrolladores pueden preocuparse por diferentes propiedades del código. Por ejemplo, podríamos querer:
 
@@ -28,21 +28,21 @@ En un proceso de desarrollo perfectamente organizado, no es necesario "vender" l
 
 Sin embargo, hay proyectos en los que el desarrollo se organiza de forma diferente por diversas razones. En estos proyectos, por regla general, el código heredado tiende a acumularse.
 
-We may feel the need to improve the code, but we may not have enough resources to do that. A proposal to “take a week to refactor” might cause a conflict of interests because, to the business, it sounds like “we'll do nothing useful for a week.” These are the cases where we may need to “sell” the ideas of the code improvement.
+Podemos sentir la necesidad de mejorar el código, pero no podemos tener suficientes recursos para eso. Proponer "tomar una semana para refactorizar" puede causar un conflicto de intereses por que, para negocio, suena como "no haremos nada util durante una semana". Estos son los casos donde podemos necesitar "vender" las ideas de mejora de código.
 
-The benefits of refactoring aren't evident to the business because they aren't immediate. We may see them in the future, but it's difficult to predict when.
+Los beneficios de la refactorización no son evidentes para el negocio porque no son inmediatos. Podemos verlos en el futuro, pero es difícil de predecir cuando.
 
-Usually, to sell the idea of refactoring to business, we should speak the business language, and _sell the result, not the process_. Discuss what exactly we'll get as a result of the time spent:
+Normalmente, para vender la idea de refactorizar a negocio, deberíamos de hablar en su mismo idioma, y _vender el resultado, not el proceso_. Discutir exactamente sobre el resultado que obtendremos con el tiempo invertido:
 
-- We'll spend less time fixing bugs, so the number of unhappy users will drop.
-- We'll start implementing new features before our competitors, so they generate new users and profit.
-- We'll better understand the requirements and constraints, so we react to unpredicted problems faster.
-- We'll make onboarding easier for new developers to make significant changes sooner.
-- We'll decrease staff turnover because developers don't run away from good code, only from the bad one.
+- Dedicaremos menos tiempo a corregir errores, por lo que el número de usuarios descontentos disminuirá.
+- Empezaremos a implementar nuevas funciones antes que nuestros competidores, por lo que generarán nuevos usuarios y beneficios.
+- Entenderemos mejor los requisitos y las limitaciones, por lo que reaccionaremos más rápidamente ante problemas imprevistos.
+- Facilitaremos la incorporación de nuevos desarrolladores para que realicen cambios significativos antes.
+- Disminuiremos la rotación de personal porque los desarrolladores no huyen del buen código, sino del malo.
 
-We can use various metrics to measure code quality. It'll be much easier to determine the necessity of refactoring by relying on the numbers. For example, the costs statistics might help to incorporate regular refactoring into the development process smoothly.
+Podemos usar varios tipos de métricas para medir la calidad del código. Será mucho más fácil determinar la necesidad de la refactorización apoyándose en las cifras. Por ejemplo, las estadísticas de costes podrían ayudar a incorporar la refactorización regular en el proceso de desarrollo sin problemas. 
 
-## “Good” Code, “Bad” Code
+## “Buen” Código, “Mal” Código
 
 It isn't easy to name a list of _universal_ characteristics of a good code. There are a few, but they have limits in applicability, too.
 
