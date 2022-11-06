@@ -54,45 +54,45 @@ Muchos de los libros que he leído también describen el código de forma subjet
 
 Algunos estudios han intentado determinar esta "legibilidad".[^evaluatingstudies][^readability][^howreadable] Sin embargo, sus ejemplos son pequeños o sesgados, por lo que es difícil concluir las reglas universales del "buen" código.
  
-In practice, we can try to look for a “bad” code rather than a “good” one. It's easier because we can use the help of heuristics and “cognitive alarms” when searching for it.
+En la práctica, podemos intentar buscar código "malo" en vez de "bueno". Es más fácil porque podemos utilizar la ayuda de la heurística y las "alarmas cognitivas" al buscarlo.
 
-Cognitive alarms are the feelings we get when reading bad code. I believe that a code needs refactoring if one of these thoughts arises while reading it:
+Las alarmas cognitivas son las sensaciones que tenemos al leer un código malo. Creo que un código necesita ser refactorizado si uno de estos pensamientos surge al leerlo:
 
-#### Hard to Read
+#### Difícil de leer
 
-- It's hard for us to read code if it's unformatted, intertwined, or noisy.
-- If there are a lot of unnecessary details in the code, there is no clear entry point.
-- If it's hard to follow the code execution, if we need to jump between screens, files, or lines constantly.
-- If the code is inconsistent, if it doesn't follow the project rules.
+- Nos resulta difícil leer el código si está sin formato, entrelazado o con mucho ruido.
+- Si hay muchos detalles innecesarios en el código, no hay un punto de entrada claro.
+- Si es difícil seguir la ejecución del código, si tenemos que saltar entre pantallas, archivos o líneas constantemente.
+- Si el código es inconsistente, si no sigue las reglas del proyecto.
 
-#### Hard to Change
+#### Difícil de cambiar
 
-- Code is hard to change if we need to update many files or double-check the entire application when adding a feature.
-- If we aren't sure, we can painlessly remove a particular piece of code.
-- If there's no clear entry point or we can't relate a feature with a specific module.
-- If there's too much boilerplate code or copypaste.
+- El código es difícil de cambiar si tenemos que actualizar muchos archivos o volver a comprobar toda la aplicación al añadir una función.
+- Si no estamos seguros, podemos eliminar sin problemas un trozo de código concreto.
+- Si no hay un punto de entrada claro o no podemos relacionar una característica con un módulo específico.
+- Si hay demasiado código repetitivo o copy-paste.
 
-#### Hard to Test
+#### Difícil de testear
 
-- Code is hard to test if we need a “complex infrastructure” for tests or need to mock a lot of functionality.
-- If we must emulate the whole app running to check a single function.
-- If tests for a task require data irrelevant to the task.
+- El código es difícil de probar si necesitamos una "infraestructura compleja" para las pruebas o tenemos que simular muchas funciones.
+- Si debemos emular toda la aplicación en ejecución para comprobar una sola función.
+- Si las pruebas de una tarea requieren datos irrelevantes para la misma.
 
-#### Hard to “Fit in the Head”
+#### Difícil de “Meter en la cabeza”
 
-- Code doesn't fit in our heads if it's hard to keep track of what's going on in it.
-- If by the middle of the module, it's hard to remember what happened at the beginning.
-- If the code is “too complicated” and drawing diagrams doesn't help to understand it.
+- El código no entra en nuestras cabezas si es difícil seguir la pista de lo que ocurre en él.
+- Si a la mitad del módulo es difícil recordar lo que ocurrió al principio.
+- Si el código es "demasiado complicado" y dibujar diagramas no ayuda a entenderlo.
 
 #### Code Smells
 
-Some of those problems have already been shaped in the form of code smells. _Code smells_ are antipatterns that lead to problems.[^smells]
+Algunos de esos problemas ya se han plasmado en forma de code smells. _Code smells_ son anti-patrones que generan problemas.[^smells]
 
-There are solutions for most of the code smells. Sometimes it's enough to look at the code, find the smell, and apply a specific solution to it.
+Hay soluciones para la mayoría de code smells. A veces es suficiente con mirar el código, encontrar el code smell, y aplicar una solución específica.
 
-| About smells 🦨                                                                                                                                                                                                                 |
-|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Most often, examples of code smells are given in code written in OOP style, which may not be as valuable in the JavaScript world. Nevertheless, some of the smells are universal and applicable to OOP and multi-paradigm code. |
+| Sobre smells 🦨                                                                                                                                                                                                                                              |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| A menudo, la mayoría de ejemplos de code smells son mostrados en código escrito en POO. que pueden no ser tan valiosos en el mundo de JavaScript. No obstante, algunos de los code smells son universales y aplicables a la POO y al código multi-paradigma. |
 
 [^workingeffectively]: “Working Effectively with Legacy Code” by Michael C. Feathers, https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code
 [^readablecode]: “The Art of Readable Code” by Dustin Boswell, Trevor Foucher, https://www.goodreads.com/book/show/8677004-the-art-of-readable-code
