@@ -44,16 +44,16 @@ Podemos usar varios tipos de métricas para medir la calidad del código. Será 
 
 ## “Buen” Código, “Mal” Código
 
-It isn't easy to name a list of _universal_ characteristics of a good code. There are a few, but they have limits in applicability, too.
+No es fácil de nombrar una lista de características _universales_ del buen código. Hay algunas, pero también tienen limites de aplicabilidad.
 
-| For example 💡                                                                                                                                                      |
-|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| I think of cyclomatic complexity and the number of dependencies as more or less universal characteristics. But we'll talk about them separately in future chapters. |
+| Por ejemplo 💡                                                                                                                                                |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Creo que la complejidad ciclomática y el número de dependencias son más o menos características universales. Pero hablaremos sobre ello en futuros capítulos. |
 
-Most of the books I've read also describe good code subjectively.[^workingeffectively][^readablecode][^cleancode] Different authors use different words, but they always emphasize “readability.”
+Muchos de los libros que he leído también describen el código de forma subjetiva.[^workingeffectively][^readablecode][^cleancode] Diferentes autores usan diferentes palabras, pero siempre enfatizan la "legibilidad".
 
-Some studies have tried to determine this “readability.”[^evaluatingstudies][^readability][^howreadable] However, their samples are either small or skewed, so it's difficult to conclude the universal rules of the “good” code.
-
+Algunos estudios han intentado determinar esta "legibilidad".[^evaluatingstudies][^readability][^howreadable] Sin embargo, sus ejemplos son pequeños o sesgados, por lo que es difícil concluir las reglas universales del "buen" código.
+ 
 In practice, we can try to look for a “bad” code rather than a “good” one. It's easier because we can use the help of heuristics and “cognitive alarms” when searching for it.
 
 Cognitive alarms are the feelings we get when reading bad code. I believe that a code needs refactoring if one of these thoughts arises while reading it:
