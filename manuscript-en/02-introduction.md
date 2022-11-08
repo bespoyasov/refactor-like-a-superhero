@@ -57,33 +57,33 @@ In practice, we can try to look for a “bad” code rather than a “good” on
 
 Cognitive alarms are the feelings we get when reading bad code. I believe that a code needs refactoring if one of these thoughts arises while reading it:
 
-#### Hard to Read
+### Hard to Read
 
 - It's hard for us to read code if it's unformatted, intertwined, or noisy.
 - If there are a lot of unnecessary details in the code, there is no clear entry point.
 - If it's hard to follow the code execution, if we need to jump between screens, files, or lines constantly.
 - If the code is inconsistent, if it doesn't follow the project rules.
 
-#### Hard to Change
+### Hard to Change
 
 - Code is hard to change if we need to update many files or double-check the entire application when adding a feature.
 - If we aren't sure, we can painlessly remove a particular piece of code.
 - If there's no clear entry point or we can't relate a feature with a specific module.
 - If there's too much boilerplate code or copypaste.
 
-#### Hard to Test
+### Hard to Test
 
 - Code is hard to test if we need a “complex infrastructure” for tests or need to mock a lot of functionality.
 - If we must emulate the whole app running to check a single function.
 - If tests for a task require data irrelevant to the task.
 
-#### Hard to “Fit in the Head”
+### Hard to “Fit in the Head”
 
 - Code doesn't fit in our heads if it's hard to keep track of what's going on in it.
 - If by the middle of the module, it's hard to remember what happened at the beginning.
 - If the code is “too complicated” and drawing diagrams doesn't help to understand it.
 
-#### Code Smells
+### Code Smells
 
 Some of those problems have already been shaped in the form of code smells. _Code smells_ are antipatterns that lead to problems.[^smells]
 
