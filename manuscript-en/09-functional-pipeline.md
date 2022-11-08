@@ -43,7 +43,7 @@ In poorly organized code, business workflows don't resemble such chains. They ar
 In well-organized code, the workflows look linear, and the data in them go through several steps one at a time. The final state of the data is the workflow's desired result.
 
 <figure>
-  <img src="../images/09-functional-pipeline.png" width="800">
+  <img src="../images/09-functional-pipeline.png" width="800" alt="A linear chain of labeled rectangles connected by arrows from left to right">
   <figcaption><em>Data goes through a chain of different states. The output is the desired workflow result</em><br><br></figcaption>
 </figure>
 
@@ -309,7 +309,7 @@ DDD has an analog for such islands—_bounded contexts_.[^boundedcontext][^ddd][
 According to DDD, validating data is more convenient _at the boundaries_ of contexts, for example, at the context input. In this case, “inside” the context, we don't need additional checks because the data is already validated and safe.
 
 <figure>
-  <img src="../images/09-bounded-context.png" width="800">
+  <img src="../images/09-bounded-context.png" width="800" alt="A rectangle with ingoing and outgoing arrows and thick boundaries; inside the rectangle, there's a linear chain of smaller rectangles">
   <figcaption><em>All validation occurs at the boundaries; the data inside the context is considered valid and safe</em><br><br></figcaption>
 </figure>
 
