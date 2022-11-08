@@ -44,7 +44,7 @@ Each condition and loop adds to the mental model a new “path.” These paths s
 We can visualize the number of “paths” in the function as a graph.[^controlflowgraph][^controlflowexample] Each new condition or loop adds a new “branch,” which makes the graph and the function more complex.
 
 <figure>
-  <img src="../images/10-cyclomatic-complexity.png" width="800">
+  <img src="../images/10-cyclomatic-complexity.png" width="800" alt="A piece of code with numbered lines on the left; a graph with numbered edges and vertices on the right">
   <figcaption><em>Graph of function with complexity 3. We can calculate the complexity as the difference between the graph nodes and edges or the number of regions on it</em><br><br></figcaption>
 </figure>
 
@@ -60,7 +60,7 @@ The more “branches” the function has, the harder it is to work with.
 An important feature of such properties is that they're _measurable_. We can choose _limits_ for measurable properties and automate their checks. For example, we can set up the linter to tell us when the code complexity exceeds the selected limit:
 
 <figure>
-  <img src="../images/10-complexity-linter.png" width="800">
+  <img src="../images/10-complexity-linter.png" width="800" alt="A piece of code with highlighted function and a modal window that describes the linter error">
   <figcaption><em>Linter errors when the complexity exceeds the limit</em><br><br></figcaption>
 </figure>
 
@@ -135,7 +135,7 @@ We check the edge cases one by one and _terminate_ the function if we come acros
 Filtering edge cases one by one allows us to forget the checked ones. They no longer take up our attention and working memory.
 
 <figure>
-  <img src="../images/10-early-return.png" width="800">
+  <img src="../images/10-early-return.png" width="800" alt="A convoluted code flow scheme at the top and a simpler scheme at the bottom">
   <figcaption><em>The condition becomes easier to understand because we don't need to remember so many details</em><br><br></figcaption>
 </figure>
 
