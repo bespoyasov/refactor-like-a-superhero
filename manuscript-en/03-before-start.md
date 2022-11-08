@@ -52,7 +52,7 @@ During refactoring, we can't change the code functionality, so the desired resul
 Ideally, the result should exist _on the boundary_ of code under refactoring. Checking results on the boundary is easier, while the amount of affected code is minimal.
 
 <figure>
-  <img src="../images/03-result-on-edge.png" width="800">
+  <img src="../images/03-result-on-edge.png" width="800" alt="Schematic code structure with distinct parts, one of them is under refactoring, and results are visible in places where this part connects to the others">
   <figcaption><em>Result on the border is usually easier to check</em></figcaption>
 </figure>
 

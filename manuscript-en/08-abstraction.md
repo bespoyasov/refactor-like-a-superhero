@@ -92,7 +92,7 @@ In good code, there's exactly as much information on the screen as the reader ne
 To visualize “levels,” he suggests using a grid of hexagons. Each hexagon is a part of the system, which can be detailed more profoundly. At each level of detail, we'll see no more than N parts important to that level. If we need to know how a particular part works, we can “zoom in” a hexagon and see what it consists of.
 
 <figure>
-  <img src="../images/08-fractal-architecture.png" width="600">
+  <img src="../images/08-fractal-architecture.png" width="600" alt="A bunch of hexagons recursively contain other hexagons inside">
   <figcaption><em>So the program breaks down into chunks, which break down into chunks, which break down into chunks...</em><br><br></figcaption>
 </figure>
 
@@ -141,7 +141,7 @@ It's quite possible to understand such code, but it will take a comparatively lo
 If we express this code on the hexagon diagram, we'll see that some parts just don't fit:
 
 <figure>
-  <img src="../images/08-app-detalization.png" width="600">
+  <img src="../images/08-app-detalization.png" width="600" alt="Code entities placed on the hexagon tile">
   <figcaption><em>Objects and functions reflected on hex tiles; one of them doesn't fit</em><br><br></figcaption>
 </figure>
 
@@ -181,7 +181,7 @@ function useHasAccess() {
 So at the top level of detail, we would see only three parts: `hasAccess`, `Dashboard`, and `Login`. This code is much easier to “load” in our heads and focus on the relationships between its parts.
 
 <figure>
-  <img src="../images/08-app-detalization-simpler.png" width="600">
+  <img src="../images/08-app-detalization-simpler.png" width="600" alt="Fewer code parts placed on the hexagon tile fit it">
   <figcaption><em>Top layer of application detail in the form of hex tiles</em><br><br></figcaption>
 </figure>
 
@@ -190,21 +190,21 @@ If we needed to detail a part of the “story,” we could “zoom in” one of 
 For example, in `useHasAccess` we can see how its four parts work together. At this level, it doesn't really matter what happens “level above” because we focus on the structure of the `useHasAccess`.
 
 <figure>
-  <img src="../images/08-has-access-detalization.png" width="600">
+  <img src="../images/08-has-access-detalization.png" width="600" alt="Parts of the hook are placed on a lower level of the hexagon tile">
   <figcaption><em>Detailed tiling of the <code>useHasAccess</code> hook</em><br><br></figcaption>
 </figure>
 
 It's called fractal architecture because we can nest one level of detail into another:
 
 <figure>
-  <img src="../images/08-app-fractal.png" width="600">
+  <img src="../images/08-app-fractal.png" width="600" alt="A cell of the top-level hexagon tile contains a whole lower-level hexagon">
   <figcaption><em>Levels of detail are nested in on another like a Russian doll</em><br><br></figcaption>
 </figure>
 
 ...And switch our attention between levels at any moment:
 
 <figure>
-  <img src="../images/08-fractal-levels.png" width="800">
+  <img src="../images/08-fractal-levels.png" width="800" alt="Transformation of the top-level cell into a lower-level hexagon">
   <figcaption><em>Switching attention between levels</em><br><br></figcaption>
 </figure>
 

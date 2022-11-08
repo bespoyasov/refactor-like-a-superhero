@@ -56,7 +56,7 @@ export function connect(userChannel, appChannel, credentials) {
 If we use git “tactically” and check all the changes since the previous commit, we may notice this error in the diff ourselves:
 
 <figure>
-  <img src="../images/05-tactical-git.png" width="800">
+  <img src="../images/05-tactical-git.png" width="800" alt="The diff window shows changed characters in a piece of code">
   <figcaption><em>Git shows all changes the formatter caused</em><br><br></figcaption>
 </figure>
 
@@ -73,7 +73,7 @@ After turning linter “warnings” to “errors,” we might have a list of suc
 I prefer to save the work on each linter rule as a separate commit or PR. For example, we could remove all unused code, make it a commit, and move on to the next problem on the list.
 
 <figure>
-  <img src="../images/05-linter.png" width="800">
+  <img src="../images/05-linter.png" width="800" alt="Piece of code in the IDE with a highlighted variable">
   <figcaption><em>Linter highlights unused code that can be removed</em><br><br></figcaption>
 </figure>
 
@@ -113,7 +113,7 @@ Along with the language features, we should also highlight the features of the t
 “Rename Symbol,” “Extract into Function,” and other tools speed up the work and reduce the cognitive load. For example, in VS Code, we can change the name of a function or variable everywhere by using the hotkeys:[^vscode]
 
 <figure>
-  <img src="../images/05-rename-symbol.png" width="800">
+  <img src="../images/05-rename-symbol.png" width="800" alt="A piece of code in 3 points in time: before, during, and after renaming a variable">
   <figcaption><em>“Rename Symbol” updates the variable name everywhere</em><br><br></figcaption>
 </figure>
 
@@ -136,7 +136,7 @@ const Account = ({ firstName: name }: AccountProps) => <>{name}</>;
 To avoid this, we can use the benefits of “tactical” git again. We can study the diff from the latest commit and check what was renamed and how.
 
 <figure>
-  <img src="../images/05-git-diff.png" width="800">
+  <img src="../images/05-git-diff.png" width="800" alt="The diff window highlights changed characters in a piece of code">
   <figcaption><em>Git shows exactly what has changed since the latest commit</em><br><br></figcaption>
 </figure>
 

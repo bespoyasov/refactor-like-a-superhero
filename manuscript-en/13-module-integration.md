@@ -35,7 +35,7 @@ The first and foremost thing we should check when analyzing the interaction of m
 A program composed according to this rule looks like “islands of cohesive functionality” connected by “bridges” of public APIs, events, or messages:
 
 <figure>
-  <img src="../images/13-coupling-cohesion.png" width="600">
+  <img src="../images/13-coupling-cohesion.png" width="600" alt="A bunch of islands labeled as “Modules” connected with thin bridges; each island contains inner parts that are more interconnected inside the island than islands between themselves">
   <figcaption><em>“Islands” in the code are responsible for related domain tasks and communicate with each other via “bridges” of public APIs</em></figcaption>
 </figure>
 
@@ -302,7 +302,7 @@ The lower the coupling, the more module interaction resembles sending messages. 
 Messages can be sent either directly from one module to another via a public API or a special entity—a _message bus_. In the second case, the modules know nothing about each other and are coupled only through the message bus:
 
 <figure>
-  <img src="../images/13-message-bus.png" width="800">
+  <img src="../images/13-message-bus.png" width="800" alt="A main thick arrow called “Message Bus” goes from left to right; various modules around the arrow connect to the bus via thinner arrows">
   <figcaption><em>Communication comes down to sending and receiving messages from the bus</em><br><br></figcaption>
 </figure>
 

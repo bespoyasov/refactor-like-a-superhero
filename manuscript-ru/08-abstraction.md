@@ -93,7 +93,7 @@ function subscribeToFeed(email) {
 На каждом из уровней детализации мы будем видеть не больше N составных частей, важных для этого уровня. Если нам требуется узнать, как работает конкретная часть, то мы можем «провалиться» на уровень ниже и увидеть, из чего она состоит.
 
 <figure>
-  <img src="../images/08-fractal-architecture.png" width="600">
+  <img src="../images/08-fractal-architecture.png" width="600" alt="Плитка из шестиугольников, которые рекурсивно содержат другие шестиугольники">
   <figcaption><em>Так программа разбивается на куски, которые разбиваются на куски, которые разбиваются на куски...</em><br><br></figcaption>
 </figure>
 
@@ -142,7 +142,7 @@ const App = () => {
 Если выразить этот код на диаграмме детализации, можно заметить, что некоторые части на ней не помещаются:
 
 <figure>
-  <img src="../images/08-app-detalization.png" width="600">
+  <img src="../images/08-app-detalization.png" width="600" alt="Переменные и компоненты, «разложенные» по шестиугольникам">
   <figcaption><em>Объекты и функции на плитке шестигранников, один из них не помещается</em><br><br></figcaption>
 </figure>
 
@@ -182,7 +182,7 @@ function useHasAccess() {
 Так на верхнем уровне детализации мы видим всего лишь 3 составные части: `hasAccess`, `Dashboard` и `Login`. Такую схему нам гораздо проще «загрузить» в голову и вникать в отношения между частями.
 
 <figure>
-  <img src="../images/08-app-detalization-simpler.png" width="600">
+  <img src="../images/08-app-detalization-simpler.png" width="600" alt="Меньшее количество частей помещается на плитку полностью">
   <figcaption><em>Верхний слой детализации приложения в виде плитки шестигранников</em><br><br></figcaption>
 </figure>
 
@@ -191,21 +191,21 @@ function useHasAccess() {
 Например, в `useHasAccess` мы видим, как её 4 составные части работают друг с другом. На этом уровне уже не так важно, что происходит «выше», мы сосредотачиваемся на устройстве `useHasAccess`.
 
 <figure>
-  <img src="../images/08-has-access-detalization.png" width="600">
+  <img src="../images/08-has-access-detalization.png" width="600" alt="Составные части хука, «разложенные» на плитке шестиугольников">
   <figcaption><em>Детализация хука <code>useHasAccess</code> в виде плитки</em><br><br></figcaption>
 </figure>
 
 Польза _фрактальности_ в том, что мы можем вкладывать один уровень в другой:
 
 <figure>
-  <img src="../images/08-app-fractal.png" width="600">
+  <img src="../images/08-app-fractal.png" width="600" alt="Шестиугольник верхнего уровня содержит внутри себя целую плитку шестиугольников более низкого уровня">
   <figcaption><em>Уровни детализации вкладываются друг в друга как матрёшки</em><br><br></figcaption>
 </figure>
 
 ...И переключать внимание между уровнями в любой момент:
 
 <figure>
-  <img src="../images/08-fractal-levels.png" width="800">
+  <img src="../images/08-fractal-levels.png" width="800" alt="Шестиугольник верхнего уровня соединён стрелкой с плиткой шестиугольников более низкого уровня">
   <figcaption><em>Переключение внимания между уровнями</em><br><br></figcaption>
 </figure>
 

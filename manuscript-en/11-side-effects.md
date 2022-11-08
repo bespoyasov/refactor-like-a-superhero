@@ -72,7 +72,7 @@ In a sequence of pure functions, the data flows from one function to another, be
 We can literally replace the _calls_ of functions before the “cut” with _their results_, and the program's behavior won't change. Such a property is called _referential transparency_,[^referentialtransparency] and makes searching for errors and testing much more straightforward.
 
 <figure>
-  <img src="../images/11-referential-transparency.png" width="800">
+  <img src="../images/11-referential-transparency.png" width="800" alt="A sequence of connected rectangles labeled “Apple to Banana”, “Banana to Cherry”, and “Cherry to Pineapple” is chopped before the last rectangle; everything before that is replaced with just “Cherry”">
   <figcaption><em>Referential transparency allows us to replace a function call with its result</em><br><br></figcaption>
 </figure>
 
@@ -213,7 +213,7 @@ Since the problem with effects is that they're unpredictable, our main concern w
 There's a technique for managing effects called the _functional core in an imperative shell_ or _Impureim Sandwich_.[^fcis][^impureim] Using this approach, we describe the application logic as pure functions and “push” all interaction with the outside world _to the edges of the application_.
 
 <figure>
-  <img src="../images/11-impureim.png" width="600">
+  <img src="../images/11-impureim.png" width="600" alt="Three colored layers: 2 outermost are labeled “Impure”, and the innermost is labeled “Pure”">
   <figcaption><em>An “impureim sandwich”: impure effect for reading the data, pure logic, impure effect for saving the data</em><br><br></figcaption>
 </figure>
 

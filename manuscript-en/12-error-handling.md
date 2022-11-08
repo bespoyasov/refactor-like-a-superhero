@@ -225,7 +225,7 @@ We don't want to continue working because an error is an _inconsistent state_ of
 If we terminate execution at this point and move on to handling the error, we protect ourselves from further errors that could damage the data even more. In addition, we clean up the domain model code, removing unnecessary checks from it.
 
 <figure>
-  <img src="../images/12-linear-execution.png" width="600">
+  <img src="../images/12-linear-execution.png" width="600" alt="Code flow diagram with 1 main sequence and “failure” branches that lead to the same diagram part">
   <figcaption><em>Code execution becomes linear. All error branches lead immediately to error handling</em><br><br></figcaption>
 </figure>
 
@@ -393,7 +393,7 @@ async function getUser(id) {
 This approach is also known as “Fail Fast.”[^failfast]
 
 <figure>
-  <img src="../images/12-linear-execution.png" width="600">
+  <img src="../images/12-linear-execution.png" width="600" alt="Code flow diagram with 1 main sequence and “failure” branches that lead to the same diagram part">
   <figcaption><em>The results chain breaks where an error occurs, and the code starts handling the error</em><br><br></figcaption>
 </figure>
 
@@ -580,7 +580,7 @@ An error in any of the steps immediately breaks the execution of such a function
 So the point of binding is to _automate_ the chaining and unpacking of results. It's like we link all results into a sequence of “forks.” An error from any function travels down the fork to the “error track” and goes along it all the way to the end. It's similar to connecting railroad tracks—that's why the programming is “railway oriented” 😃
 
 <figure>
-  <img src="../images/12-result-conjunction.png" width="800">
+  <img src="../images/12-result-conjunction.png" width="800" alt="Highlighted branching that splits the code flow into a “successful” branch and a “failure” branch">
   <figcaption><em>Binding helps to adapt function inputs and outputs</em><br><br></figcaption>
 </figure>
 
@@ -712,7 +712,7 @@ Prevalidation cleans the business logic code from irrelevant checks and allows u
 When refactoring error handling, we can take advantage of this idea and move the data checks closer to the input of the application:
 
 <figure>
-  <img src="../images/12-prevalidation.png" width="800">
+  <img src="../images/12-prevalidation.png" width="800" alt="A rectangle with ingoing and outgoing arrows that represent data flow; places where these arrows connect to the rectangle labeled as “Input Validation” and “Output Data Projection”">
   <figcaption><em>Outside data is dangerous, inside data is safe; invalid data will terminate execution and pass control to the error handler</em><br><br></figcaption>
 </figure>
 

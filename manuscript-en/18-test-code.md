@@ -30,7 +30,7 @@ If, during refactoring, we realize that we need to refactor the test code, we sh
 This way, we turn the refactoring into “ping-ponging” between refactoring the tests and the application code. They support and cover each other, ensuring the overall program behavior stays the same.
 
 <figure>
-  <img src="../images/18-refactoring-ping-pong.png" width="800">
+  <img src="../images/18-refactoring-ping-pong.png" width="800" alt="The sequence of code changes on the diagram is zigzagging between changes in production and test code">
   <figcaption><em>When we change the code, the behavior is captured by the tests. When we change the tests, the application code captures the behavior</em><br><br></figcaption>
 </figure>
 

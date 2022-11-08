@@ -60,7 +60,7 @@ export function connect(userChannel, appChannel, credentials) {
 Мы можем заметить эту ошибку сами, если пользуемся гитом «тактически» и проверяем, что именно изменилось с последнего коммита:
 
 <figure>
-  <img src="../images/05-tactical-git.png" width="800">
+  <img src="../images/05-tactical-git.png" width="800" alt="Окно “git diff” подсвечивает во фрагменте кода символы, которые поменялись">
   <figcaption><em>Гит показывает, к каким изменениям привело форматирование</em><br><br></figcaption>
 </figure>
 
@@ -77,7 +77,7 @@ export function connect(userChannel, appChannel, credentials) {
 Мне нравится оформлять работу над каждым из правил линтера как отдельный коммит или PR. Например, можно удалить весь неиспользуемый код, оформить это как коммит и перейти к следующей проблеме из списка.
 
 <figure>
-  <img src="../images/05-linter.png" width="800">
+  <img src="../images/05-linter.png" width="800" alt="Фрагмент кода в IDE с подчёркнутой переменной">
   <figcaption><em>Линтер подсвечивает неиспользуемый код, который можно удалить</em><br><br></figcaption>
 </figure>
 
@@ -113,7 +113,7 @@ const yup = "Some String".startsWith("So");
 “Rename Symbol”, “Extract into Function” и другие инструменты ускоряют работу и снижают когнитивную нагрузку. Например, в VS Code можно изменить имя функции или переменной во всех местах использования сочетанием горячих клавиш:[^vscode]
 
 <figure>
-  <img src="../images/05-rename-symbol.png" width="800">
+  <img src="../images/05-rename-symbol.png" width="800" alt="Фрагмент кода до, во время и после переименования переменной">
   <figcaption><em>“Rename Symbol” обновляет название сразу и везде</em><br><br></figcaption>
 </figure>
 
@@ -136,7 +136,7 @@ const Account = ({ firstName: name }: AccountProps) => <>{name}</>;
 Чтобы этого избежать, мы снова можем воспользоваться преимуществами «тактической» работы с гитом. Для этого пробежимся по изменениям с последнего коммита и проверим, что именно переименовалось и как:
 
 <figure>
-  <img src="../images/05-git-diff.png" width="800">
+  <img src="../images/05-git-diff.png" width="800" alt="Окно “git diff” подсвечивает во фрагменте кода изменившиеся символы">
   <figcaption><em>Гит показывает, какие поля объекта затронуло использование “Rename Symbol”</em><br><br></figcaption>
 </figure>
 
