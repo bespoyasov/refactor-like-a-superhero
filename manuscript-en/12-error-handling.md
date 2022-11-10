@@ -725,6 +725,7 @@ When refactoring error handling, we can take advantage of this idea and move the
 [^errormodel]: “The Error Model” by Joe Duffy, http://joeduffyblog.com/2016/02/07/the-error-model/
 [^replacethrow]: “Replacing Throwing Exceptions with Notification in Validations” by Martin Fowler, https://martinfowler.com/articles/replaceThrowWithNotification.html
 [^pragmaticprogrammer]: “The Pragmatic Programmer” by Andy Hunt, https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer
+[^notificationpattern]: “Notification” by Martin Fowler, https://martinfowler.com/eaaDev/Notification.html
 [^aggregateerror]: `AggregateError`, MDN, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError
 [^fpts]: fp/ts, Typed functional programming in TypeScript, https://github.com/gcanti/fp-ts
 [^failfast]: Fail-fast, Wikipedia, https://en.wikipedia.org/wiki/Fail-fast
