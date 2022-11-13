@@ -403,7 +403,7 @@ const ConfirmOrder = () => (
 const OrderConfirmed = () => (
   <>
     Order Confirmed.
-    <a href={fst.to("main")}>Back to main page</a>
+    <a href={fsm.to("main")}>Back to main page</a>
   </>
 );
 
@@ -411,8 +411,8 @@ const OrderConfirmed = () => (
 const OrderError = () => (
   <>
     Couldn't confirm the order.
-    <a href={fst.to("main")}>Back to main page</a>
-    <a href={fst.to("order")}>Try again</a>
+    <a href={fsm.to("main")}>Back to main page</a>
+    <a href={fsm.to("order")}>Try again</a>
   </>
 );
 
