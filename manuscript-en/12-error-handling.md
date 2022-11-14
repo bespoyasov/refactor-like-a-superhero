@@ -67,7 +67,7 @@ Consider an example. Let's say we have a function `getUser` that calls the backe
 ```js
 async function getUser(id) {
   const dto = await fetchUser(id);
-  const user = dto ?? parseUser(dto);
+  const user = dto ? parseUser(dto) : null;
   if (user) storage.setUser(user);
   else storage.setError("Something went wrong.");
 }
@@ -125,7 +125,7 @@ We can solve this by adding `try-catch` at the level above. Then the `getUser` f
 async function getUser(id) {
   try {
     const dto = await fetchUser(id);
-    const user = dto ?? parseUser(dto);
+    const user = dto ? parseUser(dto) : null;
     if (user) storage.setUser(user);
     else storage.setError("Something went wrong.");
   } catch (error) {

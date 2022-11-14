@@ -66,7 +66,7 @@
 ```js
 async function getUser(id) {
   const dto = await fetchUser(id);
-  const user = dto ?? parseUser(dto);
+  const user = dto ? parseUser(dto) : null;
   if (user) storage.setUser(user);
   else storage.setError("Something went wrong.");
 }
@@ -124,7 +124,7 @@ async function fetchUser(url) {
 async function getUser(id) {
   try {
     const dto = await fetchUser(id);
-    const user = dto ?? parseUser(dto);
+    const user = dto ? parseUser(dto) : null;
     if (user) storage.setUser(user);
     else storage.setError("Something went wrong.");
   } catch (error) {
