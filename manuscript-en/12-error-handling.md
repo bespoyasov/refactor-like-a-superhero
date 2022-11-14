@@ -134,7 +134,7 @@ async function getUser(id) {
 }
 ```
 
-However, if we throw panics to handle _all_ errors, we can accidentally mix expected and unexpected errors. For example, if validation errors in the code are also handled this way:
+However, if we throw panics to handle _all_ errors, we can accidentally mix expected and unexpected errors. For example, if we also handle validation errors of `parseUser` this way:
 
 ```js
 function parseUser(dto: UserDto): User {
