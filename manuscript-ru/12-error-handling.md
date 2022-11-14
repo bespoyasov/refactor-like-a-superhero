@@ -66,7 +66,7 @@
 ```js
 async function getUser(id) {
   const dto = await fetchUser(id);
-  const user = dto ?? parseUser(dto);
+  const user = dto && parseUser(dto);
   if (user) storage.setUser(user);
   else storage.setError("Something went wrong.");
 }
