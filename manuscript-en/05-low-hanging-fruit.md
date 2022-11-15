@@ -104,7 +104,36 @@ const yup = "Some String".startsWith("So");
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | If the self-written implementation differs from the native one and we can't replace it, I'd prefer to mention the difference in the documentation. That way, it will be clear why we're using a self-written function instead of the language feature. |
 
+In addition to language features, it's helpful to keep in mind functions and data types from the standard library and built-in APIs.[^rightstructure] For example, in the code snippet below, we can simplify self-written form serialization using `FormData`:
+
+```js
+// We can replace manual value extraction:
+const username = form.querySelector('[name="username"]').value;
+const password = form.querySelector('[name="password"]').value;
+const data = { username, password };
+
+// ...With a standard API call:
+const data = Object.fromEntries(new FormData(form));
+```
+
+After the changes, there is less code, and it is now more resistant to changes. For example, after refactoring, we don't need to manually update serialization when adding a new field to the form:
+
+```js
+// Before, we needed to update the `data` object by hand:
+// ...
+const email = form.querySelector('[name="email"]').value;
+const data = { username, email, password };
+
+// Now `FormData` updates the data automatically,
+// no need to change the code manually.
+```
+
 Removing code is beneficial: the less code there is, the fewer potential points of failure in the application. We can use the rule “give most of the work to the language or environment than write ourselves.” It's usually more reliable.
+
+| Clarification 🤓                                                                                                                                              |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| There are cases when we can't use the standard APIs and have to reinvent the wheel. In these cases, we should document why the standard solutions do not fit. |
+| We will discuss in detail how to make the documentation and comments more informative and useful in one of the following chapters.                            |
 
 ## Environment Features
 
@@ -149,3 +178,4 @@ Linters and tests help us avoid name conflicts and other bugs. For example, we c
 [^caniuse]: Can I use, support tables for the web, https://caniuse.com
 [^vscode]: Refactoring Source Code in VSCode, https://code.visualstudio.com/docs/editor/refactoring
 [^asijs]: “Automatic semicolon insertion in JavaScript” by Dr. Axel Rauschmayer, https://2ality.com/2011/05/semicolon-insertion.html
+[^rightstructure]: “Use the Right Algorithm and Data Structure” by JC van Winkel, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_89/
