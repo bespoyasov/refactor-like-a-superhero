@@ -158,6 +158,7 @@ How to use all the capabilities of automated code refactoring tools and analyzer
 - “Know Your IDE” by Heinz Kabutz, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_45/
 - “Know Your Next Commit” by Dan Bergh Johnsson, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_47/
 - “Use Git Tactically” by Mark Seeman, https://stackoverflow.blog/2022/04/06/use-git-tactically/
+- “Use the Right Algorithm and Data Structure” by JC van Winkel, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_89/
 - “Why robots should format our code for us”, https://blog.sapegin.me/all/prettier/
 
 ### Tools
