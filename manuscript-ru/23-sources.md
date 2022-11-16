@@ -159,6 +159,7 @@
 - “Automatic semicolon insertion in JavaScript” by Dr. Axel Rauschmayer, https://2ality.com/2011/05/semicolon-insertion.html
 - “Code Layout Matters” by Steve Freeman, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_13/
 - How Readable Code Is, https://howreadable.com
+- “How to Convert HTML Form Field Values to a JSON Object” by Jason Lengstorf, https://www.learnwithjason.dev/blog/get-form-values-as-json
 - “Know Your IDE” by Heinz Kabutz, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_45/
 - “Know Your Next Commit” by Dan Bergh Johnsson, https://97-things-every-x-should-know.gitbooks.io/97-things-every-programmer-should-know/content/en/thing_47/
 - “Use Git Tactically” by Mark Seeman, https://stackoverflow.blog/2022/04/06/use-git-tactically/
