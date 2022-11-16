@@ -37,6 +37,7 @@
   - Code Formatting
   - Code Linting
   - Language Features
+  - Standard API Features
   - Environment Features
 - Names
   - General Guidelines
