@@ -104,6 +104,8 @@ const yup = "Some String".startsWith("So");
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | If the self-written implementation differs from the native one and we can't replace it, I'd prefer to mention the difference in the documentation. That way, it will be clear why we're using a self-written function instead of the language feature. |
 
+## Standard API Features
+
 In addition to language features, it's helpful to keep in mind functions from the standard library and built-in APIs. The right function or data structure can make code more efficient, cleaner, and shorter.[^rightstructure][^formdata] For example, in the code snippet below, we can simplify self-written form serialization using `FormData`:
 
 ```js
