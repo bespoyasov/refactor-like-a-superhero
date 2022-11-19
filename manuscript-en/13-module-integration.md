@@ -748,7 +748,7 @@ A piece of data that must be updated “as a whole” is an _aggregate_. Data im
 
 function addProduct(cart: Cart, product: Product): Cart {
   const products = [...cart.products, product];
-  const total = totalPrice(updatedProducts);
+  const total = totalPrice(products);
   return { products, total };
 }
 
