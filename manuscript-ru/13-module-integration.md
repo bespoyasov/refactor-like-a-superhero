@@ -751,7 +751,7 @@ userCart.products.push(appleJuice);
 
 function addProduct(cart: Cart, product: Product): Cart {
   const products = [...cart.products, product];
-  const total = totalPrice(updatedProducts);
+  const total = totalPrice(products);
   return { products, total };
 }
 
