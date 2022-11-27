@@ -420,7 +420,7 @@ function handleGetUserErrors(error: UseCaseError): void {
   const message = messages[error];
   if (!message) throw new Error("Unexpected error when getting user data.");
 
-  // Ели ожидаемая, обработаем:
+  // Если ожидаемая, обработаем:
   storage.setError(message);
 
   // Если необходимо, добавим инфраструктурной функциональности:
