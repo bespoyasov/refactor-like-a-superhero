@@ -197,7 +197,7 @@ type NaturalNumber = Tagged<number, "natural">;
 
 // А значения создавать только через специальные фабрики:
 
-function naturalFrom(x: number): NaturalNumber {
+function naturalFrom(value: number): NaturalNumber {
   // Всю валидацию значений можно будет реализовать
   // внутри такой функции-фабрики:
 
@@ -205,7 +205,7 @@ function naturalFrom(x: number): NaturalNumber {
     throw new Error("The value must be a positive integer.");
   }
 
-  return x as NaturalNumber;
+  return value as NaturalNumber;
 }
 
 naturalFrom(-1); // Error!
