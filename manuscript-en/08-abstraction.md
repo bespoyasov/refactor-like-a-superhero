@@ -434,7 +434,7 @@ export function createOrder() {
   /*...*/
 }
 
-export function applyDiscount(order) {
+export function applyDiscount(order, coupon) {
   const discount = coupon === "HAPPY_FRIDAY" ? order.total * 0.2 : 0;
   return { ...order, discount };
 }
