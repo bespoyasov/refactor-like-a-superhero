@@ -197,7 +197,7 @@ type NaturalNumber = Tagged<number, "natural">;
 
 // А значения создавать только через специальные фабрики:
 
-function naturalFrom(x: number): NaturalNumber {
+function naturalFrom(value: number): NaturalNumber {
   // Всю валидацию значений можно будет реализовать
   // внутри такой функции-фабрики:
 
@@ -205,7 +205,7 @@ function naturalFrom(x: number): NaturalNumber {
     throw new Error("The value must be a positive integer.");
   }
 
-  return x as NaturalNumber;
+  return value as NaturalNumber;
 }
 
 naturalFrom(-1); // Error!
@@ -329,7 +329,7 @@ function xxx(xxx: UserId, xxx: PostSlug): Promise<string> {}
 function xxx(xxx: UserId, xxx: PostSlug): Promise<PostContents> {}
 
 // number -> UserId: первый аргумент — ID пользователя;
-// string -> PostId: второй аргумент — URL публикации;
+// string -> PostSlug: второй аргумент — URL публикации;
 // string -> PostContents: результат — содержимое публикации.
 
 // Из сигнатуры становится понятна механика работы функции:
