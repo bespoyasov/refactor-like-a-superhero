@@ -194,12 +194,12 @@ type NaturalNumber = Tagged<number, "natural">;
 // And create values only via factory functions.
 // The validation then can be placed in those functions:
 
-function naturalFrom(x: number): NaturalNumber {
+function naturalFrom(value: number): NaturalNumber {
   if (value <= 0 || Math.floor(value) !== value) {
     throw new Error("The value must be a positive integer.");
   }
 
-  return x as NaturalNumber;
+  return value as NaturalNumber;
 }
 
 naturalFrom(-1); // Error!
@@ -321,7 +321,7 @@ function xxx(xxx: UserId, xxx: PostSlug): Promise<string> {}
 function xxx(xxx: UserId, xxx: PostSlug): Promise<PostContents> {}
 
 // number -> UserId: the first argument is the user ID;
-// string -> PostId: the second argument is the publication URL;
+// string -> PostSlug: the second argument is the publication URL;
 // string -> PostContents: the result is the content of the publication.
 
 // From the signature, the function's work becomes clearer:

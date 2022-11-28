@@ -337,7 +337,7 @@ type Observable = {
 const listeners = [];
 const bus: Observable = {
   subscribe: (listener) => listeners.push(listener),
-  notifyAll: (message) => listener.forEach((listener) => listener(message)),
+  notifyAll: (message) => listeners.forEach((listener) => listener(message)),
 };
 
 // The observer knows that it'll be given an object
