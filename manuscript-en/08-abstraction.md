@@ -372,7 +372,7 @@ async function submitLoginForm(event) {
   const data = serializeForm(form);
   if (!isValidLogin(data)) return;
 
-  return await loginUser();
+  return await loginUser(data);
 }
 ```
 
