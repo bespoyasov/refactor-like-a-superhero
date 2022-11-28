@@ -152,7 +152,7 @@ const pow = (x, power) => x ** power;
 const id = (x) => x;
 
 function selectOperation(kind) {
-  const operations = { root, pow, id };
+  const operations = { log, pow, id };
   return operations[kind] ?? operations.id;
 }
 ```
