@@ -42,7 +42,7 @@
 Вы также можете прочесть эту книгу на отдельном сайте или скачать в PDF или Epub формате:
 
 - [Читать онлайн-версию](https://refactor-like-a-superhero.vercel.app/en)
-- [Скачать электронную книгу](https://refactor-like-a-superhero.vercel.app/en/#download-ebook)
+- [Скачать электронную книгу](https://refactor-like-a-superhero.vercel.app/en#download-ebook)
 
 ## Об авторе
 

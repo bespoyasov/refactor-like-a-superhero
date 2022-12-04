@@ -32,7 +32,7 @@ If you are interested in translating it into other languages, please, contact me
 You can also read the book online or download it as a PDF or Epub:
 
 - [Read Online](https://refactor-like-a-superhero.vercel.app/en)
-- [Download Ebook](https://refactor-like-a-superhero.vercel.app/en/#download-ebook)
+- [Download Ebook](https://refactor-like-a-superhero.vercel.app/en#download-ebook)
 
 ## Errata and Feedback
 
