@@ -37,6 +37,13 @@ We will use code examples primarily in JavaScript and sometimes in TypeScript. H
 - [Cheat Sheet on Refactoring Techniques](./22-cheatsheet.md)
 - [Sources and References](./23-sources.md)
 
+## Ebook and Web Version
+
+You can also read the book online or download it as a PDF or Epub:
+
+- [Read Online](https://refactor-like-a-superhero.vercel.app/en)
+- [Download Ebook](https://refactor-like-a-superhero.vercel.app/en/#download-ebook)
+
 ## About Author
 
 Alex Bespoyasov, software engineer at 0+X, web developer since 2010.

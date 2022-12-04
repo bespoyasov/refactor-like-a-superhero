@@ -27,6 +27,13 @@ Currently WIP translations:
 
 If you are interested in translating it into other languages, please, contact me. I'll be happy to discuss details!
 
+## Ebook and Web Version
+
+You can also read the book online or download it as a PDF or Epub:
+
+- [Read Online](https://refactor-like-a-superhero.vercel.app/en)
+- [Download Ebook](https://refactor-like-a-superhero.vercel.app/en/#download-ebook)
+
 ## Errata and Feedback
 
 If you found a typo or an error, please, open an issue or a pull request in this repository. I'll also be glad to hear your ideas and code snippets that can make the examples in the book more descriptive.
