@@ -24,9 +24,9 @@ function applyDiscount(order, discount) {}
 
 Such labels will only be helpful if we conduct their regular reviews. During the review, we should check if we have learned something new about possible duplicates, which either confirms that they're identical or disproves it by showing the difference between them.
 
-| By the way ⏰                                                                                                                                                                                                                                                                                                           |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| I consider regular audits in my projects as part of paying the technical debt. I make to-do lists for such periodic tasks. Within the list, I specify what needs to be done within the task. The technique of regular audits and its benefits are well described in “Jedi Techniques” by Maxim Dorofeev.[^jeditechnics] |
+| By the way ⏰                                                                                                                                                                                                                                                                                                             |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| I consider regular audits in my projects as part of paying the technical debt. I make to-do lists for such periodic tasks. Within the list, I specify what needs to be done within the task. The technique of regular audits and its benefits are well described in “Jedi Techniques” by Maxim Dorofeev.[^jeditechniques] |
 
 If it becomes apparent during an audit of a label that the duplication described in it is _direct_, we can proceed with refactoring code with that label. If the code turns out to be different, we can remove the label. This approach helps not to rush with code generalization but also not to forget places where possible duplication exists.
 
@@ -166,4 +166,4 @@ const b = applyDiscount(order, discountOptions.percent(order, 40))
 | :--------------------------------------------------------------------------------------------- |
 | We will discuss generalized algorithms, their use, and parameterization in a separate chapter. |
 
-[^jeditechnics]: “Jedi Technics” by Maxim Dorofeev, Translated summary, https://bespoyasov.me/blog/jedi-technics/
+[^jeditechniques]: “Jedi Techniques” by Maxim Dorofeev, Translated summary, https://bespoyasov.me/blog/jedi-techniques/

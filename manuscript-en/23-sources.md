@@ -46,7 +46,7 @@ What refactoring is and why it is needed. What an uncontrollably increasing comp
 ### Tools
 
 - Code Smells, Refactoring Guru, https://refactoring.guru/refactoring/smells
-- Refactoring Technics, Refactoring Guru, https://refactoring.guru/refactoring/techniques
+- Refactoring Techniques, Refactoring Guru, https://refactoring.guru/refactoring/techniques
 
 ## Before Start
 
@@ -95,7 +95,7 @@ What to avoid during refactoring, how to make the process easier. How to isolate
 
 - “Beyond Legacy Code” by David Scott Bernstein, https://www.goodreads.com/book/show/26088456-beyond-legacy-code
 - “Code That Fits in Your Head” by Mark Seemann, https://www.goodreads.com/book/show/57345272-code-that-fits-in-your-head
-- “Jedi Technics” by Maxim Dorofeev, Translated Summary, https://bespoyasov.me/blog/jedi-technics/
+- “Jedi Techniques” by Maxim Dorofeev, Translated Summary, https://bespoyasov.me/blog/jedi-techniques/
 - “Refactoring” by Martin Fowler, Kent Beck, https://www.goodreads.com/book/show/44936.Refactoring
 - “Rules of Work Communication” by M. Ilyahov and L. Sarycheva, Translated Summary, https://bespoyasov.me/blog/rules-of-work-communication/
 - “Thinking, Fast and Slow” by Daniel Kahneman, https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow
@@ -227,7 +227,7 @@ How to distinguish between code duplication and lack of knowledge about the syst
 ### Books
 
 - “The Art of Readable Code” by Dustin Boswell, Trevor Foucher, https://www.goodreads.com/book/show/8677004-the-art-of-readable-code
-- “Jedi Technics” by Maxim Dorofeev, Translated Summary, https://bespoyasov.me/blog/jedi-technics/
+- “Jedi Techniques” by Maxim Dorofeev, Translated Summary, https://bespoyasov.me/blog/jedi-techniques/
 - “Refactoring” by Martin Fowler, Kent Beck, https://www.goodreads.com/book/show/44936.Refactoring
 - “Your Code As a Crime Scene” by Adam Tornhill, https://www.goodreads.com/book/show/23627482-your-code-as-a-crime-scene
 - “Working Effectively with Legacy Code” by Michael C. Feathers, https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code

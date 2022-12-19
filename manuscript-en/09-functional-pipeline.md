@@ -403,7 +403,7 @@ Such edge case handling, as in the `Cart` component, helps us detect more potent
 
 | By the way 👀                                                                                                                                                                               |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Handling edge cases before working with Happy Path might remind you of the technic called “Early return.” We will discuss it more closely in the chapter on conditions and code complexity. |
+| Handling edge cases before working with Happy Path might remind you of the technique called “Early return.” We will discuss it more closely in the chapter on conditions and code complexity. |
 
 ### DTO and Deserialization
 

@@ -47,7 +47,7 @@
 ### Инструменты
 
 - Code Smells, Refactoring Guru, https://refactoring.guru/refactoring/smells
-- Refactoring Technics, Refactoring Guru, https://refactoring.guru/refactoring/techniques
+- Refactoring Techniques, Refactoring Guru, https://refactoring.guru/refactoring/techniques
 
 ## Прежде, чем начать
 
