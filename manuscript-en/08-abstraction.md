@@ -255,11 +255,11 @@ async function submitLoginForm(event) {
 
 It's pretty compact, only 13 lines, but we can count three tasks in it:
 
-- Form serialization;
+- Data preparation;
 - Data validation;
 - Network requests.
 
-We can also count them by changing the conditions of a task and see _which code will change because of it_. For example, if we add a checkbox to the form, the serialization code will change:
+We can also count them by changing the conditions of a task and see _which code will change because of it_. For example, if we add a checkbox to the form, the data preparation code will change:
 
 ```js
 async function submitLoginForm(event) {
@@ -301,13 +301,13 @@ Such a check helps count _reasons for change_ in the code and correlate fragment
 
 Code that changes for different reasons is best kept separate, and code that changes for the same reason is best kept together. It is known as the _Single Responsibility Principle, SRP_.[^srp][^singleresponsibility]
 
-We can apply this principle to refactor the `submitLoginForm` function from the example above. Let's extract each task into a separate function and see how `submitLoginForm` code changes. Let's start with serialization:
+We can apply this principle to refactor the `submitLoginForm` function from the example above. Let's extract each task into a separate function and see how `submitLoginForm` code changes. Let's start with data preparation:
 
 ```js
-// Extract serialization into a separate function.
+// Extract data preparation into a separate function.
 // Now it all is gathered here, and we know exactly
 // where to look if we need to know its details.
-function serializeForm(form) {
+function createLoginData(form) {
   const data = {};
 
   data.email = form.email.value;
@@ -320,8 +320,8 @@ async function submitLoginForm(event) {
   const form = event.target;
 
   // Inside `submitLoginForm` we now focus
-  // only on using the serialized data.
-  const data = serializeForm(form);
+  // only on using the prepared data.
+  const data = createLoginData(form);
 
   if (!form.email.value || !form.password.value) return;
 
@@ -344,7 +344,7 @@ function isValidLogin({ email, password }) {
 
 async function submitLoginForm(event) {
   const form = event.target;
-  const data = serializeForm(form);
+  const data = createLoginData(form);
   if (!isValidLogin(data)) return;
 
   const response = await fetch("/api/login", {
@@ -369,7 +369,7 @@ async function loginUser(data) {
 
 async function submitLoginForm(event) {
   const form = event.target;
-  const data = serializeForm(form);
+  const data = createLoginData(form);
   if (!isValidLogin(data)) return;
 
   return await loginUser(data);
@@ -384,7 +384,7 @@ function isValidLogin({ email, password }) {
   return email.includes("@") && !!password;
 }
 
-// Function `serializeForm`, `loginUser`, and `submitLoginForm`
+// Function `createLoginData`, `loginUser`, and `submitLoginForm`
 // are not changed.
 ```
 
