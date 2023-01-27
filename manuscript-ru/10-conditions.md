@@ -232,7 +232,7 @@ if (user.score >= 50) {
   if (user.armor < 50 || user.resistance !== 1) {
   }
 } else if (user.score < 50) {
-  if (user.resistance === 1 || user.armor >= 50) {
+  if (user.resistance === 1 && user.armor >= 50) {
   }
 }
 ```
@@ -252,7 +252,7 @@ if (hasHighScore) {
   if (!hasHeavyArmor || !hasResistance) {
   }
 } else if (!hasHighScore) {
-  if (hasResistance || hasHeavyArmor) {
+  if (hasResistance && hasHeavyArmor) {
   }
 }
 ```
@@ -261,7 +261,7 @@ if (hasHighScore) {
 
 ```js
 // Вынесем 2-е вложенное условие в переменную:
-const hasAdvantage = hasHeavyArmor || hasResistance;
+const hasAdvantage = hasHeavyArmor && hasResistance;
 
 // Заметим, что по первому закону де Моргана
 // 1-е вложенное условие превратится в `!hasAdvantage`:

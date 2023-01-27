@@ -230,7 +230,7 @@ if (user.score >= 50) {
   if (user.armor < 50 || user.resistance !== 1) {
   }
 } else if (user.score < 50) {
-  if (user.resistance === 1 || user.armor >= 50) {
+  if (user.resistance === 1 && user.armor >= 50) {
   }
 }
 ```
@@ -250,7 +250,7 @@ if (hasHighScore) {
   if (!hasHeavyArmor || !hasResistance) {
   }
 } else if (!hasHighScore) {
-  if (hasResistance || hasHeavyArmor) {
+  if (hasResistance && hasHeavyArmor) {
   }
 }
 ```
@@ -259,7 +259,7 @@ In such a condition, it's much easier to notice patterns within `if` blocks and 
 
 ```js
 // Extract 2nd nested condition into a variable:
-const hasAdvantage = hasHeavyArmor || hasResistance;
+const hasAdvantage = hasHeavyArmor && hasResistance;
 
 // Notice that the 1st nested condition
 // can transform into `!hasAdvantage`
