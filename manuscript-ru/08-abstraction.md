@@ -256,11 +256,11 @@ async function submitLoginForm(event) {
 
 Она компактная, всего 13 строк, но в ней можно насчитать 3 задачи:
 
-- подготовка данных;
+- извлечение данных из формы;
 - валидация данных;
 - работа с сетью.
 
-Мы также можем посчитать задачи, изменив условия каждой, и посмотрев, _какой код из-за этого поменяется_. Например, если в форму добавить чекбокс «Запомнить меня», то изменится код подготовки данных:
+Мы также можем посчитать задачи, изменив условия каждой, и посмотрев, _какой код из-за этого поменяется_. Например, если в форму добавить чекбокс «Запомнить меня», то изменится код извлечения данных:
 
 ```js
 async function submitLoginForm(event) {
@@ -302,13 +302,13 @@ async function submitLoginForm(event) {
 
 Код, который меняется по разным причинам, лучше держать отдельно, а который меняется по одинаковой причине — вместе. Это также известно, как _принцип единственной ответственности (Single Responsibility Principle, SRP)_.[^srp][^singleresponsibility]
 
-Мы можем применить этот принцип, чтобы отрефакторить функцию `submitLoginForm` из примера выше. Выделим каждую задачу в отдельную функцию и посмотрим, как изменится код `submitLoginForm`. Начнём с подготовки данных:
+Мы можем применить этот принцип, чтобы отрефакторить функцию `submitLoginForm` из примера выше. Выделим каждую задачу в отдельную функцию и посмотрим, как изменится код `submitLoginForm`. Начнём с извлечения данных:
 
 ```js
-// Вынесем задачу подготовки в отдельную функцию.
-// Теперь данные собираются здесь, и мы точно знаем,
+// Вынесем задачу извлечения данных из формы в отдельную функцию.
+// После такого изменения мы точно знаем,
 // куда «приблизиться», если нужно узнать детали.
-function createLoginData(form) {
+function extractLoginData(form) {
   const data = {};
 
   data.email = form.email.value;
@@ -321,8 +321,8 @@ async function submitLoginForm(event) {
   const form = event.target;
 
   // Внутри `submitLoginForm` мы теперь фокусируемся
-  // только на использовании подготовленных к отправке данных.
-  const data = createLoginData(form);
+  // только на использовании извлечённых данных.
+  const data = extractLoginData(form);
 
   if (!form.email.value || !form.password.value) return;
 
@@ -345,7 +345,7 @@ function isValidLogin({ email, password }) {
 
 async function submitLoginForm(event) {
   const form = event.target;
-  const data = createLoginData(form);
+  const data = extractLoginData(form);
   if (!isValidLogin(data)) return;
 
   const response = await fetch("/api/login", {
@@ -370,7 +370,7 @@ async function loginUser(data) {
 
 async function submitLoginForm(event) {
   const form = event.target;
-  const data = createLoginData(form);
+  const data = extractLoginData(form);
   if (!isValidLogin(data)) return;
 
   return await loginUser(data);
@@ -385,7 +385,7 @@ function isValidLogin({ email, password }) {
   return email.includes("@") && !!password;
 }
 
-// Функции `createLoginData`, `loginUser` и `submitLoginForm`
+// Функции `extractLoginData`, `loginUser` и `submitLoginForm`
 // останутся нетронутыми.
 ```
 
