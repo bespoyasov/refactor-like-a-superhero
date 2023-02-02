@@ -304,7 +304,7 @@ Code that changes for different reasons is best kept separate, and code that cha
 We can apply this principle to refactor the `submitLoginForm` function from the example above. Let's extract each task into a separate function and see how `submitLoginForm` code changes. Let's start with the data extraction:
 
 ```js
-// More data extraction to a separate function.
+// Move data extraction to a separate function.
 // Now it all is gathered here, and we know exactly
 // where to look if we need to know its details.
 function extractLoginData(form) {
