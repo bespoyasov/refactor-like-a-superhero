@@ -86,9 +86,9 @@ async function fetchUser(url) {
 Функция `parseUser` парсит серверный ответ и возвращает объект пользователя или `null`, если DTO оказался невалидным:
 
 ```js
-function parseUser(dto: UserDto): User {
+function parseUser(dto: UserDto): User | null {
   if (!dto || !dto.firstName || !dto.lastName || !dto.email) return null;
-  return { ...dto, fullName: `${firstName} ${lastName}` };
+  return { ...dto, fullName: `${dto.firstName} ${dto.lastName}` };
 }
 ```
 
@@ -118,7 +118,7 @@ async function fetchUser(url) {
 }
 ```
 
-Мы можем это решить, добавив обработку через `try-catch` на уровне выше. Выброшенная ошибка в функции `getUser` будет перехвачена, и мы сможем её обработать:
+Мы можем это решить, добавив обработку через `try-catch` на уровне выше. Выброшенная ошибка будет перехвачена в функции `getUser`, и мы сможем её обработать:
 
 ```js
 async function getUser(id) {
