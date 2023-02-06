@@ -104,9 +104,9 @@ function prepareExport(items) {
 }
 ```
 
-The `subtotal` calculation within the function changes the `items` array. However, other calculations also depend on this array, and changing it will affect them too.
+The `subtotal` calculation within the function updates objects in the `items` array. However, other calculations also depend on this array, and changing it will affect them too.
 
-It means that when calculating `subtotal` we'll have to consider how it will affect the `shipmentDate` calculation. The more extensive the function, the more actions will be affected, and the more details we must keep in mind.
+It means that when calculating `subtotal` we'll have to consider how such changes will affect the `shipmentDate` calculation. The more extensive the function, the more actions will be affected, and the more details we must keep in mind.
 
 Moreover, since `items` is an array, its changes will be visible _outside_ the `prepareExport` function. They might affect code that we may know nothing about. In this case, it'll be impossible to predict potential problems.
 
