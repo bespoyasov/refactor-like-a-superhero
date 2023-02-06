@@ -87,9 +87,9 @@ async function fetchUser(url) {
 The `parseUser` function parses the server response and returns the user object or `null` if the DTO is invalid:
 
 ```js
-function parseUser(dto: UserDto): User {
+function parseUser(dto: UserDto): User | null {
   if (!dto || !dto.firstName || !dto.lastName || !dto.email) return null;
-  return { ...dto, fullName: `${firstName} ${lastName}` };
+  return { ...dto, fullName: `${dto.firstName} ${dto.lastName}` };
 }
 ```
 
