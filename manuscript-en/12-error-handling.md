@@ -273,10 +273,14 @@ However, throwing has its problems as well:
 - At the same time, using panics in the domain code is a smell because domain errors aren't panics; we expect them.
 - Checking for all potential errors is possible, but it looks ugly because of `instanceof`.
 - We can avoid the use of `instanceof` with error subclasses for each “application layer,” but this makes the error model more complex.
-- Function signatures don't tell us that the functions may throw an error; we can only learn about the errors from the source code.
 - It isn't clear _who_ should handle a thrown error. Relying on “conventions” isn't safe because there are no tools in the language to enforce conventions.
 - There are no explicit rules for wrapping “low-level” code (`fetch`, Browser API, etc.) in `try-catch`.
 - Performance may suffer because each `Error` object collects stack and other information.
+- Function signatures don't tell us that the functions may throw an error; we can only learn about the errors from the source code.
+
+| Clarification 🎯                                                                                                                                                                                                                                                |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Typescript lets us use the `never` type as a return type. So technically we can hint through signature that a function throws a _some_ exception. But we want to specify an _exact_ exception by its type. That's why `never` is not suitable for our purposes. |
 
 If a project can use _only_ panics, that's probably the maximum we can do. In a good way, we should avoid using panics in business logic. But if there are some constraints in the project that force us to do so, it makes sense to make the error handling look roughly like this.
 
