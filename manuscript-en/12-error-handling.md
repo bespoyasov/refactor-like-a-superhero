@@ -278,9 +278,9 @@ However, throwing has its problems as well:
 - Performance may suffer because each `Error` object collects stack and other information.
 - Function signatures don't tell us that the functions may throw an error; we can only learn about the errors from the source code.
 
-| Clarification 🎯                                                                                                                                                                                                                                                |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Typescript lets us use the `never` type as a return type. So technically we can hint through signature that a function throws a _some_ exception. But we want to specify an _exact_ exception by its type. That's why `never` is not suitable for our purposes. |
+| Clarification 🎯                                                                                                                                                                                                                                                                                                              |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In TypeScript, we can use the `never` type[^tsnever] to warn about possible errors in a function through its signature. This type doesn't tell _what_ errors to expect, but at least it hints at their _possibility_. It makes the signature a bit more accurate but probably isn't enough to describe errors in more detail. |
 
 If a project can use _only_ panics, that's probably the maximum we can do. In a good way, we should avoid using panics in business logic. But if there are some constraints in the project that force us to do so, it makes sense to make the error handling look roughly like this.
 
@@ -749,3 +749,4 @@ When refactoring error handling, we can take advantage of this idea and move the
 [^eventerror]: Window: `error` event, MDN Web Docs, https://developer.mozilla.org/en-US/docs/Web/API/Window/error_event
 [^eventrejection]: Window: `unhandledrejection` event, MDN Web Docs, https://developer.mozilla.org/en-US/docs/Web/API/Window/unhandledrejection_event
 [^unhandlederrors]: “Dealing with Unhandled Exceptions”, by Alexander Zlatkov https://blog.sessionstack.com/how-javascript-works-exceptions-best-practices-for-synchronous-and-asynchronous-environments-39f66b59f012#ecc9
+[^tsnever]: More on Functions, `never`, TypeScript: Documentation, https://www.typescriptlang.org/docs/handbook/2/functions.html#never
