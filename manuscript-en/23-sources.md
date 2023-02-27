@@ -17,6 +17,8 @@ What refactoring is and why it is needed. What an uncontrollably increasing comp
 - “The Black Swan” by Nassim Nicholas Taleb, https://www.goodreads.com/book/show/242472.The_Black_Swan
 - “Clean Code” by Robert C. Martin, https://www.goodreads.com/book/show/3735293-clean-code
 - “Refactoring” by Martin Fowler, Kent Beck, https://www.goodreads.com/book/show/44936.Refactoring
+- “Refactoring”, 2nd edition, by Martin Fowler, https://www.goodreads.com/book/show/35135772-refactoring
+- “Refactoring JavaScript” by Evan Burchard, https://www.goodreads.com/book/show/39331294-refactoring-javascript
 - “Software Design: Cognitive Aspect” by Françoise Détienne, https://www.goodreads.com/book/show/3104497-software-design-cognitive-aspect
 - “Working Effectively with Legacy Code” by Michael C. Feathers, https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code
 
@@ -97,6 +99,8 @@ What to avoid during refactoring, how to make the process easier. How to isolate
 - “Code That Fits in Your Head” by Mark Seemann, https://www.goodreads.com/book/show/57345272-code-that-fits-in-your-head
 - “Jedi Techniques” by Maxim Dorofeev, Translated Summary, https://bespoyasov.me/blog/jedi-techniques/
 - “Refactoring” by Martin Fowler, Kent Beck, https://www.goodreads.com/book/show/44936.Refactoring
+- “Refactoring”, 2nd edition, by Martin Fowler, https://www.goodreads.com/book/show/35135772-refactoring
+- “Refactoring JavaScript” by Evan Burchard, https://www.goodreads.com/book/show/39331294-refactoring-javascript
 - “Rules of Work Communication” by M. Ilyahov and L. Sarycheva, Translated Summary, https://bespoyasov.me/blog/rules-of-work-communication/
 - “Thinking, Fast and Slow” by Daniel Kahneman, https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow
 - “Working Effectively with Legacy Code” by Michael C. Feathers, https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code
@@ -142,6 +146,7 @@ How to use all the capabilities of automated code refactoring tools and analyzer
 - “The Art of Readable Code” by Dustin Boswell, Trevor Foucher, https://www.goodreads.com/book/show/8677004-the-art-of-readable-code
 - “Autopilot: The Art & Science of Doing Nothing” by Andrew Smart, https://www.goodreads.com/book/show/18053732-autopilot
 - “Code That Fits in Your Head” by Mark Seemann, https://www.goodreads.com/book/show/57345272-code-that-fits-in-your-head
+- “Refactoring JavaScript” by Evan Burchard, https://www.goodreads.com/book/show/39331294-refactoring-javascript
 - “Thinking, Fast and Slow” by Daniel Kahneman, https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow
 
 ### Talks and Video
@@ -180,6 +185,7 @@ Why naming is important, how variable and function names affect code perception 
 - “Domain Modeling Made Functional” by Scott Wlaschin, https://www.goodreads.com/book/show/34921689-domain-modeling-made-functional
 - “Domain-Driven Design” by Eric Evans, https://www.goodreads.com/book/show/179133.Domain_Driven_Design
 - “Refactoring” by Martin Fowler, Kent Beck, https://www.goodreads.com/book/show/44936.Refactoring
+- “Refactoring”, 2nd edition, by Martin Fowler, https://www.goodreads.com/book/show/35135772-refactoring
 - “Software Design: Cognitive Aspect” by Françoise Détienne, https://www.goodreads.com/book/show/3104497-software-design-cognitive-aspect
 - “Thinking, Fast and Slow” by Daniel Kahneman, https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow
 - “Working Effectively with Legacy Code” by Michael C. Feathers, https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code
@@ -319,6 +325,7 @@ How and why to express data states of business workflows in code. The benefits o
 - “Code That Fits in Your Head” by Mark Seemann, https://www.goodreads.com/book/show/57345272-code-that-fits-in-your-head
 - “Domain-Driven Design” by Eric Evans, https://www.goodreads.com/book/show/179133.Domain_Driven_Design
 - “Domain Modeling Made Functional” by Scott Wlaschin, https://www.goodreads.com/book/show/34921689-domain-modeling-made-functional
+- “Refactoring JavaScript” by Evan Burchard, https://www.goodreads.com/book/show/39331294-refactoring-javascript
 - “Thinking, Fast and Slow” by Daniel Kahneman, https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow
 - “Unit Testing: Principles, Practices, and Patterns” by Vladimir Khorikov, https://www.goodreads.com/book/show/48927138-unit-testing
 
@@ -378,6 +385,7 @@ How to organize the conditions to decrease the cognitive load of the code. Metri
 - “Debug It!: Find, Repair, and Prevent Bugs in Your Code” by Paul Butcher, https://www.goodreads.com/book/show/6770868-debug-it
 - “Domain Modeling Made Functional” by Scott Wlaschin, https://www.goodreads.com/book/show/34921689-domain-modeling-made-functional
 - “Refactoring” by Martin Fowler, Kent Beck, https://www.goodreads.com/book/show/44936.Refactoring
+- “Refactoring”, 2nd edition, by Martin Fowler, https://www.goodreads.com/book/show/35135772-refactoring
 - “Unit Testing: Principles, Practices, and Patterns” by Vladimir Khorikov, https://www.goodreads.com/book/show/48927138-unit-testing
 - “Working Effectively with Legacy Code” by Michael C. Feathers, https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code
 - “Your Code As a Crime Scene” by Adam Tornhill, https://www.goodreads.com/book/show/23627482-your-code-as-a-crime-scene
