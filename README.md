@@ -32,7 +32,8 @@ If you are interested in translating it into other languages, please, contact me
 You can also read the book online or download it as a PDF or Epub:
 
 - [Read Online](https://refactor-like-a-superhero.vercel.app/en)
-- [Download Ebook](https://refactor-like-a-superhero.vercel.app/en#download-ebook)
+- [Download PDF (~10 MB)](./ebook/refactor-like-a-superhero-en.pdf)
+- [Download Epub (~3 MB)](./ebook/refactor-like-a-superhero-en.epub)
 
 ## Errata and Feedback
 
