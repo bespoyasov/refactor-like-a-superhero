@@ -1,7 +1,7 @@
 # Рефакторинг на максималках
 
 <figure>
-  <img src="../images/cover.png" width="300">
+  <img src="../images/cover.jpg" width="300">
   <figcaption><em>Обложка книги (англоязычная версия)</em></figcaption>
 </figure>
 
