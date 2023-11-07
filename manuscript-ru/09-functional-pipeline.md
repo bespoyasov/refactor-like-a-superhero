@@ -458,7 +458,7 @@ function CartProducts({ serverCart, serverProducts }) {
       {serverCart.map((item) => {
         const product = serverProducts.find(
           (product) => item.productId === product.id
-        ).name;
+        );
 
         return (
           <li key={item.id}>
