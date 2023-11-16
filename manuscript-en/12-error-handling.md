@@ -188,8 +188,8 @@ class InvalidUserDto extends Error {
 // API errors:
 class NetworkError extends Error {
   constructor(message, status, traceId) {
+    super(message ?? messageFromStatus(status));
     this.name = this.constructor.name;
-    this.message = message ?? messageFromStatus(status);
 
     // We can extend the type with additional fields for logging:
     this.status = status;
