@@ -193,7 +193,7 @@ function expireAuction(auction) {
 
 // When defining the winners, check who won at least one lot:
 function defineWinners(auction) {
-  return { ...auction, winners: participants.filter(ownsLot) };
+  return { ...auction, winners: auction.participants.filter(ownsLot) };
 }
 
 // ...And so on for all the business workflows.
