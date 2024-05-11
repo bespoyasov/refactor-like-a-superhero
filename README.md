@@ -24,6 +24,7 @@ Currently WIP translations:
 
 - [Spanish by @DavidRamiroBarragan](https://github.com/DavidRamiroBarragan/refactor-like-a-superhero-online-book)
 - [Portuguese (pt-br) by @thiagodsti](https://github.com/thiagodsti/refactor-like-a-superhero-online-book)
+- [French by @FlavienMacquignon](https://github.com/FlavienMacquignon/refactor-like-a-superhero)
 
 If you are interested in translating it into other languages, please, contact me. I'll be happy to discuss details!
 
