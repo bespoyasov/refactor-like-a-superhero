@@ -138,10 +138,10 @@ However, if we throw panics to handle _all_ errors, we can accidentally mix expe
 
 ```js
 function parseUser(dto: UserDto): User {
-  if (!dto) throw new Error("Missing user DRO.");
+  if (!dto) throw new Error("Missing user DTO.");
 
   const { firstName, lastName, email } = dto;
-  if (!firstName || !lastName || !email) throw new Error("Invalid user DRO.");
+  if (!firstName || !lastName || !email) throw new Error("Invalid user DTO.");
 
   return { ...dto, fullName: `${firstName} ${lastName}` };
 }
