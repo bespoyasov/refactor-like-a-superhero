@@ -41,7 +41,7 @@ We will use code examples primarily in JavaScript and sometimes in TypeScript. H
 
 You can also read the book online or download it as a PDF or Epub:
 
-- [Read Online](https://refactor-like-a-superhero.vercel.app/en)
+- [Read Online](https://refactoring-book.vercel.app/en)
 - [Download PDF (~10 MB)](../ebook/refactor-like-a-superhero-en.pdf)
 - [Download Epub (~3 MB)](../ebook/refactor-like-a-superhero-en.epub)
 
